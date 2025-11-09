@@ -1,0 +1,20 @@
+{
+  "financial_reports": "Financial Reports",
+  "borrower_installments": "Borrower Installments",
+  "acceptor_settlement": "Acceptor Settlement",
+  "transaction_list": "Transaction List",
+  "row": "Row",
+  "customer_name": "Customer Name",
+  "creditor": "Creditor",
+  "due_date": "Due Date",
+  "amount": "Amount (Toman)",
+  "transaction_status": "Transaction Status",
+  "operation": "Operation",
+  "admin_panel": "Admin Panel",
+  "log_out": "Log Out",
+  "settlement_date": "settlement date",
+  "settlement_amount": "settlement amount",
+  "settlement_status": "settlement Status",
+  "acceptor_settlement_list": "Acceptor Settlement List",
+  "settlement_name": "settlement name"
+}

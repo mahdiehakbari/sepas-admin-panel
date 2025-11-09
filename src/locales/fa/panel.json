@@ -1,0 +1,20 @@
+{
+  "financial_reports": "گزارشات مالی",
+  "borrower_installments": "اقساط وام گیرنده",
+  "acceptor_settlement": "تسویه پذیرندگان",
+  "transaction_list": "لیست تراکنش ها",
+  "row": "ردیف",
+  "customer_name": "نام مشتری",
+  "creditor": "اعتبار دهنده",
+  "due_date": "تاریخ سررسید",
+  "amount": "مبلغ (ریال)",
+  "transaction_status": "وضعیت تراکنش",
+  "operation": "عملیات",
+  "admin_panel": "پنل ادمین",
+  "log_out": "خروج",
+  "settlement_date": "تاریخ تسویه",
+  "settlement_amount": "مبلغ تسویه",
+  "settlement_status": "وضعیت تسویه",
+  "acceptor_settlement_list": "لیست تسویه پذیرندگان",
+  "settlement_name": "نام پزیرنده"
+}
