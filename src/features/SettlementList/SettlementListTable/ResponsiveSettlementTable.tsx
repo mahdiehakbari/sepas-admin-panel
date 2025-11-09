@@ -36,6 +36,14 @@ export const ResponsiveSettlementTable = ({
                       toPersianNumber(settlement.payment_date)}
                   </p>
                 </div>
+                <div className='flex justify-between gap-2 items-center mb-4 '>
+                  <h2 className='font-medium text-[#808080] text-[14px]'>
+                    {t('panel:settlement_name')}
+                  </h2>
+                  <p className='font-medium text-black text-[14px]'>
+                    {settlement.acceptor}
+                  </p>
+                </div>
 
                 <div className='flex justify-between gap-2 items-center mb-4 '>
                   <h2 className='font-medium text-[#808080] text-[14px]'>
