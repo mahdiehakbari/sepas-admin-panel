@@ -29,7 +29,7 @@ export const ResponsiveSettlementTable = ({
                 </div> */}
                 <div className='flex justify-between gap-2 items-center mb-4 '>
                   <h2 className='font-medium text-[#808080] text-[14px]'>
-                    {t('settlement_status:settlement_date')}
+                    {t('panel:settlement_date')}
                   </h2>
                   <p className='font-medium text-black text-[14px]'>
                     {settlement.payment_date &&
@@ -39,33 +39,16 @@ export const ResponsiveSettlementTable = ({
 
                 <div className='flex justify-between gap-2 items-center mb-4 '>
                   <h2 className='font-medium text-[#808080] text-[14px]'>
-                    {t('settlement_status:settlement_date')}
+                    {t('panel:settlement_amount')}
                   </h2>
 
                   <span className='font-medium text-black text-[14px]'>
-                    {settlement.create_date
-                      ? toPersianNumber(
-                          `${dayjs(settlement.create_date).format(
-                            'HH:mm:ss',
-                          )} - ${dayjs(settlement.create_date).format(
-                            'YYYY/MM/DD',
-                          )}`,
-                        )
-                      : '-'}
+                    {settlement.amount.toLocaleString('fa-IR')}ریال
                   </span>
                 </div>
                 <div className='flex justify-between gap-2 items-center mb-4 '>
                   <h2 className='font-medium text-[#808080] text-[14px]'>
-                    {t('settlement_status:settlement_amount')}
-                  </h2>
-
-                  <span className='font-medium text-black text-[14px]'>
-                    {settlement.amount.toLocaleString('fa-IR')} تومان
-                  </span>
-                </div>
-                <div className='flex justify-between gap-2 items-center mb-4 '>
-                  <h2 className='font-medium text-[#808080] text-[14px]'>
-                    {t('settlement_status:settlement_status')}
+                    {t('panel:settlement_status')}
                   </h2>
 
                   <span
