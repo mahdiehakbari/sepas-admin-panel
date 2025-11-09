@@ -41,21 +41,11 @@ export const SettlementListTable = ({
               <tr key={settlement.uuid}>
                 <td colSpan={5} className='p-0'>
                   <div className='flex items-center justify-between bg-white border border-border-color rounded-lg px-3 py-3'>
-                    <div className='w-[10%] text-right'>
+                    <div className='w-[25%] text-right'>
                       {index + 1 + (currentPage - 1) * pageSize}
                     </div>
-                    <div className='w-[20%] text-center'>
-                      {settlement.create_date
-                        ? toPersianNumber(
-                            `${dayjs(settlement.create_date).format(
-                              'HH:mm:ss',
-                            )} - ${dayjs(settlement.create_date).format(
-                              'YYYY/MM/DD',
-                            )}`,
-                          )
-                        : '-'}
-                    </div>
-                    <div className='w-[10%] text-center flex items-center gap-1.5'>
+
+                    <div className='w-[20%] text-center flex items-center gap-1.5'>
                       {settlement.payment_date &&
                         toPersianNumber(settlement.payment_date)}
                     </div>
@@ -63,7 +53,7 @@ export const SettlementListTable = ({
                     <div className='w-[20%] text-center'>
                       {settlement.amount.toLocaleString('fa-IR')}
                     </div>
-                    <div className='w-[20%] text-center'>
+                    <div className='w-[35%] text-center'>
                       <span
                         className={`px-3 py-1 rounded-full text-xs font-semibold ${
                           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -85,7 +75,11 @@ export const SettlementListTable = ({
                           //@ts-expect-error
                           settlement.status == 12
                           ? 'تسویه شده'
-                          : 'لغو شده '}
+                          : // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                          //@ts-expect-error
+                          settlement.status == 29
+                          ? 'لغو شده '
+                          : 'ناشناخته'}
                       </span>
                     </div>
                     {/* <div className='w-[25%] text-center'>

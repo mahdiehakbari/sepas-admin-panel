@@ -11,5 +11,9 @@
   "transaction_status": "Transaction Status",
   "operation": "Operation",
   "admin_panel": "Admin Panel",
-  "log_out": "Log Out"
+  "log_out": "Log Out",
+  "settlement_date": "settlement date",
+  "settlement_amount": "settlement amount",
+  "settlement_status": "settlement Status",
+  "acceptor_settlement_list": "Acceptor Settlement List"
 }

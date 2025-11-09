@@ -11,6 +11,7 @@ import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import { API_MERCHANT_DOCUMENTS } from '@/config/api_address.config';
 import { SpinnerDiv } from '@/sharedComponent/ui/SpinnerDiv/SpinnerDiv';
+import { ISettlementsData } from './types';
 
 const Installment = () => {
   const { t } = useTranslation();
@@ -73,7 +74,7 @@ const Installment = () => {
   return (
     <div className='max-w-6xl mx-auto mt-6'>
       <h1 className='text-black font-bold text-lg mb-4'>
-        {t('settlement_status:settlement_list')}
+        {t('panel:acceptor_settlement_list')}
       </h1>
 
       <div className='hidden md:block'>
