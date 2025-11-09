@@ -41,8 +41,12 @@ export const SettlementListTable = ({
               <tr key={settlement.uuid}>
                 <td colSpan={5} className='p-0'>
                   <div className='flex items-center justify-between bg-white border border-border-color rounded-lg px-3 py-3'>
-                    <div className='w-[25%] text-right'>
+                    <div className='w-[15%] text-right'>
                       {index + 1 + (currentPage - 1) * pageSize}
+                    </div>
+
+                    <div className='w-[30%] text-center flex items-center gap-1.5'>
+                      {settlement.acceptor}
                     </div>
 
                     <div className='w-[20%] text-center flex items-center gap-1.5'>

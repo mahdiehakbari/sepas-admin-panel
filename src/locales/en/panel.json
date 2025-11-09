@@ -15,5 +15,6 @@
   "settlement_date": "settlement date",
   "settlement_amount": "settlement amount",
   "settlement_status": "settlement Status",
-  "acceptor_settlement_list": "Acceptor Settlement List"
+  "acceptor_settlement_list": "Acceptor Settlement List",
+  "settlement_name": "settlement name"
 }

@@ -15,5 +15,6 @@
   "settlement_date": "تاریخ تسویه",
   "settlement_amount": "مبلغ تسویه",
   "settlement_status": "وضعیت تسویه",
-  "acceptor_settlement_list": "لیست تسویه پذیرندگان"
+  "acceptor_settlement_list": "لیست تسویه پذیرندگان",
+  "settlement_name": "نام پزیرنده"
 }

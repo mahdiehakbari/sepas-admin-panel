@@ -37,7 +37,6 @@ const Installment = () => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        console.log(res.data);
         setRequestData(res.data);
       })
       .catch((err) => console.error(err))
