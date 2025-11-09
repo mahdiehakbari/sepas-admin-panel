@@ -1,1 +1,13 @@
-{ "all_rights": "All rights reserved by Sepas Holding. © 1404" }
+{
+  "all_rights": "All rights reserved by Sepas Holding. © 1404",
+  "login_admin_panel": "Login to the admin panel",
+  "user_name_pass": "Enter your Phone Number and password.",
+  "phone_number": "Phone Number",
+  "user_name_required": "phone Number is required",
+  "password": "password",
+  "password_required": "Password is required",
+  "login_panel": "Login to the panel",
+  "phone_number_invalid": "invalid Phone Number.",
+  "invalid_data": "The mobile number or password is incorrect.",
+  "verification_code": "کد تایید"
+}
