@@ -1,25 +1,19 @@
 'use client';
 
-import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 import { useToggleLanguage } from './hooks';
-import { getNavItems } from './constants';
 import Image from 'next/image';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { MobileMenu } from './MobileMenu';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
 import { useAuthStore } from '@/store/Auth/authStore';
-import { Button } from '@/sharedComponent/ui/Button/Button';
 import { DropdownMenu } from '../DropdownMenu/DropdownMenu';
 
 export const Header = () => {
   const { t } = useTranslation();
   const { toggleLanguage, currentLanguage } = useToggleLanguage();
   const [isOpen, setIsOpen] = useState(false);
-  const [isOpenModal, setIsOpenModal] = useState(false);
-  const [isOpenLoginModal, setIsOpenLoginModal] = useState(false);
-  const [isOpenOtpModal, setIsOpenOtpModal] = useState(false);
   const [openPopUp, setOpenPopUp] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
@@ -27,17 +21,9 @@ export const Header = () => {
 
   const handleLogout = () => {
     logout();
-    Cookies.remove('userProfile');
     Cookies.remove('isLoggedIn');
     router.push('/');
-    setIsOpenOtpModal(false);
   };
-  const handleLogin = () => {
-    setIsOpenLoginModal(true);
-    setIsOpenModal(true);
-  };
-
-  const isLoggedIn = Cookies.get('isLoggedIn');
 
   const handleClick = () => {
     setOpenPopUp(true);
@@ -88,12 +74,12 @@ export const Header = () => {
                 items={[
                   {
                     label: t('panel:borrower_installments'),
-                    href: '/panel/reports/installments',
+                    href: '/',
                     image: '/assets/icons/installments.svg',
                   },
                   {
                     label: t('panel:acceptor_settlement'),
-                    href: '/',
+                    href: '/panel/reports/settlement',
                     image: '/assets/icons/installments.svg',
                   },
                   {

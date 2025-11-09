@@ -42,7 +42,7 @@ export default function AdminLogin() {
       .then((resp) => {
         setAuth(resp.data.token, resp.data.user);
         setSLoadingButton(false);
-        router.push('/panel/reports/installments');
+        router.push('/panel/reports/settlement');
       })
       .catch((err) => {
         setSLoadingButton(false);
