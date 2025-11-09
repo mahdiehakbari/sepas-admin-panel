@@ -10,5 +10,6 @@
   "amount": "مبلغ (تومان)",
   "transaction_status": "وضعیت تراکنش",
   "operation": "عملیات",
-  "admin_panel": "پنل ادمین"
+  "admin_panel": "پنل ادمین",
+  "log_out": "خروج"
 }

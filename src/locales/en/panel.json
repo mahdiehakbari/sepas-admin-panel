@@ -10,5 +10,6 @@
   "amount": "Amount (Toman)",
   "transaction_status": "Transaction Status",
   "operation": "Operation",
-  "admin_panel": "Admin Panel"
+  "admin_panel": "Admin Panel",
+  "log_out": "Log Out"
 }

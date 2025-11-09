@@ -68,8 +68,8 @@ export const SideMenu = () => {
                   className={`flex items-center gap-2 p-2 rounded-lg cursor-pointer
                     ${
                       isActive(item.path)
-                        ? 'bg-primary text-white font-semibold'
-                        : 'hover:bg-gray-100 text-gray-800'
+                        ? 'bg-(--second-light-primary) text-primary font-normal text-[16px]'
+                        : 'hover:bg-gray-100 text-black font-normal text-[16px]'
                     }
                   `}
                 >
@@ -84,22 +84,24 @@ export const SideMenu = () => {
               ))}
             </ul>
           </div>
-        </div>
-
-        {/* ✅ سایر بخش‌ها + خروج */}
-        <div className='px-6'>
-          <div className='flex items-center gap-2 pb-4 cursor-pointer'>
+          <div
+            className={`flex items-center gap-1  transition-all duration-100  ${
+              openMenu ? 'mt-0' : 'mt-6'
+            }`}
+          >
             <Image
-              src='/assets/icons/headphone.svg'
-              alt=''
+              src='/assets/icons/installments.svg'
+              alt='installments'
               width={20}
               height={20}
             />
-            <p className='text-black text-[16px] hover:text-primary'>
-              {t('profile:communication_experts')}
+            <p className=' font-normal text-[16px]'>
+              {t('panel:transaction_list')}
             </p>
           </div>
+        </div>
 
+        <div className='px-6'>
           <div
             className='flex items-center gap-1 pb-1 cursor-pointer'
             onClick={handleLogout}
@@ -110,7 +112,7 @@ export const SideMenu = () => {
               width={20}
               height={20}
             />
-            <p className='text-[#FF4B4B] text-[16px]'>{t('profile:log_out')}</p>
+            <p className='text-[#FF4B4B] text-[16px]'>{t('panel:log_out')}</p>
           </div>
         </div>
       </div>
