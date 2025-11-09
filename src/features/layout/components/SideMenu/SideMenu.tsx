@@ -3,6 +3,8 @@ import Image from 'next/image';
 import Cookies from 'js-cookie';
 import { usePathname, useRouter } from 'next/navigation';
 import { useTranslation } from 'react-i18next';
+import { useState } from 'react';
+import { ChevronDownIcon } from '@heroicons/react/24/solid';
 import { getSideBarItems } from './constants';
 import { useAuthStore } from '@/store/Auth/authStore';
 
@@ -11,6 +13,8 @@ export const SideMenu = () => {
   const pathname = usePathname();
   const router = useRouter();
   const { logout } = useAuthStore();
+
+  const [openMenu, setOpenMenu] = useState(true);
 
   const handleLogout = () => {
     logout();
@@ -23,50 +27,81 @@ export const SideMenu = () => {
 
   return (
     <aside className='w-64 bg-[#F8F9FA] shadow-md p-6'>
-      <div className='flex items-center space-x-3 mb-8 justify-center'>
-        <h2 className='font-medium text-[#515151] text-[12px] font[700]'>
+      <div className='flex items-center justify-center mb-8'>
+        <h2 className='font-medium text-[#515151] text-[12px]'>
           {t('panel:admin_panel')}
         </h2>
       </div>
-      <div className='bg-white h-[65vh] flex flex-col justify-between py-6'>
-        <ul className='font[400] text-[16px]'>
-          {getSideBarItems().map((item) => (
-            <li
-              key={item.path}
-              onClick={() => router.push(item.path)}
-              className={`px-4 py-2 cursor-pointer flex items-center mb-2 mx-2
-        ${
-          isActive(item.path)
-            ? 'text-white bg-primary font-semibold rounded-2xl'
-            : ''
-        }
-        ${'hover:text-primary'}
-      `}
-            >
-              <Image src={item.icon} alt={item.label} width={20} height={20} />
-              <span
-                className={`pr-1 ${isActive(item.path) ? 'text-white' : ''}`}
-              >
-                {item.label}
-              </span>
-            </li>
-          ))}
-        </ul>
 
+      <div className='bg-white h-[65vh] flex flex-col justify-between py-6'>
+        <div className='px-4'>
+          <button
+            onClick={() => setOpenMenu(!openMenu)}
+            className='w-full flex justify-between items-center bg-primary text-white rounded-xl px-4 py-2 text-sm font-medium hover:bg-primary/90'
+          >
+            <div className='flex gap-1 items-center'>
+              <Image
+                src='/assets/icons/coin.svg'
+                alt='logo'
+                width={20}
+                height={20}
+              />
+              {t('panel:financial_reports')}
+            </div>
+            <ChevronDownIcon
+              className={`h-5 w-5 transform transition-all ${
+                openMenu ? 'rotate-180' : ''
+              }`}
+            />
+          </button>
+
+          <div
+            className={`overflow-hidden transition-all duration-300 ${
+              openMenu ? 'max-h-96 mt-2' : 'max-h-0'
+            }`}
+          >
+            <ul className='bg-white rounded-xl shadow-md p-2'>
+              {getSideBarItems().map((item) => (
+                <li
+                  key={item.path}
+                  onClick={() => router.push(item.path)}
+                  className={`flex items-center gap-2 p-2 rounded-lg cursor-pointer
+                    ${
+                      isActive(item.path)
+                        ? 'bg-primary text-white font-semibold'
+                        : 'hover:bg-gray-100 text-gray-800'
+                    }
+                  `}
+                >
+                  <Image
+                    src={item.icon}
+                    alt={item.label}
+                    width={20}
+                    height={20}
+                  />
+                  <span>{item.label}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        {/* ✅ سایر بخش‌ها + خروج */}
         <div className='px-6'>
-          <div className='flex items-center gap-2 pb-4  cursor-pointer '>
+          <div className='flex items-center gap-2 pb-4 cursor-pointer'>
             <Image
               src='/assets/icons/headphone.svg'
               alt=''
               width={20}
               height={20}
             />
-            <p className='text-black font-[400] text-[16px] leading-6 hover:text-primary'>
+            <p className='text-black text-[16px] hover:text-primary'>
               {t('profile:communication_experts')}
             </p>
           </div>
+
           <div
-            className='flex items-center gap-1 pb-1 cursor-pointer '
+            className='flex items-center gap-1 pb-1 cursor-pointer'
             onClick={handleLogout}
           >
             <Image
@@ -75,9 +110,7 @@ export const SideMenu = () => {
               width={20}
               height={20}
             />
-            <p className='text-[#FF4B4B] font-[400] text-[16px] leading-6 '>
-              {t('profile:log_out')}
-            </p>
+            <p className='text-[#FF4B4B] text-[16px]'>{t('profile:log_out')}</p>
           </div>
         </div>
       </div>

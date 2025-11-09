@@ -6,6 +6,7 @@ import { SpinnerDiv } from '@/sharedComponent/ui/SpinnerDiv/SpinnerDiv';
 import { useAuthStore } from '@/store/Auth/authStore';
 import axios from 'axios';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -28,7 +29,8 @@ export default function AdminLogin() {
 
   const [showPassword, setShowPassword] = useState(false);
   const [loadingButton, setSLoadingButton] = useState(false);
-  const { user, setAuth } = useAuthStore();
+  const { setAuth } = useAuthStore();
+  const router = useRouter();
 
   const onSubmit = (data: LoginFormValues) => {
     setSLoadingButton(true);
@@ -40,6 +42,7 @@ export default function AdminLogin() {
       .then((resp) => {
         setAuth(resp.data.token, resp.data.user);
         setSLoadingButton(false);
+        router.push('/panel/reports/installments');
       })
       .catch((err) => {
         setSLoadingButton(false);
