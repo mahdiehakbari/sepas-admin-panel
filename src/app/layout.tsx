@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import I18nProvider from '@/providers/I18nProvider';
+import { SiteRights } from '@/features/layout/components';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://example.com'),
@@ -41,12 +43,12 @@ export default function RootLayout({
   return (
     <html lang='fa' dir='rtl' className='font-fa'>
       <body>
-        {/* <I18nProvider>
+        <I18nProvider>
           <div className='min-h-screen flex flex-col'>
             <main className='flex-1'>{children}</main>
             <SiteRights />
           </div>
-        </I18nProvider> */}
+        </I18nProvider>
       </body>
     </html>
   );
