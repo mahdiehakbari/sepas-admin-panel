@@ -1,3 +1,5 @@
+import AdminLogin from '@/features/Auth/AdminLogin/AdminLogin';
+
 export default function Home() {
-  return <div></div>;
+  return <AdminLogin />;
 }

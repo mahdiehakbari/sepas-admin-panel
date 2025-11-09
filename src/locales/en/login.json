@@ -1,1 +1,10 @@
-{ "all_rights": "All rights reserved by Sepas Holding. © 1404" }
+{
+  "all_rights": "All rights reserved by Sepas Holding. © 1404",
+  "login_admin_panel": "Login to the admin panel",
+  "user_name_pass": "Enter your username and password.",
+  "user_name": "User Name",
+  "user_name_required": "Username is required",
+  "password": "password",
+  "password_required": "Password is required",
+  "login_panel": "Login to the panel"
+}
