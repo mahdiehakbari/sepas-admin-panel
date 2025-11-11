@@ -11,12 +11,10 @@ export const ResponsiveSettlementTable = ({
   pageSize,
 }: ISettlementListTableProps) => {
   const { t } = useTranslation();
-  const { getStatusInfo } = useStatusInfo();
 
   return (
-    <div className='max-w-md mx-auto mt-10'>
+    <div className='max-w-md mx-auto mt-10 px-6'>
       {requests.map((settlement, index) => {
-        const { label, className } = getStatusInfo(settlement.status);
         return (
           <div key={index}>
             <div className='border-2 border-border-color rounded-lg mb-4'>
@@ -34,6 +32,22 @@ export const ResponsiveSettlementTable = ({
                   <p className='font-medium text-black text-[14px]'>
                     {settlement.payment_date &&
                       toPersianNumber(settlement.payment_date)}
+                  </p>
+                </div>
+                <div className='flex justify-between gap-2 items-center mb-4 '>
+                  <h2 className='font-medium text-[#808080] text-[14px]'>
+                    {t('panel:customer_name')}
+                  </h2>
+                  <p className='font-medium text-black text-[14px]'>
+                    {settlement.purchaseRequest?.customer?.fullName ?? '-'}
+                  </p>
+                </div>
+                <div className='flex justify-between gap-2 items-center mb-4 '>
+                  <h2 className='font-medium text-[#808080] text-[14px]'>
+                    {t('panel:phone_number')}
+                  </h2>
+                  <p className='font-medium text-black text-[14px]'>
+                    {settlement.purchaseRequest?.customer?.phoneNumber ?? '-'}
                   </p>
                 </div>
                 <div className='flex justify-between gap-2 items-center mb-4 '>
@@ -61,24 +75,18 @@ export const ResponsiveSettlementTable = ({
 
                   <span
                     className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                      //@ts-expect-error
                       settlement.status === 29
                         ? 'bg-red-100 text-red-700'
                         : settlement.status === null
                         ? 'bg-blue-100 text-blue-700'
-                        : // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                        //@ts-expect-error
-                        settlement.status === 12
+                        : settlement.status === 12
                         ? 'bg-green-100 text-green-700'
                         : 'bg-gray-200 text-gray-800'
                     }`}
                   >
                     {settlement.status === null
                       ? 'اقدام نشده'
-                      : // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                      //@ts-expect-error
-                      settlement.status == 12
+                      : settlement.status == 12
                       ? 'تسویه شده'
                       : 'لغو شده '}
                   </span>
