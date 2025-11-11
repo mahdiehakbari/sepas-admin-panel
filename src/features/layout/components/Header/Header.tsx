@@ -74,7 +74,7 @@ export const Header = () => {
                 items={[
                   {
                     label: t('panel:borrower_installments'),
-                    href: '/',
+                    href: '/panel/reports/installment',
                     image: '/assets/icons/installments.svg',
                   },
                   {

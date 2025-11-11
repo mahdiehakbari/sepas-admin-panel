@@ -1,22 +1,23 @@
 'use client';
 
-import {
-  ResponsiveSettlementTable,
-  SettlementListTable,
-} from '@/features/SettlementList';
+import { ResponsiveSettlementTable } from '@/features/SettlementList';
 import Cookies from 'js-cookie';
 import { Paginate } from '@/sharedComponent/ui';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
-import { API_MERCHANT_DOCUMENTS } from '@/config/api_address.config';
+import { API_INSTALLMENTS_DOCUMENTS } from '@/config/api_address.config';
 import { SpinnerDiv } from '@/sharedComponent/ui/SpinnerDiv/SpinnerDiv';
-import { ISettlementsData } from './types';
+import { IInstallmentsData } from './types';
+import {
+  InstallmentListTable,
+  ResponsiveInstallmentTable,
+} from '@/features/InstallmentList';
 
-const Settlement = () => {
+const Installment = () => {
   const { t } = useTranslation();
   const [pageLoading, setPageLoading] = useState(true);
-  const [requestsData, setRequestData] = useState<ISettlementsData | null>(
+  const [requestsData, setRequestData] = useState<IInstallmentsData | null>(
     null,
   );
   const [page, setPage] = useState(1);
@@ -33,10 +34,11 @@ const Settlement = () => {
 
   useEffect(() => {
     axios
-      .get(`${API_MERCHANT_DOCUMENTS}?pageNo=${page}&count=10`, {
+      .get(`${API_INSTALLMENTS_DOCUMENTS}?pageNo=${page}&count=10`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
+        console.log(res.data.data, 'aaa');
         setRequestData(res.data);
       })
       .catch((err) => console.error(err))
@@ -69,15 +71,16 @@ const Settlement = () => {
   const currentPage = page;
   const hasPreviousPage = currentPage > 1;
   const hasNextPage = currentPage < totalPages;
+  console.log(items, 'dddd');
 
   return (
     <div className='max-w-6xl mx-auto mt-6'>
-      <h1 className='text-black font-bold text-lg mb-4'>
+      <h1 className='text-black font-bold text-lg mb-4 px-6 md:px-0'>
         {t('panel:acceptor_settlement_list')}
       </h1>
 
       <div className='hidden md:block'>
-        <SettlementListTable
+        <InstallmentListTable
           requests={items}
           currentPage={page}
           pageSize={pageSize}
@@ -85,7 +88,7 @@ const Settlement = () => {
       </div>
 
       <div className='block md:hidden'>
-        <ResponsiveSettlementTable
+        <ResponsiveInstallmentTable
           requests={items}
           currentPage={page}
           pageSize={pageSize}
@@ -103,4 +106,4 @@ const Settlement = () => {
   );
 };
 
-export default Settlement;
+export default Installment;

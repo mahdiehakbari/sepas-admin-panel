@@ -3,7 +3,7 @@ import i18n from '@/i18n';
 export const getSideBarItems = () => [
   {
     label: i18n.t('panel:borrower_installments'),
-    path: '#',
+    path: '/panel/reports/installment',
     icon: '/assets/icons/installments.svg',
   },
   {

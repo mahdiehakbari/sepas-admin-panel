@@ -10,7 +10,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
           <SideMenu />
         </div>
 
-        <main className='flex-1 px-8 md:max-w-[1000px]'>{children}</main>
+        <main className='flex-1 md:px-8 md:max-w-[1000px]'>{children}</main>
       </div>
     </>
   );

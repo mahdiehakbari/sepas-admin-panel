@@ -1,0 +1,9 @@
+{
+  "row": "Row",
+  "creditor": "Creditor",
+  "due_date": "Due Date",
+  "amount": "Amount (Toman)",
+  "transaction_status": "Transaction Status",
+  "operation": "Operation",
+  "customer_name": "Customer name"
+}
