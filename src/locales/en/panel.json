@@ -16,5 +16,6 @@
   "settlement_amount": "settlement amount",
   "settlement_status": "settlement Status",
   "acceptor_settlement_list": "Acceptor Settlement List",
-  "settlement_name": "settlement name"
+  "settlement_name": "settlement name",
+  "phone_number": "customer Phone Number"
 }

@@ -38,14 +38,11 @@ const Installment = () => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        console.log(res.data.data, 'aaa');
         setRequestData(res.data);
       })
       .catch((err) => console.error(err))
       .finally(() => setPageLoading(false));
   }, [page]);
-
-  console.log(requestsData, 'aaa', page);
 
   if (pageLoading) {
     return (
@@ -71,7 +68,6 @@ const Installment = () => {
   const currentPage = page;
   const hasPreviousPage = currentPage > 1;
   const hasNextPage = currentPage < totalPages;
-  console.log(items, 'dddd');
 
   return (
     <div className='max-w-6xl mx-auto mt-6'>

@@ -38,12 +38,11 @@ const Settlement = () => {
       })
       .then((res) => {
         setRequestData(res.data);
+        console.log('aaa', res.data);
       })
       .catch((err) => console.error(err))
       .finally(() => setPageLoading(false));
   }, [page]);
-
-  console.log(requestsData, 'aaa', page);
 
   if (pageLoading) {
     return (

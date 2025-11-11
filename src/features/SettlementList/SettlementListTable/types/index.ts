@@ -3,7 +3,7 @@ export interface ISettlementItem {
   amount: number;
   cash_out_method: number;
   account_no: number;
-  status: string | null;
+  status: number;
   acceptor?: string;
   acceptor_tag?: number;
   city?: string;
@@ -12,6 +12,16 @@ export interface ISettlementItem {
   payment_date?: string;
   iban?: string;
   person_address?: number;
+  purchaseRequest?: {
+    customer?: {
+      id: string;
+      fullName: string;
+      phoneNumber: string;
+      nationalId: string;
+      iban: string;
+      address: string | null;
+    };
+  };
 }
 
 export interface ISettlementListTableProps {

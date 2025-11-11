@@ -16,5 +16,6 @@
   "settlement_amount": "مبلغ تسویه",
   "settlement_status": "وضعیت تسویه",
   "acceptor_settlement_list": "لیست تسویه پذیرندگان",
-  "settlement_name": "نام پزیرنده"
+  "settlement_name": "نام پزیرنده",
+  "phone_number": "شماره موبایل مشتری"
 }
