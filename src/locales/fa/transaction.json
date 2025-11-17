@@ -1,0 +1,9 @@
+{
+  "row": "ردیف",
+  "customer_name": "نام بیمار",
+  "phone_number": "شماره موبایل",
+  "transaction_date": "تاریخ تراکنش",
+  "transaction_amount": "مبلغ تراکنش",
+  "transaction_status": "وضعیت تراکنش",
+  "transaction_list": "لیست تراکنش ها "
+}

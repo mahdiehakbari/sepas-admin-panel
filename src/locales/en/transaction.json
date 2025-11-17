@@ -1,0 +1,9 @@
+{
+  "row": "Row",
+  "customer_name": "Customer name",
+  "phone_number": "Phone Number",
+  "transaction_date": "Transaction Date",
+  "transaction_amount": "Transaction amount",
+  "transaction_status": "Transaction Status",
+  "transaction_list": "Transaction List"
+}
