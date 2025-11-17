@@ -2,9 +2,7 @@
 
 import { useTranslation } from 'react-i18next';
 import { IInstallmentListTableProps } from './types';
-
 import { getThItems } from './constants';
-import { useStatusInfo } from './utils/useStatusInfo';
 import { toPersianNumber } from '@/features/SettlementList/SettlementListTable/utils/toPersianNumber';
 
 export const InstallmentListTable = ({

@@ -38,7 +38,6 @@ const Settlement = () => {
       })
       .then((res) => {
         setRequestData(res.data);
-        console.log('aaa', res.data);
       })
       .catch((err) => console.error(err))
       .finally(() => setPageLoading(false));
@@ -48,16 +47,14 @@ const Settlement = () => {
     return (
       <div className='flex justify-center items-center h-screen'>
         <SpinnerDiv size='lg' />
-        <p className='px-2'>در حال بارگذاری...</p>
+        <p className='px-2'>{t('panel:page_loading')}</p>
       </div>
     );
   }
 
   if (!requestsData || requestsData?.data?.document_list.length === 0) {
     return (
-      <div className='text-center mt-10 text-gray-500'>
-        هیچ داده‌ای یافت نشد.
-      </div>
+      <div className='text-center mt-10 text-gray-500'>{t('panel:empty')}</div>
     );
   }
 

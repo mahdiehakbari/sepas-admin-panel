@@ -4,4 +4,4 @@ export const API_INSTALLMENTS_DOCUMENTS =
   '/api/EniacQuery/installments-documents';
 
 export const API_AUTHENTICATE_ME = '/api/UnifiedAuth/me';
-export const API_MERCHANT = '/api/PurchaseRequestsQuery/merchant/';
+export const API_PURCHASE_REQUEST = '/api/PurchaseRequestsQuery';

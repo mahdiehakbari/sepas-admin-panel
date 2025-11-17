@@ -1,5 +1,4 @@
 import { useTranslation } from 'react-i18next';
-import { useStatusInfo } from './utils/useStatusInfo';
 import { IInstallmentListTableProps } from './types';
 import { toPersianNumber } from '@/features/SettlementList/SettlementListTable/utils/toPersianNumber';
 

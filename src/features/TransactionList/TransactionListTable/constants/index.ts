@@ -7,6 +7,6 @@ export const getThItems = () => [
   { id: 4, label: i18n.t('transaction:mobile_number') },
   { id: 5, label: i18n.t('transaction:transaction_date') },
   { id: 6, label: i18n.t('transaction:amount') },
-  { id: 7, label: i18n.t('transaction:transaction_number') },
+  // { id: 7, label: i18n.t('transaction:transaction_number') },
   { id: 8, label: i18n.t('transaction:transaction_status') },
 ];

@@ -46,6 +46,9 @@ export const TransactionListTable = ({
                       {transaction.customerName}
                     </div>
                     <div className='w-[20%] text-center'>
+                      {transaction.merchantName}
+                    </div>
+                    <div className='w-[20%] text-center'>
                       {transaction.customerPhone}
                     </div>
                     <div className='w-[20%] text-center flex items-center gap-1.5'>

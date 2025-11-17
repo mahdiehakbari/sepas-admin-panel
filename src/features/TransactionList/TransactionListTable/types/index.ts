@@ -6,6 +6,7 @@ export interface ITransactionItem {
   createdAt: string;
   customerId: string;
   customerName: string;
+  merchantName: string;
   customerPhone: string;
   merchantId: string;
 }

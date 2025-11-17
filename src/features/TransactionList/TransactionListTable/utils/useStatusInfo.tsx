@@ -8,13 +8,13 @@ export const useStatusInfo = () => {
     if (status == 'Completed') className = 'bg-green-100 text-green-700';
     else if (status == 'ConfirmedByCustomer')
       className = 'bg-blue-100 text-blue-700';
-    else if (status == 'failed' || status == 'canceled')
+    else if (status == 'Failed' || status == 'canceled')
       className = 'bg-red-100 text-red-700';
     else if (status == 'Pending' || status == 'OtpSent')
       className = 'bg-yellow-100 text-yellow-700';
 
     return {
-      label: t(`status:${status}`),
+      label: t(`status_transaction:${status}`),
       className,
     };
   };

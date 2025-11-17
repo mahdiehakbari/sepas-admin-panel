@@ -8,6 +8,7 @@ export interface ITransactionItem {
   customerName: string;
   customerPhone: string;
   merchantId: string;
+  merchantName: string;
 }
 
 export interface ITransactionsData {

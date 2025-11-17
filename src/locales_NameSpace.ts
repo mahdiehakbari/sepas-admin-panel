@@ -3,6 +3,7 @@ export const localesNS = [
   'panel',
   'installment',
   'transaction',
+  'status_transaction',
 ] as const;
 export type LocaleNS = (typeof localesNS)[number];
 
