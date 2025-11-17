@@ -16,7 +16,7 @@ export interface IFilteredProps {
   placeholderText: string;
 }
 
-export const Filteredtabel = ({
+export const FilteredTable = ({
   planName,
   setPlanName,
   fromDate,
