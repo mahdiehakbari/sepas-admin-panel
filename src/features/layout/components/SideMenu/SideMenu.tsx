@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { ChevronDownIcon } from '@heroicons/react/24/solid';
 import { getSideBarItems } from './constants';
 import { useAuthStore } from '@/store/Auth/authStore';
+import Link from 'next/link';
 
 export const SideMenu = () => {
   const { t } = useTranslation();
@@ -60,7 +61,7 @@ export const SideMenu = () => {
               openMenu ? 'max-h-96 mt-2' : 'max-h-0'
             }`}
           >
-            <ul className='bg-white rounded-xl shadow-md p-2'>
+            <ul className='bg-white rounded-xl  p-2'>
               {getSideBarItems().map((item) => (
                 <li
                   key={item.path}
@@ -84,21 +85,28 @@ export const SideMenu = () => {
               ))}
             </ul>
           </div>
-          <div
-            className={`flex items-center gap-1  transition-all duration-100  ${
-              openMenu ? 'mt-0' : 'mt-6'
-            }`}
-          >
-            <Image
-              src='/assets/icons/installments.svg'
-              alt='installments'
-              width={20}
-              height={20}
-            />
-            <p className=' font-normal text-[16px]'>
-              {t('panel:transaction_list')}
-            </p>
-          </div>
+
+          <Link href='/panel/transactionsList'>
+            <div
+              className={`flex items-center gap-2 p-2 rounded-lg cursor-pointer
+                    ${
+                      isActive('/panel/transactionsList')
+                        ? 'bg-(--second-light-primary) text-primary font-normal text-[16px] mt-3'
+                        : 'hover:bg-gray-100 text-black font-normal text-[16px] mt-3'
+                    }
+                  `}
+            >
+              <Image
+                src='/assets/icons/installments.svg'
+                alt='installments'
+                width={20}
+                height={20}
+              />
+              <p className=' font-normal text-[16px]'>
+                {t('panel:transaction_list')}
+              </p>
+            </div>
+          </Link>
         </div>
 
         <div className='px-6'>

@@ -1,9 +1,11 @@
 {
+  "transaction_list": "لیست تراکنش ها",
   "row": "ردیف",
-  "customer_name": "نام بیمار",
-  "phone_number": "شماره موبایل",
+  "acceptor_name": "نام پذیرنده",
+  "customer_name": "نام مشتری",
+  "mobile_number": "شماره موبایل",
   "transaction_date": "تاریخ تراکنش",
-  "transaction_amount": "مبلغ تراکنش",
-  "transaction_status": "وضعیت تراکنش",
-  "transaction_list": "لیست تراکنش ها "
+  "amount": "مبلغ (تومان)",
+  "transaction_number": "شماره تراکنش",
+  "transaction_status": "وضعیت تراکنش"
 }

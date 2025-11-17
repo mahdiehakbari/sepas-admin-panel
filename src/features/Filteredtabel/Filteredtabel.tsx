@@ -46,7 +46,7 @@ export const Filteredtabel = ({
           calendar={persian}
           locale={persian_fa}
           inputClass='border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:ring focus:border-blue-400'
-          placeholder='انتخاب تاریخ'
+          placeholder='از تاریخ'
         />
       </div>
 
@@ -57,7 +57,7 @@ export const Filteredtabel = ({
           calendar={persian}
           locale={persian_fa}
           inputClass='border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:ring focus:border-blue-400'
-          placeholder='انتخاب تاریخ'
+          placeholder='تا تاریخ'
         />
       </div>
 

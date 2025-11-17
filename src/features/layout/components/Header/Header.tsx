@@ -84,7 +84,7 @@ export const Header = () => {
                   },
                   {
                     label: t('panel:transaction_list'),
-                    href: '/',
+                    href: '/panel/transactionsList',
                     image: '/assets/icons/installments.svg',
                   },
 

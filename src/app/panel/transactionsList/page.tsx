@@ -85,13 +85,13 @@ const TransactionsList = () => {
     );
   }
 
-  //   if (!requestsData || requestsData.items.length === 0) {
-  //     return (
-  //       <div className='text-center mt-10 text-gray-500'>
-  //         هیچ داده‌ای یافت نشد.
-  //       </div>
-  //     );
-  //   }
+  if (!requestsData || requestsData.items.length === 0) {
+    return (
+      <div className='text-center mt-10 text-gray-500'>
+        هیچ داده‌ای یافت نشد.
+      </div>
+    );
+  }
 
   const {
     displayItems,
