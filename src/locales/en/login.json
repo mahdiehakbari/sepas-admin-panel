@@ -9,5 +9,7 @@
   "login_panel": "Login to the panel",
   "phone_number_invalid": "invalid Phone Number.",
   "invalid_data": "The mobile number or password is incorrect.",
-  "verification_code": "کد تایید"
+  "verification_code": "Verification Code",
+  "hide_pass": "Hide password",
+  "show_pass": "Show password"
 }
