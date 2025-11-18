@@ -1,0 +1,8 @@
+{
+  "Pending": "initial registration",
+  "OtpSent": "One-time password sent.",
+  "Completed": "Completed",
+  "ConfirmedByCustomer": "Confirmed",
+  "Failed": "Failed",
+  "Cancelled": "Cancelled"
+}

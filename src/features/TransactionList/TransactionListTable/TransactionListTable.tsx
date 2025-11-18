@@ -1,16 +1,18 @@
 'use client';
 
 import { useTranslation } from 'react-i18next';
-import { IInstallmentListTableProps } from './types';
-import { getThItems } from './constants';
-import { toPersianNumber } from '@/features/SettlementList/SettlementListTable/utils/toPersianNumber';
+import { ITransactionListTableProps } from './types';
 
-export const InstallmentListTable = ({
+import { getThItems } from './constants';
+import { useStatusInfo } from './utils/useStatusInfo';
+
+export const TransactionListTable = ({
   requests,
   currentPage,
   pageSize,
-}: IInstallmentListTableProps) => {
+}: ITransactionListTableProps) => {
   const { t } = useTranslation();
+  const { getStatusInfo } = useStatusInfo();
 
   return (
     <div className='overflow-x-auto'>
@@ -30,36 +32,51 @@ export const InstallmentListTable = ({
         </thead>
 
         <tbody>
-          {requests.map((installment, index) => {
+          {requests.map((transaction, index) => {
+            const { label, className } = getStatusInfo(transaction.status);
+
             return (
-              <tr key={index}>
+              <tr key={transaction.id}>
                 <td colSpan={5} className='p-0'>
                   <div className='flex items-center justify-between bg-white border border-border-color rounded-lg px-3 py-3'>
                     <div className='w-[10%] text-right'>
                       {index + 1 + (currentPage - 1) * pageSize}
                     </div>
                     <div className='w-[20%] text-center'>
-                      {installment.last_name}
+                      {transaction.customerName}
                     </div>
                     <div className='w-[20%] text-center'>
-                      {installment.due_date &&
-                        toPersianNumber(installment.due_date)}
+                      {transaction.merchantName}
                     </div>
-
                     <div className='w-[20%] text-center'>
-                      {installment.amount.toLocaleString('fa-IR')}
+                      {transaction.customerPhone}
+                    </div>
+                    <div className='w-[20%] text-center flex items-center gap-1.5'>
+                      {new Date(transaction.createdAt).toLocaleTimeString(
+                        'fa-IR',
+                        {
+                          hour: '2-digit',
+                          minute: '2-digit',
+                        },
+                      )}
+                      {'   '}
+                      {new Date(transaction.createdAt).toLocaleDateString(
+                        'fa-IR',
+                        {
+                          year: 'numeric',
+                          month: '2-digit',
+                          day: '2-digit',
+                        },
+                      )}
+                    </div>
+                    <div className='w-[20%] text-center'>
+                      {transaction.amount.toLocaleString('fa-IR')}
                     </div>
                     <div className='w-[20%] text-center'>
                       <span
-                        className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                          installment.employment_status === 0
-                            ? 'bg-red-100 text-red-700'
-                            : 'bg-green-100 text-green-700'
-                        }`}
+                        className={`px-3 py-1 rounded-full text-xs font-semibold ${className}`}
                       >
-                        {installment.employment_status === 0
-                          ? 'پرداخت نشده '
-                          : 'پرداخت شده '}
+                        {label}
                       </span>
                     </div>
                   </div>

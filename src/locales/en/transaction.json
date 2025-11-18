@@ -1,0 +1,11 @@
+{
+  "transaction_list": "transaction list",
+  "row": "row",
+  "acceptor_name": "Acceptor Name",
+  "customer_name": "Customer Name",
+  "mobile_number": "Mobile Number",
+  "transaction_date": "Transaction Date",
+  "amount": "Amount (Toman)",
+  "transaction_number": "Transaction Number",
+  "transaction_status": "Transaction Status"
+}

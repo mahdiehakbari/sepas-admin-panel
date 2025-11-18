@@ -17,5 +17,8 @@
   "settlement_status": "settlement Status",
   "acceptor_settlement_list": "Acceptor Settlement List",
   "settlement_name": "settlement name",
-  "phone_number": "customer Phone Number"
+  "phone_number": "customer Phone Number",
+  "search_customer": "search customer name",
+  "page_loading": "page Loading ......",
+  "empty": "No data found."
 }

@@ -17,5 +17,8 @@
   "settlement_status": "وضعیت تسویه",
   "acceptor_settlement_list": "لیست تسویه پذیرندگان",
   "settlement_name": "نام پزیرنده",
-  "phone_number": "شماره موبایل مشتری"
+  "phone_number": "شماره موبایل مشتری",
+  "search_customer": "جستوجوی نام مشتری",
+  "page_loading": "در حال بارگذاری...",
+  "empty": " هیچ داده‌ای یافت نشد."
 }
