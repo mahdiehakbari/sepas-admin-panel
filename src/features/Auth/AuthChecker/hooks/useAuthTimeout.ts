@@ -18,17 +18,25 @@ export function useAuthTimeout() {
 
   useEffect(() => {
     const token = Cookies.get('token');
-    if (!token) return;
 
-    const payload = parseJwt(token);
-    if (!payload?.exp) return;
-
-    const expiry = payload.exp * 1000;
-    const now = Date.now();
-
-    if (now >= expiry) {
-      Cookies.remove('token');
+    // اگر اصلاً توکن وجود ندارد → مستقیم redirect
+    if (!token) {
+      Cookies.remove('isLoggedIn');
+      Cookies.remove('phoneNumber');
+      Cookies.remove('user');
       router.push('/');
+      return;
     }
+
+    // اگر توکن وجود دارد → فقط یک interval برای expiry بساز
+    const interval = setInterval(() => {
+      const payload = parseJwt(token);
+      if (payload?.exp && Date.now() >= payload.exp * 1000) {
+        Cookies.remove('token');
+        router.push('/');
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
   }, [router]);
 }

@@ -20,5 +20,6 @@
   "phone_number": "customer Phone Number",
   "search_customer": "search customer name",
   "page_loading": "page Loading ......",
-  "empty": "No data found."
+  "empty": "No data found.",
+  "borrowers_installments": "Borrowers' installment list"
 }
