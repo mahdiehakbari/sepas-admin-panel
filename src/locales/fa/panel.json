@@ -21,5 +21,6 @@
   "search_customer": "جستوجوی نام مشتری",
   "page_loading": "در حال بارگذاری...",
   "empty": " هیچ داده‌ای یافت نشد.",
-  "borrowers_installments": "لیست اقساط وام گیرندگان"
+  "borrowers_installments": "لیست اقساط وام گیرندگان",
+  "customer_management": "مدیریت مشتریان"
 }

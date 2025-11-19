@@ -91,7 +91,7 @@ export const SideMenu = () => {
               className={`flex items-center gap-2 p-2 rounded-lg cursor-pointer
                     ${
                       isActive('/panel/transactionsList')
-                        ? 'bg-(--second-light-primary) text-primary font-normal text-[16px] mt-3'
+                        ? 'bg-(--second-light-primary) text-primary font-normal text-[16px] mt-4'
                         : 'hover:bg-gray-100 text-black font-normal text-[16px] mt-3'
                     }
                   `}
@@ -104,6 +104,28 @@ export const SideMenu = () => {
               />
               <p className=' font-normal text-[16px]'>
                 {t('panel:transaction_list')}
+              </p>
+            </div>
+          </Link>
+
+          <Link href='/panel/customerManagement'>
+            <div
+              className={`flex items-center gap-2 p-2 rounded-lg cursor-pointer
+                    ${
+                      isActive('/panel/customerManagement')
+                        ? 'bg-(--second-light-primary) text-primary font-normal text-[16px] mt-2'
+                        : 'hover:bg-gray-100 text-black font-normal text-[16px] mt-2'
+                    }
+                  `}
+            >
+              <Image
+                src='/assets/icons/people.svg'
+                alt='people'
+                width={20}
+                height={20}
+              />
+              <p className=' font-normal text-[16px]'>
+                {t('panel:customer_management')}
               </p>
             </div>
           </Link>

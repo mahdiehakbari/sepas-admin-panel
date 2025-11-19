@@ -1,0 +1,9 @@
+{
+  "customer_list": "Customer List",
+  "row": "Row",
+  "customer_name": "First and Last Name",
+  "customer_mobile": "Mobile Number",
+  "customer_type": "Customer Type",
+  "city": "City",
+  "national_id": "NationalId"
+}

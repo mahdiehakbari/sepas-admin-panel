@@ -21,5 +21,6 @@
   "search_customer": "search customer name",
   "page_loading": "page Loading ......",
   "empty": "No data found.",
-  "borrowers_installments": "Borrowers' installment list"
+  "borrowers_installments": "Borrowers' installment list",
+  "customer_management": "Customer Management"
 }
