@@ -22,5 +22,6 @@
   "page_loading": "در حال بارگذاری...",
   "empty": " هیچ داده‌ای یافت نشد.",
   "borrowers_installments": "لیست اقساط وام گیرندگان",
-  "customer_management": "مدیریت مشتریان"
+  "customer_management": "مدیریت مشتریان",
+  "Management_receivers": "مدیریت پذیرندگان"
 }

@@ -56,7 +56,6 @@ const CustomerManagement = () => {
   } = paginate(requestsData ? requestsData?.items : [], page, pageSize);
   const isFilterButtonDisabled = !planName && !fromDate && !toDate;
 
-  console.log(displayItems, 'displayItems');
   return (
     <ContentStateWrapper
       loading={pageLoading}
@@ -65,7 +64,7 @@ const CustomerManagement = () => {
       emptyText={t('panel:empty')}
     >
       <div className='max-w-6xl mx-auto mt-6'>
-        <h1 className='text-black font-bold text-lg mb-4'>
+        <h1 className='text-black font-bold text-lg mb-4 mx-6 md:mx-0'>
           {t('transaction:transaction_list')}
         </h1>
         {/* <FilteredTable
@@ -87,11 +86,11 @@ const CustomerManagement = () => {
           />
         </div>
         <div className='block md:hidden'>
-          {/* <ResponsiveCustomerTable
+          <ResponsiveCustomerTable
             requests={displayItems}
             currentPage={currentPage}
             pageSize={pageSize}
-          /> */}
+          />
         </div>
 
         <Paginate

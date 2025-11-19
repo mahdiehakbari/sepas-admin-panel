@@ -129,6 +129,28 @@ export const SideMenu = () => {
               </p>
             </div>
           </Link>
+
+          <Link href='/panel/managementReceivers'>
+            <div
+              className={`flex items-center gap-2 p-2 rounded-lg cursor-pointer
+                    ${
+                      isActive('/panel/managementReceivers')
+                        ? 'bg-(--second-light-primary) text-primary font-normal text-[16px] mt-2'
+                        : 'hover:bg-gray-100 text-black font-normal text-[16px] mt-2'
+                    }
+                  `}
+            >
+              <Image
+                src='/assets/icons/profile-tick.svg'
+                alt='people'
+                width={20}
+                height={20}
+              />
+              <p className=' font-normal text-[16px]'>
+                {t('panel:Management_receivers')}
+              </p>
+            </div>
+          </Link>
         </div>
 
         <div className='px-6'>

@@ -22,5 +22,6 @@
   "page_loading": "page Loading ......",
   "empty": "No data found.",
   "borrowers_installments": "Borrowers' installment list",
-  "customer_management": "Customer Management"
+  "customer_management": "Customer Management",
+  "Management_receivers": "Management of receivers"
 }
