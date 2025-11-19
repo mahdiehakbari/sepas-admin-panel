@@ -1,18 +1,11 @@
 export interface IReceiversItem {
   id: string;
-  amount: number;
-  description: string;
-  status: string;
-  createdAt: string;
-  customerId: string;
-  customerName: string;
-  customerPhone: string;
-  merchantId: string;
-  merchantName: string;
-  customerNationalId: string;
+  businessName: string;
+  nationalId: string;
+  phoneNumber: string;
 }
 
-export interface ICustomersData {
+export interface IReceiversData {
   items: IReceiversItem[];
   totalCount: number;
   pageNumber: number;
