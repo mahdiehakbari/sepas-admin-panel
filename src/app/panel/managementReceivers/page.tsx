@@ -12,6 +12,10 @@ import { FilteredTable } from '@/features/FIlteredTable/FilteredTable';
 import { useFilter } from '@/features/FIlteredTable/hooks/useFilter';
 import { ContentStateWrapper } from '@/features/layout/components';
 import { IReceiversData } from './types';
+import {
+  ReceiversListTable,
+  ResponsiveReceiversTable,
+} from '@/features/ReceiversList';
 
 const ManagementReceivers = () => {
   const { t } = useTranslation();
