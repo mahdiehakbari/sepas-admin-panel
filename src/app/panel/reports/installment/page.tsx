@@ -60,7 +60,7 @@ const Installment = () => {
     >
       <div className='max-w-6xl mx-auto mt-6'>
         <h1 className='text-black font-bold text-lg mb-4 px-6  md:px-0'>
-          {t('panel:acceptor_settlement_list')}
+          {t('panel:borrowers_installments')}
         </h1>
 
         <div className='hidden md:block'>
