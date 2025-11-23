@@ -20,3 +20,18 @@ export interface ITransactionsData {
   hasNextPage: boolean;
   hasPreviousPage: boolean;
 }
+
+export interface IAcceptorData {
+  firstName: string;
+  id: string;
+  lastName: string;
+  nationalId: string;
+}
+
+export interface IMerchantData {
+  businessName: string;
+  firstName: string;
+  id: string;
+  lastName: string;
+  nationalId: string;
+}

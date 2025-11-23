@@ -37,7 +37,6 @@ const ManagementReceivers = () => {
       })
       .then((res) => {
         setRequestData(res.data);
-        console.log(res.data);
       })
       .catch((err) => console.error(err))
       .finally(() => setPageLoading(false));

@@ -7,3 +7,5 @@ export const API_AUTHENTICATE_ME = '/api/UnifiedAuth/me';
 export const API_PURCHASE_REQUEST = '/api/PurchaseRequestsQuery';
 export const API_CUSTOMER_QUERY = '/api/CustomerCreditQuery';
 export const API_MERCHANTS_QUERY = '/api/MerchantsQuery';
+export const API_CUSTOMER_QUERY_SIMPLE = '/api/CustomersQuery/simple';
+export const API_MERCHANT_QUERY_SIMPLE = '/api/MerchantsQuery/simple';

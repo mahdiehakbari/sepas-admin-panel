@@ -8,18 +8,18 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         className={cn(
-          'cursor-pointer inline-flex items-center justify-center font-medium rounded-[8px] transition-colors focus:outline-none  disabled:opacity-50 disabled:pointer-events-none',
+          'cursor-pointer inline-flex items-center justify-center font-medium rounded-lg transition-colors focus:outline-none  disabled:opacity-50 disabled:pointer-events-none',
 
           variant === 'primary' &&
-            'bg-[var(--second-primary)] text-white hover:bg-[var(--second-primary-hover)] focus:ring-[var(--second-primary-hover)] disabled:bg-[var(--second-primary-disabled)]  disabled:text-[var(--text-disabled)]',
+            'bg-(--second-primary) text-white hover:bg-(--second-primary-hover) focus:ring-(--second-primary-hover) disabled:bg-(--second-primary-disabled)  disabled:text-(--text-disabled)',
 
           variant === 'outline' &&
-            'bg-transparent border border-primary text-primary hover:border-[var(--second-primary-hover)] hover:text-[var(--second-primary-hover)] disabled:bg-[var(--button-outline-disabled)] disabled:text-[var(--text-disabled)] disabled:border-[var(--border-color-gray)]',
+            'bg-transparent border border-primary text-primary hover:border-(--second-primary-hover) hover:text-(--second-primary-hover) disabled:bg-(--button-outline-disabled) disabled:text-(--text-disabled) disabled:border-gray',
 
           size === 'sm' && 'px-4 py-2 text-sm',
           size === 'md' &&
-            'w-[161px] h-[42px] text-base font-[500] text-[16px]',
-          size === 'lg' && 'w-[275px] h-[42px] font-[500] text-[16px]',
+            'w-[161px] h-[42px] text-base font-medium text-[16px]',
+          size === 'lg' && 'w-[275px] h-[42px] font-medium text-[16px]',
 
           className,
         )}

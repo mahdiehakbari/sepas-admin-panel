@@ -23,5 +23,11 @@
   "empty": " هیچ داده‌ای یافت نشد.",
   "borrowers_installments": "لیست اقساط وام گیرندگان",
   "customer_management": "مدیریت مشتریان",
-  "Management_receivers": "مدیریت پذیرندگان"
+  "Management_receivers": "مدیریت پذیرندگان",
+  "filter": "فیلتر",
+  "merchant_name": "نام پذیرنده",
+  "from_date": "از تاریخ",
+  "to_date": "تا تاریخ",
+  "remove_filter": "حذف فیلتر",
+  "get_report": "دریافت گزارش"
 }

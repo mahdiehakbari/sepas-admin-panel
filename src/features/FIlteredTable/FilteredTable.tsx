@@ -1,77 +1,166 @@
 import DatePicker from 'react-multi-date-picker';
 import persian from 'react-date-object/calendars/persian';
 import persian_fa from 'react-date-object/locales/persian_fa';
-import DateObject from 'react-date-object';
 import { Button } from '@/sharedComponent/ui/Button/Button';
+import { IFilteredProps, ISelectOption } from './types';
+import Select, { components, MultiValue, OptionProps } from 'react-select';
+import { useTranslation } from 'react-i18next';
+import Image from 'next/image';
 
-export interface IFilteredProps {
-  planName: string;
-  setPlanName: (value: string) => void;
-  fromDate: DateObject | null;
-  setFromDate: (value: DateObject | null) => void;
-  toDate: DateObject | null;
-  setToDate: (value: DateObject | null) => void;
-  handleFilter: () => void;
-  isFilterButtonDisabled: boolean;
-  placeholderText: string;
-}
-
+const CheckboxOption = (props: OptionProps<ISelectOption, true>) => (
+  <components.Option {...props}>
+    <input type='checkbox' checked={props.isSelected} readOnly /> {props.label}
+  </components.Option>
+);
 export const FilteredTable = ({
-  planName,
-  setPlanName,
+  acceptorName,
+  setAcceptorName,
   fromDate,
   setFromDate,
   toDate,
   setToDate,
   handleFilter,
-  isFilterButtonDisabled,
-  placeholderText,
+  acceptorData,
+  merchantData,
+  setMerchantName,
+  merchantName,
+  handleRemoveFilter,
 }: IFilteredProps) => {
+  const { t } = useTranslation();
+  const uniqueCustomers: ISelectOption[] = acceptorData.map((item) => ({
+    label: `${item.firstName} ${item.lastName} - ${item.nationalId}`,
+    value: item.id,
+  }));
+  const uniqueMerchants: ISelectOption[] = merchantData.map((item) => ({
+    label: `${item.businessName}  - ${item.nationalId}`,
+    value: item.id,
+  }));
+
   return (
-    <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4'>
-      <div className='w-full'>
-        <input
-          type='text'
-          placeholder={placeholderText}
-          value={planName}
-          onChange={(e) => setPlanName(e.target.value)}
-          className='border border-border-color rounded-md w-full px-3 py-2 focus:outline-none focus:ring focus:border-blue-400'
+    <div className='p-6 md:w-[465px]'>
+      <div className='w-full mb-5'>
+        <Select
+          options={uniqueCustomers}
+          isMulti
+          closeMenuOnSelect={false}
+          hideSelectedOptions={false}
+          components={{ Option: CheckboxOption }}
+          onChange={(val: MultiValue<{ label: string; value: string }>) =>
+            setAcceptorName([...val])
+          }
+          value={acceptorName}
+          placeholder={t('panel:customer_name')}
+          styles={{
+            valueContainer: (base) => ({
+              ...base,
+              display: 'flex',
+              flexWrap: 'nowrap',
+              overflowX: 'auto',
+              maxHeight: '38px',
+            }),
+            multiValue: (base) => ({
+              ...base,
+              whiteSpace: 'nowrap',
+            }),
+          }}
+        />
+      </div>
+      <div className='w-full  mb-5'>
+        <Select
+          options={uniqueMerchants}
+          isMulti
+          closeMenuOnSelect={false}
+          hideSelectedOptions={false}
+          components={{ Option: CheckboxOption }}
+          onChange={(val: MultiValue<{ label: string; value: string }>) =>
+            setMerchantName([...val])
+          }
+          value={merchantName}
+          placeholder={t('panel:merchant_name')}
+          styles={{
+            valueContainer: (base) => ({
+              ...base,
+              display: 'flex',
+              flexWrap: 'nowrap',
+              overflowX: 'auto',
+              maxHeight: '38px',
+            }),
+            multiValue: (base) => ({
+              ...base,
+              whiteSpace: 'nowrap',
+            }),
+          }}
         />
       </div>
 
-      <div className='w-full'>
+      <div className='w-full  mb-5'>
         <DatePicker
           value={fromDate}
           onChange={setFromDate}
           calendar={persian}
           locale={persian_fa}
+          portal
+          className='w-full'
+          containerClassName='w-full'
           inputClass='border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:ring focus:border-blue-400'
-          placeholder='از تاریخ'
+          placeholder={t('panel:from_date')}
+          render={(value, openCalendar) => (
+            <div
+              className='border border-gray-300 rounded-md w-full px-3 py-2 flex items-center justify-between cursor-pointer'
+              onClick={openCalendar}
+            >
+              <span>{value || t('panel:from_date')}</span>
+
+              <Image
+                src='/assets/icons/calendar.svg'
+                alt='calender'
+                width={20}
+                height={20}
+              />
+            </div>
+          )}
         />
       </div>
 
-      <div className='w-full'>
+      <div className='w-full  mb-5'>
         <DatePicker
           value={toDate}
           onChange={setToDate}
           calendar={persian}
           locale={persian_fa}
+          portal
+          className='w-full'
+          containerClassName='w-full'
           inputClass='border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:ring focus:border-blue-400'
-          placeholder='تا تاریخ'
+          placeholder={t('panel:to_date')}
+          render={(value, openCalendar) => (
+            <div
+              className='border border-gray-300 rounded-md w-full px-3 py-2 flex items-center justify-between cursor-pointer'
+              onClick={openCalendar}
+            >
+              <span>{value || t('panel:to_date')}</span>
+
+              <Image
+                src='/assets/icons/calendar.svg'
+                alt='calender'
+                width={20}
+                height={20}
+              />
+            </div>
+          )}
         />
       </div>
 
-      <div className='w-full flex items-end'>
+      <div className='flex justify-between gap-4'>
         <Button
-          onClick={handleFilter}
-          disabled={isFilterButtonDisabled}
-          className={`w-full ${
-            isFilterButtonDisabled
-              ? 'bg-gray-300 cursor-not-allowed'
-              : 'bg-blue-600 hover:bg-blue-700'
-          }`}
+          variant='outline'
+          onClick={handleRemoveFilter}
+          className='w-[199px]'
         >
-          فیلتر
+          {t('panel:remove_filter')}
+        </Button>
+        <Button onClick={handleFilter} className='w-[199px]'>
+          {t('panel:get_report')}
         </Button>
       </div>
     </div>

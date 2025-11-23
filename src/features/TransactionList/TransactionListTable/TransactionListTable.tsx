@@ -43,10 +43,10 @@ export const TransactionListTable = ({
                       {index + 1 + (currentPage - 1) * pageSize}
                     </div>
                     <div className='w-[20%] text-center'>
-                      {transaction.customerName}
+                      {transaction.merchantName}
                     </div>
                     <div className='w-[20%] text-center'>
-                      {transaction.merchantName}
+                      {transaction.customerName}
                     </div>
                     <div className='w-[20%] text-center'>
                       {transaction.customerPhone}

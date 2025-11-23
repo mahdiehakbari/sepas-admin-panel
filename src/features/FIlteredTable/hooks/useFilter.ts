@@ -1,7 +1,9 @@
-import axios from 'axios';
-import gregorian from 'react-date-object/calendars/gregorian';
+import axios, { AxiosRequestConfig } from 'axios';
 import { DateObject } from 'react-multi-date-picker';
+import gregorian from 'react-date-object/calendars/gregorian';
+import qs from 'qs';
 import { API_PURCHASE_REQUEST } from '@/config/api_address.config';
+import { IFilterParams } from './types';
 
 export function useFilter<T>(
   token: string | undefined,
@@ -20,28 +22,34 @@ export function useFilter<T>(
   const filterData = async (
     fromDate: DateObject | null,
     toDate: DateObject | null,
-    planName: string,
+    customerIds: string[] = [],
+    merchantIds: string[] = [],
+    pageNumber: number = 1,
+    pageSize: number = 10,
   ) => {
     const createdFrom = fromDate
       ? startOfDay(fromDate.convert(gregorian).toDate()).toISOString()
-      : '';
+      : undefined;
 
     const createdTo = toDate
       ? endOfDay(toDate.convert(gregorian).toDate()).toISOString()
-      : endOfDay(new Date()).toISOString();
+      : undefined;
+
+    const params: IFilterParams = { pageNumber, pageSize };
+    if (createdFrom) params.createdFrom = createdFrom;
+    if (createdTo) params.createdTo = createdTo;
+    if (customerIds.length > 0) params.customerIds = customerIds;
+    if (merchantIds.length > 0) params.merchantIds = merchantIds;
+
+    const config: AxiosRequestConfig = {
+      headers: { Authorization: `Bearer ${token}` },
+      params,
+      paramsSerializer: (params) =>
+        qs.stringify(params, { arrayFormat: 'repeat' }),
+    };
 
     try {
-      const res = await axios.get<T>(`${API_PURCHASE_REQUEST}/paged`, {
-        params: {
-          pageNumber: 1,
-          pageSize: 100,
-          createdFrom,
-          createdTo,
-          planName,
-        },
-        headers: { Authorization: `Bearer ${token}` },
-      });
-
+      const res = await axios.get<T>(`${API_PURCHASE_REQUEST}/paged`, config);
       setRequestData(res.data);
     } catch (err) {
       console.error(err);
