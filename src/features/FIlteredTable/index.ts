@@ -1,1 +1,1 @@
-export { Filteredtabel } from './Filteredtabel';
+export { FilteredTable } from './FilteredTable';
