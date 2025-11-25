@@ -44,7 +44,7 @@ export const SettlementListTable = ({
                   <div>
                     {settlement.purchaseRequest?.customer?.phoneNumber ?? '-'}
                   </div>
-                  <div>{settlement.acceptor ?? '-'}</div>
+                  <div className='text-right'>{settlement.acceptor ?? '-'}</div>
                   <div>
                     {settlement.payment_date
                       ? toPersianNumber(settlement.payment_date)

@@ -10,7 +10,7 @@ export const ResponsiveInstallmentTable = ({
   const { t } = useTranslation();
 
   return (
-    <div className='md:max-w-md mx-auto mt-10 px-6'>
+    <div className='md:max-w-md mx-auto mt-10'>
       {requests.map((installment, index) => {
         return (
           <div key={index}>

@@ -7,20 +7,15 @@ import {
   ResponsiveTransactionTable,
   TransactionListTable,
 } from '@/features/TransactionList';
-import { Button, Paginate } from '@/sharedComponent/ui';
+import { Paginate } from '@/sharedComponent/ui';
 import { DateObject } from 'react-multi-date-picker';
 import { FilteredTable } from '@/features/FIlteredTable/FilteredTable';
 import { useFilter } from '@/features/FIlteredTable/hooks/useFilter';
 import { ContentStateWrapper } from '@/features/layout/components';
 import { ISelectOption } from '@/features/FIlteredTable/types';
-import axios from 'axios';
-import {
-  API_CUSTOMER_QUERY_SIMPLE,
-  API_MERCHANT_QUERY_SIMPLE,
-} from '@/config/api_address.config';
 import ResponsiveModal from '@/sharedComponent/ui/ResponsiveModal/Modal';
-
-import Image from 'next/image';
+import { PageHeader } from '@/features/PageHeader';
+import { useFetchAcceptor, useFetchMerchant } from '@/features/hooks';
 
 const TransactionsList = () => {
   const { t } = useTranslation();
@@ -69,18 +64,8 @@ const TransactionsList = () => {
     setIsOpenModal(false);
   };
 
-  useEffect(() => {
-    axios
-      .get(API_CUSTOMER_QUERY_SIMPLE)
-      .then((res) => setAcceptorData(res.data))
-      .catch();
-    axios
-      .get(API_MERCHANT_QUERY_SIMPLE)
-      .then((res) => {
-        setMerchantData(res.data);
-      })
-      .catch();
-  }, []);
+  useFetchAcceptor(setAcceptorData);
+  useFetchMerchant(setMerchantData);
 
   const handleClose = () => {
     setPage(1);
@@ -111,22 +96,11 @@ const TransactionsList = () => {
       loadingText={t('panel:page_loading')}
       emptyText={t('panel:empty')}
     >
-      <div className='mx-auto mt-6'>
-        <div className='flex justify-between items-center'>
-          <h1 className='text-black font-bold text-lg mb-4'>
-            {t('transaction:transaction_list')}
-          </h1>
-
-          <Button onClick={handleOpenModal} className='w-[75px] '>
-            <Image
-              src='/assets/icons/filter.svg'
-              alt='filter'
-              width={16}
-              height={16}
-            />
-            {t('panel:filter')}
-          </Button>
-        </div>
+      <div className='mx-auto mt-6 px-6 md:px-0'>
+        <PageHeader
+          titleKey='transaction:transaction_list'
+          onFilterClick={handleOpenModal}
+        />
 
         <div className='hidden md:block'>
           <TransactionListTable
