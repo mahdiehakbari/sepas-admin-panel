@@ -59,47 +59,43 @@ const CustomerManagement = () => {
   return (
     <ContentStateWrapper
       loading={pageLoading}
-      isEmpty={!requestsData || requestsData.items.length === 0}
+      // isEmpty={!requestsData || requestsData.items.length === 0}
       loadingText={t('panel:page_loading')}
-      emptyText={t('panel:empty')}
+      // emptyText={t('panel:empty')}
     >
       <div className='max-w-6xl mx-auto mt-6'>
         <h1 className='text-black font-bold text-lg mb-4 mx-6 md:mx-0'>
           {t('transaction:transaction_list')}
         </h1>
-        {/* <FilteredTable
-          planName={planName}
-          setPlanName={setPlanName}
-          fromDate={fromDate}
-          setFromDate={setFromDate}
-          toDate={toDate}
-          setToDate={setToDate}
-          handleFilter={handleFilter}
-          isFilterButtonDisabled={isFilterButtonDisabled}
-          placeholderText={t('panel:search_customer')}
-        /> */}
-        <div className='hidden md:block'>
-          <CustomerListTable
-            requests={displayItems}
-            currentPage={currentPage}
-            pageSize={pageSize}
-          />
-        </div>
-        <div className='block md:hidden'>
-          <ResponsiveCustomerTable
-            requests={displayItems}
-            currentPage={currentPage}
-            pageSize={pageSize}
-          />
-        </div>
-
-        <Paginate
-          hasPreviousPage={hasPreviousPage}
-          setPage={setPage}
-          currentPage={currentPage}
-          totalPages={totalPages}
-          hasNextPage={hasNextPage}
-        />
+        {!requestsData || requestsData.items.length === 0 ? (
+          <div className='text-center mt-10 text-gray-500'>
+            {t('panel:empty')}
+          </div>
+        ) : (
+          <>
+            <div className='hidden md:block'>
+              <CustomerListTable
+                requests={displayItems}
+                currentPage={currentPage}
+                pageSize={pageSize}
+              />
+            </div>
+            <div className='block md:hidden'>
+              <ResponsiveCustomerTable
+                requests={displayItems}
+                currentPage={currentPage}
+                pageSize={pageSize}
+              />
+            </div>
+            <Paginate
+              hasPreviousPage={hasPreviousPage}
+              setPage={setPage}
+              currentPage={currentPage}
+              totalPages={totalPages}
+              hasNextPage={hasNextPage}
+            />
+          </>
+        )}
       </div>
     </ContentStateWrapper>
   );

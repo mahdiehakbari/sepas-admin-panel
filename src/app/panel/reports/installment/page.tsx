@@ -48,39 +48,43 @@ const Installment = () => {
   return (
     <ContentStateWrapper
       loading={pageLoading}
-      isEmpty={!requestsData || requestsData?.data?.document_list.length === 0}
       loadingText={t('panel:page_loading')}
-      emptyText={t('panel:empty')}
     >
       <div className='max-w-6xl mx-auto mt-6 px-6 md:px-0'>
         <PageHeader
           titleKey='panel:borrowers_installments'
           onFilterClick={() => setIsOpenModal(true)}
         />
-
-        <div className='hidden md:block'>
-          <InstallmentListTable
-            requests={requestsData?.data?.document_list ?? []}
-            currentPage={page}
-            pageSize={10}
-          />
-        </div>
-
-        <div className='block md:hidden'>
-          <ResponsiveInstallmentTable
-            requests={requestsData?.data?.document_list ?? []}
-            currentPage={page}
-            pageSize={10}
-          />
-        </div>
-
-        <Paginate
-          hasPreviousPage={requestsData?.hasPreviousPage || false}
-          setPage={setPage}
-          currentPage={requestsData?.pageNumber || page}
-          totalPages={requestsData?.totalPages || 1}
-          hasNextPage={requestsData?.hasNextPage || false}
-        />
+        {!requestsData || requestsData?.data?.document_list.length === 0 ? (
+          <div className='text-center mt-10 text-gray-500'>
+            {t('panel:empty')}
+          </div>
+        ) : (
+          <>
+            {' '}
+            <div className='hidden md:block'>
+              <InstallmentListTable
+                requests={requestsData?.data?.document_list ?? []}
+                currentPage={page}
+                pageSize={10}
+              />
+            </div>
+            <div className='block md:hidden'>
+              <ResponsiveInstallmentTable
+                requests={requestsData?.data?.document_list ?? []}
+                currentPage={page}
+                pageSize={10}
+              />
+            </div>
+            <Paginate
+              hasPreviousPage={requestsData?.hasPreviousPage || false}
+              setPage={setPage}
+              currentPage={requestsData?.pageNumber || page}
+              totalPages={requestsData?.totalPages || 1}
+              hasNextPage={requestsData?.hasNextPage || false}
+            />
+          </>
+        )}
       </div>
 
       <ResponsiveModal

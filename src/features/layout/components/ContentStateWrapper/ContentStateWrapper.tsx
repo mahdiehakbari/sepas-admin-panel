@@ -3,9 +3,7 @@ import { IContentStateWrapperProps } from './types';
 
 export const ContentStateWrapper = ({
   loading,
-  isEmpty,
   loadingText,
-  emptyText,
   children,
 }: IContentStateWrapperProps) => {
   if (loading) {
@@ -15,10 +13,6 @@ export const ContentStateWrapper = ({
         <p className='px-2'>{loadingText}</p>
       </div>
     );
-  }
-
-  if (isEmpty) {
-    return <div className='text-center mt-10 text-gray-500'>{emptyText}</div>;
   }
 
   return <>{children}</>;
