@@ -43,7 +43,7 @@ const ManagementReceivers = () => {
   }, [token]);
 
   const handleFilter = () => {
-    filterData(fromDate, toDate, planName);
+    // filterData(fromDate, toDate, planName);
   };
 
   const {
