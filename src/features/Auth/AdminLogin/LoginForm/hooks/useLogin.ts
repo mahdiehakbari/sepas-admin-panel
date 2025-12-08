@@ -34,6 +34,7 @@ export function useLogin() {
         router.push('/panel/reports/settlement');
       } else {
         router.push('/panel/dentalSociety');
+        localStorage.setItem('userType', 'DentistryAdmin');
       }
     } catch (err) {
       toast.error(t('login:invalid_data'));

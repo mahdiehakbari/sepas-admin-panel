@@ -19,5 +19,12 @@
   "city": "City*",
   "zip_code": "Zip Code*",
   "office_number": "Office Number",
-  "address": "Address*"
+  "address": "Address*",
+  "using_excel": "Data entry using Excel file",
+  "sample_excel": "Download sample Excel file",
+  "select_upload": "Select and upload your file.",
+  "upload_file": "Upload file",
+  "excel_format": "Make sure the file you select is in .xlsx format.",
+  "complete_excel": "To complete the Excel file, please do not rearrange the order of the columns.",
+  "confirm_continue": "Confirm and continue"
 }

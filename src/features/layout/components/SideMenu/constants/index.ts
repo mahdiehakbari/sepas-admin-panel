@@ -12,3 +12,25 @@ export const getSideBarItems = () => [
     icon: '/assets/icons/installments.svg',
   },
 ];
+export const getDentistrySideBarItems = () => [
+  {
+    label: i18n.t('dental-society:dentist_definition'),
+    path: '/panel/dentistDefinition',
+    icon: '/assets/icons/profile-add.svg',
+  },
+  {
+    label: i18n.t('dental-society:request_list'),
+    path: '',
+    icon: '/assets/icons/transactions.svg',
+  },
+  {
+    label: i18n.t('dental-society:performance_report'),
+    path: '',
+    icon: '/assets/icons/status-up.svg',
+  },
+  {
+    label: i18n.t('dental-society:doctor_list'),
+    path: '',
+    icon: '/assets/icons/tag-user.svg',
+  },
+];
