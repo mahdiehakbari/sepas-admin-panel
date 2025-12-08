@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { DateInput, FormTitle, Input, SelectInput } from '@/sharedComponent/ui';
 import { RegisterOptions } from 'react-hook-form';
 import { IProfileFormValues } from '@/sharedComponent/ui/Input/types';
 import { validationRules } from './utils/validationRules';
 import { IPersonalInfoSectionProps } from './types';
+import axios from 'axios';
+import Cookies from 'js-cookie';
+import {
+  API_CONTRACT_GET,
+  API_CONTRACT_POST,
+} from '@/config/api_address.config';
 
 export const PersonalInfoSection: React.FC<IPersonalInfoSectionProps> = ({
   t,
@@ -14,25 +20,49 @@ export const PersonalInfoSection: React.FC<IPersonalInfoSectionProps> = ({
   phoneNumber,
 }) => {
   const rules = validationRules(t);
-
+  const token = Cookies.get('token');
   const genderItems = [
     { id: 1, name: t('dental-society:man') },
     { id: 2, name: t('dental-society:woman') },
   ];
   const educationalItems = [
-    { id: 'PostDoctoral', name: 'پست دکترا' },
-    { id: 'Doctoral', name: 'دکترا' },
-    { id: 'Master', name: 'استاد' },
-    { id: 'Bachelor', name: 'استاد' },
-    { id: 'HighSchoolDiploma', name: 'دیپلم' },
+    { id: 0, name: 'پست دکترا' },
+    { id: 1, name: 'دکترا' },
+    { id: 2, name: 'استاد' },
+    { id: 3, name: 'استاد' },
   ];
 
   const contractItems = [
-    { id: 'cash_settlement', name: t('dental-society:cash_settlement') },
-    { id: 'bi_monthly', name: t('dental-society:bi_monthly') },
-    { id: 'four_monthly', name: t('dental-society:four_monthly') },
-    { id: 'six_monthly', name: t('dental-society:six_monthly') },
+    { id: 0, name: t('dental-society:cash_settlement') },
+    { id: 1, name: t('dental-society:bi_monthly') },
+    { id: 2, name: t('dental-society:four_monthly') },
+    { id: 3, name: t('dental-society:six_monthly') },
   ];
+
+  useEffect(() => {
+    axios
+      .get(API_CONTRACT_GET, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((resp) => {
+        axios
+          .post(
+            API_CONTRACT_POST,
+            {
+              merchantId: resp.data.merchantId,
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+              },
+            },
+          )
+          .then((resp) => {})
+          .catch();
+      })
+      .catch();
+  }, []);
 
   return (
     <section>
@@ -110,16 +140,16 @@ export const PersonalInfoSection: React.FC<IPersonalInfoSectionProps> = ({
 
         <Input
           label={t('dental-society:medical_system_number')}
-          name='medicalSystemNumber'
+          name='medicalCertificateNumber'
           register={register}
           errors={errors}
           textError={t('dental-society:field_required')}
-          defaultValue={userData?.medicalSystemNumber ?? ''}
+          defaultValue={userData?.medicalCertificateNumber ?? ''}
         />
 
         <SelectInput
           label={t('dental-society:educational')}
-          name='educational'
+          name='educationLevel'
           register={register}
           options={educationalItems.map((c) => ({
             value: c.id.toString(),
@@ -128,8 +158,8 @@ export const PersonalInfoSection: React.FC<IPersonalInfoSectionProps> = ({
           errors={errors}
           rules={{ required: t('dental-society:field_required') }}
           defaultValue={
-            userData?.educational !== undefined
-              ? String(userData.educational)
+            userData?.educationLevel !== undefined
+              ? String(userData.educationLevel)
               : ''
           }
         />

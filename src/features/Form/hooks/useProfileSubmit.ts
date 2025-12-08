@@ -5,7 +5,10 @@ import Cookies from 'js-cookie';
 import axios, { AxiosError } from 'axios';
 import { useTranslation } from 'react-i18next';
 import { formatBirthDate } from '../utils/formatBirthDate';
-import { API_AUTHENTICATE_ME } from '@/config/api_address.config';
+import {
+  API_AUTHENTICATE_ME,
+  API_CONTRACT_POST,
+} from '@/config/api_address.config';
 import { IProfileFormValues } from '../types';
 import { ProfileSubmitProps } from './types';
 import { updateProfile } from '../api/profile.api';
@@ -24,7 +27,6 @@ export const useProfileSubmit = ({
   const { setProfile } = useProfileStore();
 
   const onSubmit = async (data: IProfileFormValues) => {
-    console.log(data, 'dataaaaa');
     const token = Cookies.get('token');
     if (!token) return toast.error(t('profile:token_missing'));
 
@@ -33,8 +35,9 @@ export const useProfileSubmit = ({
     const formattedData: Partial<IProfileFormValues> = {
       ...data,
       gender: data.gender !== '' ? Number(data.gender) : 0,
+      educationLevel:
+        data.educationLevel !== '' ? Number(data.educationLevel) : 0,
       birthDate: formatBirthDate(data.birthDate),
-      FullName: `${data.firstName} ${data.lastName}`,
     };
 
     if (!formattedData.email) {
@@ -57,9 +60,9 @@ export const useProfileSubmit = ({
       }
 
       Cookies.set('isLoggedIn', 'true');
-      toast.success(t('profile:success_toast'));
+      toast.success('قرار داد شما با موفقیت ثبت شد.');
 
-      if (name === 'profile') router.push('/panel/userAccount');
+      if (name === 'profile') router.push('/panel/dentalSociety');
 
       setShowProfileModal?.(false);
       setShowCreditNoteModal?.(true);

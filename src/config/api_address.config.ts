@@ -10,4 +10,6 @@ export const API_CUSTOMER_QUERY = '/api/CustomerCreditQuery';
 export const API_MERCHANTS_QUERY = '/api/MerchantsQuery';
 export const API_CUSTOMER_QUERY_SIMPLE = '/api/CustomersQuery/simple';
 export const API_MERCHANT_QUERY_SIMPLE = '/api/MerchantsQuery/simple';
-export const API_UPDATE_PROFILE = '/api/MerchantsCommand/profile';
+export const API_UPDATE_PROFILE = '/api/MerchantsCommand/admin/bulk-create';
+export const API_CONTRACT_GET = '/api/MerchantContractsQuery/admin';
+export const API_CONTRACT_POST = '/api/MerchantContractsCommand/admin';

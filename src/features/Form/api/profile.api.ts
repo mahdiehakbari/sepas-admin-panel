@@ -7,7 +7,7 @@ export const updateProfile = async (
   token: string,
   data: Partial<IProfileFormValues>,
 ) => {
-  return axios.put(API_UPDATE_PROFILE, data, {
+  return axios.post(API_UPDATE_PROFILE, data, {
     headers: {
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',

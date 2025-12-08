@@ -57,11 +57,11 @@ export const AddressInfoSection: React.FC<IAddressInfoSectionProps> = ({
         />
         <Input
           label={t('dental-society:office_number')}
-          name='officeNumber'
+          name='workPlacePhoneNumber'
           register={register}
           errors={errors}
           textError={t('dental-society:field_required')}
-          defaultValue={userData?.address?.officeNumber ?? ''}
+          defaultValue={userData?.address?.workPlacePhoneNumber ?? ''}
         />
       </div>
 

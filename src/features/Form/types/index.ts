@@ -8,7 +8,8 @@ interface IAddress {
   provinceName: string;
   details: string;
   postalCode: string;
-  officeNumber: string;
+  medicalCertificateNumber: string;
+  workPlacePhoneNumber: string;
 }
 
 export interface IProfileFormValues {
@@ -28,9 +29,10 @@ export interface IProfileFormValues {
   FullName?: string;
   address?: IAddress;
   medicalSystemNumber: string;
-  educational: string;
-  contractType: string;
-  officeNumber: string;
+  educationLevel: string | number;
+  contractType: string | number;
+  medicalCertificateNumber: string;
+  workPlacePhoneNumber: string;
 }
 
 export interface IProfileFormProps {
