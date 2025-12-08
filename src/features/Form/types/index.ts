@@ -8,6 +8,7 @@ interface IAddress {
   provinceName: string;
   details: string;
   postalCode: string;
+  officeNumber: string;
 }
 
 export interface IProfileFormValues {
@@ -26,6 +27,10 @@ export interface IProfileFormValues {
   addressDetails: string;
   FullName?: string;
   address?: IAddress;
+  medicalSystemNumber: string;
+  educational: string;
+  contractType: string;
+  officeNumber: string;
 }
 
 export interface IProfileFormProps {
@@ -46,4 +51,26 @@ export interface IPersonalInfoSectionProps {
   errors: FieldErrors<IProfileFormValues>;
   control: Control<IProfileFormValues>;
   phoneNumber: string;
+}
+
+export interface IBankInfoSectionProps {
+  userData?: IProfileFormValues | null;
+  t: (key: string) => string;
+  register: UseFormRegister<IProfileFormValues>;
+  errors: FieldErrors<IProfileFormValues>;
+}
+
+interface ILocationItem {
+  id: string;
+  name: string;
+}
+
+export interface IAddressInfoSectionProps {
+  userData?: IProfileFormValues | null;
+  t: (key: string) => string;
+  register: UseFormRegister<IProfileFormValues>;
+  errors: FieldErrors<IProfileFormValues>;
+  provinces: ILocationItem[];
+  cities: ILocationItem[];
+  handleProvinceChange: (provinceId: string | number) => void;
 }

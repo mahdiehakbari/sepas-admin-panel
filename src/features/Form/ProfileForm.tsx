@@ -5,15 +5,12 @@ import Image from 'next/image';
 import { Button, SpinnerDiv } from '@/sharedComponent/ui';
 import { useAuthStore } from '@/store/Auth/authStore';
 import { IProfileFormProps } from './types';
-// import { useProfileForm } from './hooks/useProfileForm';
-// import { useProfileSubmit } from './hooks/useProfileSubmit';
-// import { PersonalInfoSection } from './sections/PersonalInfoSection';
-// import { BankInfoSection } from './sections/BankInfoSection';
-// import { AddressInfoSection } from './sections/AddressInfoSection';
 import { useTranslation } from 'react-i18next';
 import { PersonalInfoSection } from './PersonalInfoSection';
 import { useProfileForm } from './hooks/useProfileForm';
 import { useProfileSubmit } from './hooks/useProfileSubmit';
+import { BankInfoSection } from './BankInfoSection';
+import { AddressInfoSection } from './AddressInfoSection';
 
 export const ProfileForm: React.FC<IProfileFormProps> = ({
   name,
@@ -64,7 +61,7 @@ export const ProfileForm: React.FC<IProfileFormProps> = ({
             {...{ register, errors, control, userData }}
             phoneNumber={phoneNumber}
           />
-          {/* <BankInfoSection t={t} {...{ register, errors, userData }} />
+          <BankInfoSection t={t} {...{ register, errors, userData }} />
           <AddressInfoSection
             t={t}
             {...{
@@ -75,7 +72,7 @@ export const ProfileForm: React.FC<IProfileFormProps> = ({
               handleProvinceChange,
               userData,
             }}
-          /> */}
+          />
         </div>
 
         <div className='md:flex justify-end gap-4 my-6'>
@@ -86,7 +83,7 @@ export const ProfileForm: React.FC<IProfileFormProps> = ({
             onClick={handleBack}
             className='mb-2 w-full  md:w-[161px] '
           >
-            {t('profile:return')}
+            {t('dental-society:back')}
           </Button>
           <Button
             disabled={isLoading}
@@ -96,7 +93,7 @@ export const ProfileForm: React.FC<IProfileFormProps> = ({
             {isLoading ? (
               <SpinnerDiv size='sm' className='text-white' />
             ) : (
-              t('profile:register_info')
+              t('dental-society:record_information')
             )}
           </Button>
         </div>

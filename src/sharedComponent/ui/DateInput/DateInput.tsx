@@ -21,43 +21,13 @@ export const DateInput = <T extends FieldValues>({
   useEffect(() => {
     // فقط اگر defaultValue رشته معتبر بود، DateObject بساز
     if (defaultValue && !isNaN(Date.parse(defaultValue))) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setPickerValue(new DateObject(defaultValue));
     }
   }, [defaultValue]);
 
   return (
     <div className='flex flex-col'>
-      {/* <Controller
-        name={name}
-        control={control}
-        rules={rules}
-        defaultValue={defaultValue ?? undefined}
-        render={({ field }) => (
-          <DatePicker
-            value={pickerValue}
-            onChange={(date) => {
-              if (date instanceof DateObject) {
-                setPickerValue(date);
-                field.onChange(date.format('YYYY-MM-DD'));
-              } else {
-                setPickerValue(undefined);
-                field.onChange(undefined);
-              }
-            }}
-            calendar={persian}
-            locale={persian_fa}
-            inputClass={`w-full bg-white border rounded-lg px-3 py-2 text-right placeholder-gray-400 
-              focus:outline-none focus:ring-2 ${
-                hasError
-                  ? 'border-red-500 focus:ring-red-400'
-                  : 'border-gray-300 focus:ring-blue-500'
-              }`}
-            placeholder={`${label} *`}
-            calendarPosition='bottom-right'
-          />
-        )}
-      /> */}
-
       <Controller
         name={name}
         control={control}
@@ -73,7 +43,7 @@ export const DateInput = <T extends FieldValues>({
             onChange={(date) => {
               if (date instanceof DateObject) {
                 setPickerValue(date);
-                field.onChange(date.format('YYYY-MM-DD')); // رشته به فرم می‌رود
+                field.onChange(date.format('YYYY-MM-DD'));
               } else {
                 setPickerValue(undefined);
                 field.onChange(undefined);

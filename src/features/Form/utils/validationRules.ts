@@ -3,7 +3,7 @@ export const validationRules = (t: {
   (arg0: string): unknown;
 }) => ({
   mobile: {
-    required: t('profile:field_required'),
+    required: t('dental-society:field_required'),
     pattern: {
       value: /^[0-9]*$/,
       message: t('profile:only_numbers_allowed'),
@@ -16,7 +16,7 @@ export const validationRules = (t: {
   },
 
   nationalId: {
-    required: t('profile:field_required'),
+    required: t('dental-society:field_required'),
     pattern: {
       value: /^[0-9]{10}$/,
       message: t('profile:national_code_invalid'),

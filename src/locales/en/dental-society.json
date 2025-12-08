@@ -26,5 +26,15 @@
   "upload_file": "Upload file",
   "excel_format": "Make sure the file you select is in .xlsx format.",
   "complete_excel": "To complete the Excel file, please do not rearrange the order of the columns.",
-  "confirm_continue": "Confirm and continue"
+  "confirm_continue": "Confirm and continue",
+  "back": "Back",
+  "record_information": "Record information",
+  "woman": "Woman",
+  "man": "Man",
+  "field_required": "This field is required.",
+  "cash_settlement": "Cash settlement",
+  "bi_monthly": "Bi-monthly settlement",
+  "four_monthly": "Four-monthly settlement",
+  "six_monthly": "Six-monthly settlement",
+  "bank_information": "Bank information"
 }
