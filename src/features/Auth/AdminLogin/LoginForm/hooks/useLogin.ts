@@ -29,7 +29,12 @@ export function useLogin() {
       });
 
       setAuth(resp.data.token, resp.data.user);
-      router.push('/panel/reports/settlement');
+      console.log(resp.data.user.userType);
+      if (resp.data.user.userType == 'Admin') {
+        router.push('/panel/reports/settlement');
+      } else {
+        router.push('/panel/dentalSociety');
+      }
     } catch (err) {
       toast.error(t('login:invalid_data'));
     } finally {

@@ -1,0 +1,23 @@
+{
+  "dental_society": "Dental Society Panel",
+  "dentist_definition": "Dentist Definition",
+  "request_list": "Request List",
+  "performance_report": "Dentist Performance Report",
+  "doctor_list": "Doctor List",
+  "dentist_group_definition": "Dentist Group Definition",
+  "confirm": "Confirm",
+  "personal_info": "Personal Information",
+  "gender": "Gender *",
+  "medical_system_number": "Medical System Number*",
+  "educational": "Latest Educational Qualification*",
+  "contract_type": "Contract Type *",
+  "email": "Email ",
+  "bank_info": "Bank Information",
+  "iban_number": "IBAN Number*",
+  "address_info": "Address Information",
+  "province": "Province*",
+  "city": "City*",
+  "zip_code": "Zip Code*",
+  "office_number": "Office Number",
+  "address": "Address*"
+}
