@@ -29,7 +29,6 @@ export function useLogin() {
       });
 
       setAuth(resp.data.token, resp.data.user);
-      console.log(resp.data.user.userType);
       if (resp.data.user.userType == 'Admin') {
         router.push('/panel/reports/settlement');
       } else {

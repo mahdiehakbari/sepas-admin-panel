@@ -18,7 +18,7 @@ export const Header = () => {
   const menuRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
   const { logout } = useAuthStore();
-
+  const userType = localStorage.getItem('userType');
   const handleLogout = () => {
     logout();
     Cookies.remove('isLoggedIn');
@@ -34,7 +34,7 @@ export const Header = () => {
       <div className='mx-auto max-w-7xl px-4 py-2.5 flex items-center justify-between'>
         <div className='flex items-center gap-[50px]'>
           <Image
-            src='/assets/icons/logo.svg'
+            src='/assets/icons/sepas.png'
             alt='logo'
             width={78}
             height={42}
@@ -57,49 +57,51 @@ export const Header = () => {
         </div>
 
         <div className='flex items-center gap-3'>
-          <div className='relative' ref={menuRef}>
-            <div onClick={handleClick} className='cursor-pointer'>
-              <Image
-                src='/assets/icons/user-profile-icon.jpg'
-                alt='user-profile-icon'
-                width={56}
-                height={56}
-                className='rounded-full'
-              />
+          {userType != 'DentistryAdmin' && (
+            <div className='relative' ref={menuRef}>
+              <div onClick={handleClick} className='cursor-pointer'>
+                <Image
+                  src='/assets/icons/user-profile-icon.jpg'
+                  alt='user-profile-icon'
+                  width={56}
+                  height={56}
+                  className='rounded-full'
+                />
+              </div>
+              {openPopUp && (
+                <DropdownMenu
+                  isOpen={openPopUp}
+                  onClose={() => setOpenPopUp(false)}
+                  items={[
+                    {
+                      label: t('panel:borrower_installments'),
+                      href: '/panel/reports/installment',
+                      image: '/assets/icons/installments.svg',
+                    },
+                    {
+                      label: t('panel:acceptor_settlement'),
+                      href: '/panel/reports/settlement',
+                      image: '/assets/icons/installments.svg',
+                    },
+                    {
+                      label: t('panel:transaction_list'),
+                      href: '/panel/transactionsList',
+                      image: '/assets/icons/installments.svg',
+                    },
+
+                    {
+                      label: t('panel:log_out'),
+                      image: '/assets/icons/logout.svg',
+                      danger: true,
+                      onClick: handleLogout,
+                    },
+                  ]}
+                />
+              )}
             </div>
-            {openPopUp && (
-              <DropdownMenu
-                isOpen={openPopUp}
-                onClose={() => setOpenPopUp(false)}
-                items={[
-                  {
-                    label: t('panel:borrower_installments'),
-                    href: '/panel/reports/installment',
-                    image: '/assets/icons/installments.svg',
-                  },
-                  {
-                    label: t('panel:acceptor_settlement'),
-                    href: '/panel/reports/settlement',
-                    image: '/assets/icons/installments.svg',
-                  },
-                  {
-                    label: t('panel:transaction_list'),
-                    href: '/panel/transactionsList',
-                    image: '/assets/icons/installments.svg',
-                  },
+          )}
 
-                  {
-                    label: t('panel:log_out'),
-                    image: '/assets/icons/logout.svg',
-                    danger: true,
-                    onClick: handleLogout,
-                  },
-                ]}
-              />
-            )}
-          </div>
-
-          <button
+          {/* <button
             className='cursor-pointer bg-secondary h-[42px] px-3 py-1 rounded-[8px] flex items-center gap-2'
             onClick={toggleLanguage}
           >
@@ -116,7 +118,7 @@ export const Header = () => {
             <span className='text-sm font-medium'>
               {currentLanguage === 'fa' ? 'فا' : 'EN'}
             </span>
-          </button>
+          </button> */}
           <button
             className='md:hidden flex flex-col justify-center items-center w-8 h-8 relative'
             onClick={() => setIsOpen(!isOpen)}

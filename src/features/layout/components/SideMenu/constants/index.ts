@@ -16,7 +16,7 @@ export const getDentistrySideBarItems = () => [
   {
     label: i18n.t('dental-society:dentist_definition'),
     path: '/panel/dentistDefinition',
-    icon: '/assets/icons/profile-add.svg',
+    icon: '/assets/icons/transactions.svg',
   },
   {
     label: i18n.t('dental-society:request_list'),

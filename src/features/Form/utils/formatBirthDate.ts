@@ -18,7 +18,6 @@ export const formatBirthDate = (
     //@ts-expect-error
     return dateObj.convert('gregorian').toDate().toISOString();
   } catch (error) {
-    console.error('Error converting birth date:', error);
     return undefined;
   }
 };

@@ -29,5 +29,8 @@
   "from_date": "From Date",
   "to_date": "To Date",
   "remove_filter": "Remove the filter",
-  "get_report": "Get the report"
+  "get_report": "Get the report",
+  "Frequently": "FAQ",
+  "main_page": "Main page",
+  "contact_us": "Contact Us"
 }
