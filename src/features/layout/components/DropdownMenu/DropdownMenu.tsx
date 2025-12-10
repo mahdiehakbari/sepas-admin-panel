@@ -27,7 +27,7 @@ export const DropdownMenu = ({
 
   const positionClass =
     position === 'center'
-      ? 'left-1/2 -translate-x-1/2'
+      ? 'left-1/1 -translate-x-1/2'
       : position === 'left'
       ? 'left-0'
       : 'right-0';

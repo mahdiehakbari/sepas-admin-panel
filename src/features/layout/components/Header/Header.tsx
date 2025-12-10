@@ -56,50 +56,48 @@ export const Header = () => {
           </nav> */}
         </div>
 
-        <div className='flex items-center gap-3'>
-          {userType != 'DentistryAdmin' && (
-            <div className='relative' ref={menuRef}>
-              <div onClick={handleClick} className='cursor-pointer'>
-                <Image
-                  src='/assets/icons/user-profile-icon.jpg'
-                  alt='user-profile-icon'
-                  width={56}
-                  height={56}
-                  className='rounded-full'
-                />
-              </div>
-              {openPopUp && (
-                <DropdownMenu
-                  isOpen={openPopUp}
-                  onClose={() => setOpenPopUp(false)}
-                  items={[
-                    {
-                      label: t('panel:borrower_installments'),
-                      href: '/panel/reports/installment',
-                      image: '/assets/icons/installments.svg',
-                    },
-                    {
-                      label: t('panel:acceptor_settlement'),
-                      href: '/panel/reports/settlement',
-                      image: '/assets/icons/installments.svg',
-                    },
-                    {
-                      label: t('panel:transaction_list'),
-                      href: '/panel/transactionsList',
-                      image: '/assets/icons/installments.svg',
-                    },
-
-                    {
-                      label: t('panel:log_out'),
-                      image: '/assets/icons/logout.svg',
-                      danger: true,
-                      onClick: handleLogout,
-                    },
-                  ]}
-                />
-              )}
+        <div className='flex items-center gap-3  md:mr-0'>
+          <div className='relative' ref={menuRef}>
+            <div onClick={handleClick} className='cursor-pointer'>
+              <Image
+                src='/assets/icons/user-profile-icon.jpg'
+                alt='user-profile-icon'
+                width={56}
+                height={56}
+                className='rounded-full'
+              />
             </div>
-          )}
+            {openPopUp && (
+              <DropdownMenu
+                isOpen={openPopUp}
+                onClose={() => setOpenPopUp(false)}
+                items={[
+                  {
+                    label: t('panel:borrower_installments'),
+                    href: '/panel/reports/installment',
+                    image: '/assets/icons/installments.svg',
+                  },
+                  {
+                    label: t('panel:acceptor_settlement'),
+                    href: '/panel/reports/settlement',
+                    image: '/assets/icons/installments.svg',
+                  },
+                  {
+                    label: t('panel:transaction_list'),
+                    href: '/panel/transactionsList',
+                    image: '/assets/icons/installments.svg',
+                  },
+
+                  {
+                    label: t('panel:log_out'),
+                    image: '/assets/icons/logout.svg',
+                    danger: true,
+                    onClick: handleLogout,
+                  },
+                ]}
+              />
+            )}
+          </div>
 
           {/* <button
             className='cursor-pointer bg-secondary h-[42px] px-3 py-1 rounded-[8px] flex items-center gap-2'
