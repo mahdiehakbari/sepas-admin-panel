@@ -73,21 +73,25 @@ export const Header = () => {
                 onClose={() => setOpenPopUp(false)}
                 items={[
                   {
-                    label: t('panel:borrower_installments'),
-                    href: '/panel/reports/installment',
-                    image: '/assets/icons/installments.svg',
+                    label: t('dental-society:dentist_definition'),
+                    image: '/assets/icons/transactions.svg',
+                    href: '/panel/dentistDefinition',
                   },
                   {
-                    label: t('panel:acceptor_settlement'),
-                    href: '/panel/reports/settlement',
-                    image: '/assets/icons/installments.svg',
+                    label: t('dental-society:request_list'),
+                    image: '/assets/icons/transactions.svg',
+                    href: '#',
                   },
                   {
-                    label: t('panel:transaction_list'),
-                    href: '/panel/transactionsList',
-                    image: '/assets/icons/installments.svg',
+                    label: t('dental-society:performance_report'),
+                    image: '/assets/icons/status-up.svg',
+                    href: '#',
                   },
-
+                  {
+                    label: t('dental-society:doctor_list'),
+                    image: '/assets/icons/tag-user.svg',
+                    href: '#',
+                  },
                   {
                     label: t('panel:log_out'),
                     image: '/assets/icons/logout.svg',
@@ -122,19 +126,16 @@ export const Header = () => {
             onClick={() => setIsOpen(!isOpen)}
           >
             <span
-              className={`block h-0.5 w-6 bg-black my-1 transition-transform ${
-                isOpen ? 'rotate-50 translate-y-3' : ''
-              }`}
+              className={`block h-0.5 w-6 bg-black my-1 transition-transform ${isOpen ? 'rotate-50 translate-y-3' : ''
+                }`}
             />
             <span
-              className={`block h-0.5 w-6 bg-black my-1 transition-opacity ${
-                isOpen ? 'opacity-0' : 'opacity-100'
-              }`}
+              className={`block h-0.5 w-6 bg-black my-1 transition-opacity ${isOpen ? 'opacity-0' : 'opacity-100'
+                }`}
             />
             <span
-              className={`block h-0.5 w-6 bg-black my-1 transition-transform ${
-                isOpen ? '-rotate-45 -translate-y-2' : ''
-              }`}
+              className={`block h-0.5 w-6 bg-black my-1 transition-transform ${isOpen ? '-rotate-45 -translate-y-2' : ''
+                }`}
             />
           </button>
         </div>
