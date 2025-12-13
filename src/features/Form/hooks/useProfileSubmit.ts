@@ -60,7 +60,7 @@ export const useProfileSubmit = ({
       }
 
       Cookies.set('isLoggedIn', 'true');
-      toast.success('قرار داد شما با موفقیت ثبت شد.');
+      toast.success('اطلاعات شما با موفقیت ثبت شد.');
 
       if (name === 'profile') router.push('/panel/dentalSociety');
 

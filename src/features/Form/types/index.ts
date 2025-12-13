@@ -74,5 +74,5 @@ export interface IAddressInfoSectionProps {
   errors: FieldErrors<IProfileFormValues>;
   provinces: ILocationItem[];
   cities: ILocationItem[];
-  handleProvinceChange: (provinceId: string | number) => void;
+  handleProvinceChange: (provinceId: string) => void;
 }

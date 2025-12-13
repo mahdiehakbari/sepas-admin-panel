@@ -40,7 +40,6 @@ export const AddressInfoSection: React.FC<IAddressInfoSectionProps> = ({
             name='cityId'
             register={register}
             options={cities.map((c) => ({ value: c.id, label: c.name }))}
-            onChange={handleProvinceChange}
             errors={errors}
             rules={{ required: t('dental-society:field_required') }}
             defaultValue={userData?.address?.cityId ?? ''}
