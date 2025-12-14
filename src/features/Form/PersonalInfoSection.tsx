@@ -95,7 +95,6 @@ export const PersonalInfoSection: React.FC<IPersonalInfoSectionProps> = ({
           textError={t('dental-society:field_required')}
           rules={rules.mobile as unknown as RegisterOptions<IProfileFormValues>}
           defaultValue={userData?.phoneNumber ?? phoneNumber}
-          disabled={!!userData?.phoneNumber || !!phoneNumber}
         />
 
         <Input
@@ -139,29 +138,20 @@ export const PersonalInfoSection: React.FC<IPersonalInfoSectionProps> = ({
         />
 
         <Input
+          label={t('dental-society:doctor_title')}
+          name='professionalTitle'
+          register={register}
+          errors={errors}
+          textError={t('dental-society:field_required')}
+          defaultValue={userData?.professionalTitle ?? ''}
+        />
+        <Input
           label={t('dental-society:medical_system_number')}
           name='medicalCertificateNumber'
           register={register}
           errors={errors}
           textError={t('dental-society:field_required')}
           defaultValue={userData?.medicalCertificateNumber ?? ''}
-        />
-
-        <SelectInput
-          label={t('dental-society:educational')}
-          name='educationLevel'
-          register={register}
-          options={educationalItems.map((c) => ({
-            value: c.id.toString(),
-            label: c.name,
-          }))}
-          errors={errors}
-          rules={{ required: t('dental-society:field_required') }}
-          defaultValue={
-            userData?.educationLevel !== undefined
-              ? String(userData.educationLevel)
-              : ''
-          }
         />
 
         <SelectInput

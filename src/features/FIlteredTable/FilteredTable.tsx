@@ -102,6 +102,7 @@ export const FilteredTable = ({
           portal
           className='w-full'
           containerClassName='w-full'
+          maxDate={new Date()}
           inputClass='border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:ring focus:border-blue-400'
           placeholder={t('panel:from_date')}
           render={(value, openCalendar) => (
@@ -129,6 +130,7 @@ export const FilteredTable = ({
           calendar={persian}
           locale={persian_fa}
           portal
+          maxDate={new Date()}
           className='w-full'
           containerClassName='w-full'
           inputClass='border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:ring focus:border-blue-400'

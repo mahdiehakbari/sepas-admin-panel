@@ -33,6 +33,7 @@ export interface IProfileFormValues {
   contractType: string | number;
   medicalCertificateNumber: string;
   workPlacePhoneNumber: string;
+  professionalTitle: string;
 }
 
 export interface IProfileFormProps {

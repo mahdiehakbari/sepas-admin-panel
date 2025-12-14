@@ -40,6 +40,7 @@ export const DateInput = <T extends FieldValues>({
         render={({ field }) => (
           <DatePicker
             value={pickerValue}
+            maxDate={new Date()}
             onChange={(date) => {
               if (date instanceof DateObject) {
                 setPickerValue(date);
