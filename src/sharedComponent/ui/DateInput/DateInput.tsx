@@ -25,7 +25,8 @@ export const DateInput = <T extends FieldValues>({
       setPickerValue(new DateObject(defaultValue));
     }
   }, [defaultValue]);
-
+  const today = new Date();
+  today.setHours(23, 59, 59, 999);
   return (
     <div className='flex flex-col'>
       <Controller
@@ -40,7 +41,7 @@ export const DateInput = <T extends FieldValues>({
         render={({ field }) => (
           <DatePicker
             value={pickerValue}
-            maxDate={new Date()}
+            maxDate={today}
             onChange={(date) => {
               if (date instanceof DateObject) {
                 setPickerValue(date);
