@@ -7,9 +7,11 @@ import { Paginate } from '@/sharedComponent/ui';
 import { IDentist, IDentistListResponse } from './types';
 import Image from 'next/image';
 import { useTranslation } from 'react-i18next';
+import { ContentStateWrapper } from '@/features/layout/components';
 
 const ListOfDentist = () => {
   const [dentistList, setDentistList] = useState<IDentist[]>([]);
+  const [pageLoading, setPageLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const { t } = useTranslation();
@@ -23,9 +25,11 @@ const ListOfDentist = () => {
       .then((resp) => {
         setDentistList(resp.data.items);
         setTotalPages(resp.data.totalPages);
+        setPageLoading(false);
       })
       .catch((err) => {
         console.error(err);
+        setPageLoading(false);
       });
   };
 
@@ -34,7 +38,10 @@ const ListOfDentist = () => {
   }, [page]);
 
   return (
-    <div>
+    <ContentStateWrapper
+      loading={pageLoading}
+      loadingText={t('panel:page_loading')}
+    >
       <div className='max-w-6xl mx-6 md:mx-auto mt-8'>
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4'>
           {dentistList.map((d) => (
@@ -75,7 +82,7 @@ const ListOfDentist = () => {
         totalPages={totalPages}
         hasNextPage={page < totalPages}
       />
-    </div>
+    </ContentStateWrapper>
   );
 };
 
