@@ -94,7 +94,7 @@ export const PersonalInfoSection: React.FC<IPersonalInfoSectionProps> = ({
           errors={errors}
           textError={t('dental-society:field_required')}
           rules={rules.mobile as unknown as RegisterOptions<IProfileFormValues>}
-          defaultValue={userData?.phoneNumber ?? phoneNumber}
+          defaultValue={''}
         />
 
         <Input
