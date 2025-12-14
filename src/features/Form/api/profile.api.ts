@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { API_UPDATE_PROFILE } from '@/config/api_address.config';
+import { API_CREATE_MERCHANT } from '@/config/api_address.config';
 import { IProfileFormValues } from '../types';
 
 export const updateProfile = async (
@@ -9,7 +9,6 @@ export const updateProfile = async (
 ) => {
 
   const requestBody = {
-    merchants: [{
       phoneNumber: data.mobile,
       nationalId: data.nationalId,
       businessName: data.professionalTitle,
@@ -26,10 +25,9 @@ export const updateProfile = async (
       educationLevel: 0,
       gender: data.gender,
       birthDate: data.birthDate
-    }]
   };
   
-  return axios.post(API_UPDATE_PROFILE, requestBody, {
+  return axios.post(API_CREATE_MERCHANT, requestBody, {
     headers: {
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
