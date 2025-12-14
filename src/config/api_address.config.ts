@@ -13,3 +13,4 @@ export const API_MERCHANT_QUERY_SIMPLE = '/api/MerchantsQuery/simple';
 export const API_UPDATE_PROFILE = '/api/MerchantsCommand/admin/bulk-create';
 export const API_CONTRACT_GET = '/api/MerchantContractsQuery/admin';
 export const API_CONTRACT_POST = '/api/MerchantContractsCommand/admin';
+export const API_DENTIST_LIST = '/api/MerchantsQuery/paged-by-ids';

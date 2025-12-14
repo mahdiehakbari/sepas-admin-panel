@@ -30,7 +30,7 @@ export const getDentistrySideBarItems = () => [
   },
   {
     label: i18n.t('dental-society:doctor_list'),
-    path: '',
+    path: '/panel/listOfDentists',
     icon: '/assets/icons/tag-user.svg',
   },
 ];

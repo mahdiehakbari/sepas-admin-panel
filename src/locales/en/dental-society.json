@@ -36,5 +36,6 @@
   "bi_monthly": "Bi-monthly settlement",
   "four_monthly": "Four-monthly settlement",
   "six_monthly": "Six-monthly settlement",
-  "bank_information": "Bank information"
+  "bank_information": "Bank information",
+  "redownload": "ReDownload"
 }
