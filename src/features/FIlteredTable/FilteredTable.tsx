@@ -35,6 +35,8 @@ export const FilteredTable = ({
     label: `${item.businessName}  - ${item.nationalId}`,
     value: item.id,
   }));
+  const today = new Date();
+  today.setHours(23, 59, 59, 999);
 
   return (
     <div className='p-6 md:w-[465px]'>
@@ -102,7 +104,7 @@ export const FilteredTable = ({
           portal
           className='w-full'
           containerClassName='w-full'
-          maxDate={new Date()}
+          maxDate={today}
           inputClass='border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:ring focus:border-blue-400'
           placeholder={t('panel:from_date')}
           render={(value, openCalendar) => (
@@ -130,7 +132,7 @@ export const FilteredTable = ({
           calendar={persian}
           locale={persian_fa}
           portal
-          maxDate={new Date()}
+          maxDate={today}
           className='w-full'
           containerClassName='w-full'
           inputClass='border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:ring focus:border-blue-400'
