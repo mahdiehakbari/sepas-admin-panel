@@ -31,14 +31,14 @@ export const SideMenu = () => {
     <aside className='w-64 bg-[#F8F9FA] shadow-md p-6'>
       <div className='flex items-center justify-center mb-8'>
         <h2 className='font-medium text-[#515151] text-[12px]'>
-          {userType
+          {userType=='DentistryAdmin'
             ? t('dental-society:dental_society')
             : t('panel:admin_panel')}
         </h2>
       </div>
 
       <div className='bg-white h-[65vh] flex flex-col justify-between py-6'>
-        {!userType ? (
+        {userType =='admin' ? (
           <div className='px-4'>
             <button
               onClick={() => setOpenMenu(!openMenu)}

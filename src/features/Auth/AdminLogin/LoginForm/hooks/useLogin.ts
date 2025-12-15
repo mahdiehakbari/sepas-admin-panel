@@ -31,6 +31,7 @@ export function useLogin() {
       setAuth(resp.data.token, resp.data.user);
       if (resp.data.user.userType == 'Admin') {
         router.push('/panel/reports/settlement');
+        localStorage.setItem('userType', 'Admin');
       } else {
         router.push('/panel/dentalSociety');
         localStorage.setItem('userType', 'DentistryAdmin');

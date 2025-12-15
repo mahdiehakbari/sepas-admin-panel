@@ -22,6 +22,7 @@ export const Header = () => {
   const handleLogout = () => {
     logout();
     Cookies.remove('isLoggedIn');
+    localStorage.removeItem('userType')
     router.push('/');
   };
 
