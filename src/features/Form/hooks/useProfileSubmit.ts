@@ -8,6 +8,7 @@ import { formatBirthDate } from '../utils/formatBirthDate';
 import {
   API_AUTHENTICATE_ME,
   API_CONTRACT_POST,
+  API_MERCHANT_BANNER,
 } from '@/config/api_address.config';
 import { IProfileFormValues } from '../types';
 import { ProfileSubmitProps } from './types';
@@ -20,6 +21,7 @@ export const useProfileSubmit = ({
   setShowProfileModal,
   setShowCreditNoteModal,
   setUser,
+  base64Image,
 }: ProfileSubmitProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const { t } = useTranslation();
@@ -55,22 +57,47 @@ export const useProfileSubmit = ({
         });
         const userData =
           typeof res.data === 'string' ? JSON.parse(res.data) : res.data;
+
         setUser?.(userData);
         setIsEditing?.(false);
+        Cookies.set('isLoggedIn', 'true');
+        toast.success('اطلاعات شما با موفقیت ثبت شد.');
       }
 
-      Cookies.set('isLoggedIn', 'true');
-      toast.success('اطلاعات شما با موفقیت ثبت شد.');
-
-      if (name === 'profile') router.push('/panel/dentalSociety');
+      if (name === 'profile') {
+        axios
+          .post(
+            API_MERCHANT_BANNER,
+            {
+              merchantId: res.data.merchantId,
+              base64Image: base64Image,
+              description: 'Merchant banner image',
+            },
+            {
+              headers: { Authorization: `Bearer ${token}` },
+            },
+          )
+          .then((resp) => {
+            router.push('/panel/dentalSociety');
+            Cookies.set('isLoggedIn', 'true');
+            toast.success('اطلاعات شما با موفقیت ثبت شد.');
+          })
+          .catch();
+      }
 
       setShowProfileModal?.(false);
       setShowCreditNoteModal?.(true);
     } catch (error) {
-      const axiosError = error as AxiosError<{ message?: string }>;
-      toast.error(
-        axiosError.response?.data?.message || t('profile:update_error'),
-      );
+      if (axios.isAxiosError(error)) {
+        if (error.response?.data?.errors?.Iban) {
+          toast.error('شماره شبا باید 24 کارکتر باشد.');
+        } else {
+          const axiosError = error as AxiosError<{ message?: string }>;
+          toast.error(
+            axiosError.response?.data?.message || t('profile:update_error'),
+          );
+        }
+      }
     } finally {
       setIsLoading(false);
     }

@@ -15,3 +15,5 @@ export const API_CREATE_MERCHANT = '/api/MerchantsCommand/admin/create';
 export const API_CONTRACT_GET = '/api/MerchantContractsQuery/admin';
 export const API_CONTRACT_POST = '/api/MerchantContractsCommand/admin';
 export const API_DENTIST_LIST = '/api/MerchantsQuery/paged-by-ids';
+export const API_MERCHANT_BANNER =
+  '/api/UserProfileImage/merchant-banner-upload';

@@ -34,7 +34,7 @@ export const AddressInfoSection: React.FC<IAddressInfoSectionProps> = ({
           />
         )}
 
-        {cities.length > 0 && (
+       
           <SelectInput
             label={t('dental-society:city')}
             name='cityId'
@@ -44,16 +44,15 @@ export const AddressInfoSection: React.FC<IAddressInfoSectionProps> = ({
             rules={{ required: t('dental-society:field_required') }}
             defaultValue={userData?.address?.cityId ?? ''}
           />
-        )}
-
-        <Input
+       
+        {/* <Input
           label={t('dental-society:zip_code')}
           name='postalCode'
           register={register}
           errors={errors}
           textError={t('dental-society:field_required')}
           defaultValue={userData?.address?.postalCode ?? ''}
-        />
+        /> */}
         <Input
           label={t('dental-society:office_number')}
           name='workPlacePhoneNumber'

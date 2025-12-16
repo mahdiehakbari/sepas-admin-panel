@@ -22,82 +22,84 @@ export const ProfileForm: React.FC<IProfileFormProps> = ({
   userData,
 }) => {
   const router = useRouter();
-  const { user } = useAuthStore();
-  const [phoneNumber, setPhoneNumber] = useState<string>('');
-  const { t } = useTranslation();
-  const {
-    register,
-    handleSubmit,
-    control,
-    errors,
-    provinces,
-    cities,
-    handleProvinceChange,
-    savedPhone,
-  } = useProfileForm(userData);
+const [base64Image, setBase64Image] = useState<string | null>(null);
+const { user } = useAuthStore();
+const [phoneNumber, setPhoneNumber] = useState<string>('');
+const { t } = useTranslation();
+const {
+  register,
+  handleSubmit,
+  control,
+  errors,
+  provinces,
+  cities,
+  handleProvinceChange,
+  savedPhone,
+} = useProfileForm(userData);
 
-  const { onSubmit, isLoading } = useProfileSubmit({
-    name,
-    setIsEditing,
-    setShowProfileModal,
-    setShowCreditNoteModal,
-    setUser,
-  });
+const { onSubmit, isLoading } = useProfileSubmit({
+  name,
+  setIsEditing,
+  setShowProfileModal,
+  setShowCreditNoteModal,
+  setUser,
+  base64Image,
+});
 
-  useEffect(() => {
-    const phone = user?.phoneNumber || savedPhone;
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    if (phone) setPhoneNumber(phone);
-  }, [savedPhone, user]);
+useEffect(() => {
+  const phone = user?.phoneNumber || savedPhone;
+  // eslint-disable-next-line react-hooks/set-state-in-effect
+  if (phone) setPhoneNumber(phone);
+}, [savedPhone, user]);
 
-  return (
-    <div
-      className={`${name == 'credit' ? 'md:w-[800px]' : 'max-w-4xl mx-auto'}`}
-    >
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className='p-6 bg-(--block-color) border border-border-color rounded-lg space-y-6'>
-          <PersonalInfoSection
-            t={t}
-            {...{ register, errors, control, userData }}
-            phoneNumber={phoneNumber}
-          />
-          <BankInfoSection t={t} {...{ register, errors, userData }} />
-          <AddressInfoSection
-            t={t}
-            {...{
-              register,
-              errors,
-              provinces,
-              cities,
-              handleProvinceChange,
-              userData,
-            }}
-          />
-        </div>
+return (
+  <div className={`${name == 'credit' ? 'md:w-[800px]' : 'max-w-4xl mx-auto'}`}>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <div className='p-6 bg-(--block-color) border border-border-color rounded-lg space-y-6'>
+        <PersonalInfoSection
+          t={t}
+          {...{ register, errors, control, userData }}
+          phoneNumber={phoneNumber}
+          base64Image={base64Image}
+          setBase64Image={setBase64Image}
+        />
+        <BankInfoSection t={t} {...{ register, errors, userData }} />
+        <AddressInfoSection
+          t={t}
+          {...{
+            register,
+            errors,
+            provinces,
+            cities,
+            handleProvinceChange,
+            userData,
+          }}
+        />
+      </div>
 
-        <div className='md:flex justify-end gap-4 my-6'>
-          <Button
-            variant='outline'
-            disabled={isLoading}
-            type='button'
-            onClick={handleBack}
-            className='mb-2 w-full  md:w-[161px] '
-          >
-            {t('dental-society:back')}
-          </Button>
-          <Button
-            disabled={isLoading}
-            type='submit'
-            className='mb-2 w-full md:w-[161px]'
-          >
-            {isLoading ? (
-              <SpinnerDiv size='sm' className='text-white' />
-            ) : (
-              t('dental-society:record_information')
-            )}
-          </Button>
-        </div>
-      </form>
-    </div>
-  );
+      <div className='md:flex justify-end gap-4 my-6'>
+        <Button
+          variant='outline'
+          disabled={isLoading}
+          type='button'
+          onClick={handleBack}
+          className='mb-2 w-full  md:w-[161px] '
+        >
+          {t('dental-society:back')}
+        </Button>
+        <Button
+          disabled={isLoading}
+          type='submit'
+          className='mb-2 w-full md:w-[161px]'
+        >
+          {isLoading ? (
+            <SpinnerDiv size='sm' className='text-white' />
+          ) : (
+            t('dental-society:record_information')
+          )}
+        </Button>
+      </div>
+    </form>
+  </div>
+);
 };

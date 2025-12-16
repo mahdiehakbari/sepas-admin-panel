@@ -54,6 +54,8 @@ export interface IPersonalInfoSectionProps {
   errors: FieldErrors<IProfileFormValues>;
   control: Control<IProfileFormValues>;
   phoneNumber: string;
+  base64Image: string | null;
+  setBase64Image: (value: string | null) => void;
 }
 
 export interface IBankInfoSectionProps {

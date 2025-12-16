@@ -10,6 +10,7 @@ import {
   API_CONTRACT_GET,
   API_CONTRACT_POST,
 } from '@/config/api_address.config';
+import Image from 'next/image';
 
 export const PersonalInfoSection: React.FC<IPersonalInfoSectionProps> = ({
   t,
@@ -18,9 +19,25 @@ export const PersonalInfoSection: React.FC<IPersonalInfoSectionProps> = ({
   control,
   userData,
   phoneNumber,
+  base64Image,
+  setBase64Image,
 }) => {
   const rules = validationRules(t);
   const token = Cookies.get('token');
+  const [image, setImage] = useState<string | null>(null);
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      setImage(URL.createObjectURL(file));
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        const base64String = reader.result as string;
+        setBase64Image(base64String);
+      };
+    }
+  };
   const genderItems = [
     { id: 1, name: t('dental-society:man') },
     { id: 2, name: t('dental-society:woman') },
@@ -68,7 +85,7 @@ export const PersonalInfoSection: React.FC<IPersonalInfoSectionProps> = ({
     <section>
       <FormTitle title={t('dental-society:personal_info')} />
 
-      <div className='grid grid-cols-1 md:grid-cols-2 gap-4 text-right mb-12'>
+      <div className='grid grid-cols-1 md:grid-cols-2 gap-4 text-right mb-4'>
         <Input
           label={t('dental-society:name')}
           name='firstName'
@@ -109,7 +126,7 @@ export const PersonalInfoSection: React.FC<IPersonalInfoSectionProps> = ({
           defaultValue={userData?.nationalId ?? ''}
         />
 
-        <DateInput
+        {/* <DateInput
           control={control}
           name='birthDate'
           label={t('dental-society:birth_date')}
@@ -120,7 +137,7 @@ export const PersonalInfoSection: React.FC<IPersonalInfoSectionProps> = ({
               ? userData.birthDate
               : undefined
           }
-        />
+        /> */}
 
         <SelectInput
           label={t('dental-society:gender')}
@@ -154,7 +171,7 @@ export const PersonalInfoSection: React.FC<IPersonalInfoSectionProps> = ({
           defaultValue={userData?.medicalCertificateNumber ?? ''}
         />
 
-        <SelectInput
+        {/* <SelectInput
           label={t('dental-society:contract_type')}
           name='contractType'
           register={register}
@@ -169,7 +186,7 @@ export const PersonalInfoSection: React.FC<IPersonalInfoSectionProps> = ({
               ? String(userData.contractType)
               : ''
           }
-        />
+        /> */}
 
         <Input
           label={t('dental-society:email')}
@@ -180,6 +197,25 @@ export const PersonalInfoSection: React.FC<IPersonalInfoSectionProps> = ({
           rules={{ required: false }}
           defaultValue={userData?.email ?? ''}
         />
+      </div>
+      <div className='flex items-center flex-col mb-10'>
+        <p className='mb-2 text-gray-600 text-sm '>آپلود عکس</p>
+        <label className='rounded-2xl relative cursor-pointer w-32 h-32 bg-gray-200 border-2 border-dashed border-gray-400 flex items-center justify-center'>
+          {image ? (
+            <img
+              src={image}
+              alt='Uploaded'
+              className='w-full h-full object-cover rounded-2xl'
+            />
+          ) : (
+            <span className='text-white text-4xl font-bold'>+</span>
+          )}
+          <input
+            type='file'
+            className='absolute inset-0 w-full h-full opacity-0 cursor-pointer'
+            onChange={handleImageChange}
+          />
+        </label>
       </div>
     </section>
   );
