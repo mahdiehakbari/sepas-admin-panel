@@ -17,3 +17,5 @@ export const API_CONTRACT_POST = '/api/MerchantContractsCommand/admin';
 export const API_DENTIST_LIST = '/api/MerchantsQuery/paged-by-ids';
 export const API_MERCHANT_BANNER =
   '/api/UserProfileImage/merchant-banner-upload';
+export const API_BULK_CREATE = '/api/MerchantsCommand/admin/bulk-create';
+export const API_CITY_NAME = '/api/CitiesQuery/by-name';

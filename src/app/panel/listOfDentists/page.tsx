@@ -20,7 +20,7 @@ const ListOfDentist = () => {
     axios
       .post<IDentistListResponse>(API_DENTIST_LIST, {
         pageNumber: pageNumber,
-        pageSize: 20,
+        pageSize: 12,
       })
       .then((resp) => {
         setDentistList(resp.data.items);
@@ -36,6 +36,8 @@ const ListOfDentist = () => {
   useEffect(() => {
     fetchDentists(page);
   }, [page]);
+
+  console.log(dentistList, 'dentistList');
 
   return (
     <ContentStateWrapper
