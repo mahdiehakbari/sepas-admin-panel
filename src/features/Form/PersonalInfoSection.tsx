@@ -56,30 +56,30 @@ export const PersonalInfoSection: React.FC<IPersonalInfoSectionProps> = ({
     { id: 3, name: t('dental-society:six_monthly') },
   ];
 
-  useEffect(() => {
-    axios
-      .get(API_CONTRACT_GET, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((resp) => {
-        axios
-          .post(
-            API_CONTRACT_POST,
-            {
-              merchantId: resp.data.merchantId,
-            },
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json',
-              },
-            },
-          )
-          .then((resp) => {})
-          .catch();
-      })
-      .catch();
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get(API_CONTRACT_GET, {
+  //       headers: { Authorization: `Bearer ${token}` },
+  //     })
+  //     .then((resp) => {
+  //       axios
+  //         .post(
+  //           API_CONTRACT_POST,
+  //           {
+  //             merchantId: resp.data.merchantId,
+  //           },
+  //           {
+  //             headers: {
+  //               Authorization: `Bearer ${token}`,
+  //               'Content-Type': 'application/json',
+  //             },
+  //           },
+  //         )
+  //         .then((resp) => {})
+  //         .catch();
+  //     })
+  //     .catch();
+  // }, []);
 
   return (
     <section>
