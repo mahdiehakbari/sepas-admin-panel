@@ -26,13 +26,13 @@ export const PersonalInfoSection: React.FC<IPersonalInfoSectionProps> = ({
   const rules = validationRules(t);
   const token = Cookies.get('token');
   const [image, setImage] = useState<string | null>(null);
-  const MAX_IMAGE_SIZE = 512 * 1024 * 1024;
+  const MAX_IMAGE_SIZE = 512 * 1024;
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
     if (file.size > MAX_IMAGE_SIZE) {
-      toast.error('حجم تصویر نباید بیشتر از ۵۱۲ مگابایت باشد.');
+      toast.error('حجم تصویر نباید بیشتر از ۵۱۲ کیلوبایت باشد.');
       e.target.value = '';
       return;
     }
