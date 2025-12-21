@@ -16,6 +16,7 @@ type ExcelCell = string | number | null | undefined;
 type ExcelRow = ExcelCell[];
 
 const PAGE_SIZE = 10;
+const MAX_ROWS = 20;
 
 const isValidNationalCode = (code: string) => {
   if (!/^\d{10}$/.test(code)) return false;
@@ -97,6 +98,12 @@ const GroupOfDentist = () => {
       if (rows.length === 0) return;
 
       const [headerRow, ...dataRows] = rows;
+      if (dataRows.length > MAX_ROWS) {
+        toast.error('حداکثر مجاز به آپلود ۲۰ ردیف می‌باشد.');
+        setTableData([]);
+        setHeaders([]);
+        return;
+      }
 
       const validRows: ExcelRow[] = [];
       const seenNationalCodes = new Set<string>();
@@ -186,9 +193,6 @@ const GroupOfDentist = () => {
     currentPage * PAGE_SIZE,
   );
 
-  /* ===============================
-     ارسال به API (داده کامل)
-  ================================ */
   const merchants = tableData.map((item) => ({
     phoneNumber: item[3],
     nationalId: item[2],

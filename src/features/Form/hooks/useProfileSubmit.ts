@@ -65,24 +65,22 @@ export const useProfileSubmit = ({
       }
 
       if (name === 'profile') {
-        axios
-          .post(
-            API_MERCHANT_BANNER,
-            {
-              merchantId: res.data.merchantId,
-              base64Image: base64Image,
-              description: 'Merchant banner image',
-            },
-            {
-              headers: { Authorization: `Bearer ${token}` },
-            },
-          )
-          .then((resp) => {
-            router.push('/panel/dentalSociety');
-            Cookies.set('isLoggedIn', 'true');
-            toast.success('اطلاعات شما با موفقیت ثبت شد.');
-          })
-          .catch();
+
+        await axios.post(
+          API_MERCHANT_BANNER,
+          {
+            merchantId: res.data.merchantId,
+            base64Image,
+            description: 'Merchant banner image',
+          },
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          },
+        );
+
+        Cookies.set('isLoggedIn', 'true');
+        toast.success('اطلاعات شما با موفقیت ثبت شد.');
+        router.push('/panel/dentalSociety');
       }
 
       setShowProfileModal?.(false);
@@ -90,13 +88,16 @@ export const useProfileSubmit = ({
     } catch (error) {
       if (axios.isAxiosError(error)) {
         if (error.response?.data?.errors?.Iban) {
-          toast.error('شماره شبا باید 24 کارکتر باشد.');
+          toast.error('شماره شبا باید 24 کاراکتر باشد.');
         } else {
           const axiosError = error as AxiosError<{ message?: string }>;
           toast.error(
-            axiosError.response?.data?.message || t('profile:update_error'),
+            axiosError.response?.data?.message ||
+              t('profile:update_error'),
           );
         }
+      } else {
+        toast.error(t('profile:update_error'));
       }
     } finally {
       setIsLoading(false);

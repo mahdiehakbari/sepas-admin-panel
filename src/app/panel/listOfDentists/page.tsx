@@ -37,8 +37,6 @@ const ListOfDentist = () => {
     fetchDentists(page);
   }, [page]);
 
-  console.log(dentistList, 'dentistList');
-
   return (
     <ContentStateWrapper
       loading={pageLoading}
@@ -51,6 +49,14 @@ const ListOfDentist = () => {
               key={d.id}
               className='border border-border-color p-4 rounded-md shadow-sm'
             >
+              {d.bannerImageFilePath && (
+                <img
+                  src={`https://dentalitfiles.sepasholding.com/images/bannerimages/${d.bannerImageFilePath}`}
+                  alt='banner'
+                  className='w-full h-40 object-cover rounded-[16px]'
+                />
+              )}
+
               <div className='border-b border-border-color mb-4 pb-4'>
                 <h3 className='text-lg font-semibold mb-3'>{d.fullName}</h3>
                 <p className='text-sm text-[#919191] mb-3'>{d.businessName}</p>

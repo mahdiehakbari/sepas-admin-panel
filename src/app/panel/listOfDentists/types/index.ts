@@ -17,6 +17,7 @@ export interface IDentist {
   isVerified: boolean;
   createdAt: string;
   availableBalance: number;
+  bannerImageFilePath: string;
 }
 export interface IDentistListResponse {
   items: IDentist[];

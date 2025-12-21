@@ -11,6 +11,7 @@ import {
   API_CONTRACT_POST,
 } from '@/config/api_address.config';
 import Image from 'next/image';
+import { toast } from 'react-toastify';
 
 export const PersonalInfoSection: React.FC<IPersonalInfoSectionProps> = ({
   t,
@@ -25,18 +26,25 @@ export const PersonalInfoSection: React.FC<IPersonalInfoSectionProps> = ({
   const rules = validationRules(t);
   const token = Cookies.get('token');
   const [image, setImage] = useState<string | null>(null);
-
+  const MAX_IMAGE_SIZE = 512 * 1024 * 1024;
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      const file = e.target.files[0];
-      setImage(URL.createObjectURL(file));
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onloadend = () => {
-        const base64String = reader.result as string;
-        setBase64Image(base64String);
-      };
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (file.size > MAX_IMAGE_SIZE) {
+      toast.error('حجم تصویر نباید بیشتر از ۵۱۲ مگابایت باشد.');
+      e.target.value = '';
+      return;
     }
+
+    setImage(URL.createObjectURL(file));
+
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      const base64String = reader.result as string;
+      setBase64Image(base64String);
+    };
   };
   const genderItems = [
     { id: 1, name: t('dental-society:man') },
@@ -55,31 +63,6 @@ export const PersonalInfoSection: React.FC<IPersonalInfoSectionProps> = ({
     { id: 2, name: t('dental-society:four_monthly') },
     { id: 3, name: t('dental-society:six_monthly') },
   ];
-
-  // useEffect(() => {
-  //   axios
-  //     .get(API_CONTRACT_GET, {
-  //       headers: { Authorization: `Bearer ${token}` },
-  //     })
-  //     .then((resp) => {
-  //       axios
-  //         .post(
-  //           API_CONTRACT_POST,
-  //           {
-  //             merchantId: resp.data.merchantId,
-  //           },
-  //           {
-  //             headers: {
-  //               Authorization: `Bearer ${token}`,
-  //               'Content-Type': 'application/json',
-  //             },
-  //           },
-  //         )
-  //         .then((resp) => {})
-  //         .catch();
-  //     })
-  //     .catch();
-  // }, []);
 
   return (
     <section>
