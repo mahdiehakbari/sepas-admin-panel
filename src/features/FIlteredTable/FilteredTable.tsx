@@ -128,28 +128,43 @@ export const FilteredTable = ({
       <div className='w-full  mb-5'>
         <DatePicker
           value={toDate}
-          onChange={setToDate}
+          onChange={(date) => setToDate(date ?? null)}
           calendar={persian}
           locale={persian_fa}
           portal
           maxDate={today}
           className='w-full'
           containerClassName='w-full'
-          inputClass='border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:ring focus:border-blue-400'
           placeholder={t('panel:to_date')}
+          onOpenPickNewDate={false}
           render={(value, openCalendar) => (
             <div
               className='border border-gray-300 rounded-md w-full px-3 py-2 flex items-center justify-between cursor-pointer'
               onClick={openCalendar}
             >
-              <span>{value || t('panel:to_date')}</span>
+              <span className='truncate'>{value || t('panel:to_date')}</span>
 
-              <Image
-                src='/assets/icons/calendar.svg'
-                alt='calender'
-                width={20}
-                height={20}
-              />
+              <div className='flex items-center gap-2'>
+                {value && (
+                  <button
+                    type='button'
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setToDate(null);
+                    }}
+                    className='text-gray-400 hover:text-red-500 text-lg leading-none'
+                  >
+                    ×
+                  </button>
+                )}
+
+                <Image
+                  src='/assets/icons/calendar.svg'
+                  alt='calendar'
+                  width={20}
+                  height={20}
+                />
+              </div>
             </div>
           )}
         />

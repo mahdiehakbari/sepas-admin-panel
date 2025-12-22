@@ -42,6 +42,10 @@ export const DateInput = <T extends FieldValues>({
           <DatePicker
             value={pickerValue}
             maxDate={today}
+            calendar={persian}
+            locale={persian_fa}
+            onOpenPickNewDate={false}
+            calendarPosition='bottom-right'
             onChange={(date) => {
               if (date instanceof DateObject) {
                 setPickerValue(date);
@@ -51,16 +55,34 @@ export const DateInput = <T extends FieldValues>({
                 field.onChange(undefined);
               }
             }}
-            calendar={persian}
-            locale={persian_fa}
-            inputClass={`w-full bg-white border rounded-lg px-3 py-2 text-right placeholder-gray-400 
-        focus:outline-none focus:ring-2 ${
-          hasError
-            ? 'border-red-500 focus:ring-red-400'
-            : 'border-gray-300 focus:ring-blue-500'
-        }`}
-            placeholder={`${label} *`}
-            calendarPosition='bottom-right'
+            render={(value, openCalendar) => (
+              <div
+                className={`w-full bg-white border rounded-lg px-3 py-2 flex items-center justify-between cursor-pointer
+        focus:outline-none
+        ${hasError ? 'border-red-500' : 'border-gray-300'}`}
+                onClick={openCalendar}
+              >
+                <span className='truncate text-right'>
+                  {value || `${label} *`}
+                </span>
+
+                <div className='flex items-center gap-2'>
+                  {value && (
+                    <button
+                      type='button'
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setPickerValue(undefined);
+                        field.onChange(undefined);
+                      }}
+                      className='text-gray-400 hover:text-red-500 text-lg leading-none'
+                    >
+                      ×
+                    </button>
+                  )}
+                </div>
+              </div>
+            )}
           />
         )}
       />
