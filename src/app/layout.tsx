@@ -53,7 +53,7 @@ export default function RootLayout({
     <html lang='fa' dir='rtl' className='font-fa'>
       <body>
         <I18nProvider>
-          {/* <AuthChecker /> */}
+          <AuthChecker />
           <div className='min-h-screen flex flex-col'>
             <main className='flex-1'>{children}</main>
             <SiteRights />

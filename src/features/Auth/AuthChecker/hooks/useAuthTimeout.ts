@@ -1,16 +1,15 @@
 'use client';
+
 import Cookies from 'js-cookie';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
-function parseJwt(token: string) {
-  try {
-    const base64Payload = token.split('.')[1];
-    const payload = JSON.parse(atob(base64Payload));
-    return payload;
-  } catch {
-    return null;
-  }
+function logout(router: ReturnType<typeof useRouter>) {
+  Cookies.remove('token');
+  Cookies.remove('tokenExpiresAt');
+  Cookies.remove('user');
+  Cookies.remove('phoneNumber');
+  router.replace('/');
 }
 
 export function useAuthTimeout() {
@@ -18,25 +17,31 @@ export function useAuthTimeout() {
 
   useEffect(() => {
     const token = Cookies.get('token');
+    const expiresAt = Cookies.get('tokenExpiresAt');
 
-    // اگر اصلاً توکن وجود ندارد → مستقیم redirect
-    if (!token) {
-      Cookies.remove('isLoggedIn');
-      Cookies.remove('phoneNumber');
-      Cookies.remove('user');
-      router.push('/');
+    if (!token || !expiresAt) {
+      logout(router);
       return;
     }
 
-    // اگر توکن وجود دارد → فقط یک interval برای expiry بساز
-    const interval = setInterval(() => {
-      const payload = parseJwt(token);
-      if (payload?.exp && Date.now() >= payload.exp * 1000) {
-        Cookies.remove('token');
-        router.push('/');
-      }
-    }, 1000);
+    const expiresAtTime = new Date(expiresAt).getTime();
 
-    return () => clearInterval(interval);
+    if (isNaN(expiresAtTime)) {
+      logout(router);
+      return;
+    }
+
+    const timeout = expiresAtTime - Date.now();
+
+    if (timeout <= 0) {
+      logout(router);
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      logout(router);
+    }, timeout);
+
+    return () => clearTimeout(timer);
   }, [router]);
 }

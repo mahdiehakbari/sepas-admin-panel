@@ -28,7 +28,7 @@ export function useLogin() {
         password: data.password,
       });
 
-      setAuth(resp.data.token, resp.data.user);
+      setAuth(resp.data.token, resp.data.user, resp.data.expiresAt);
       if (resp.data.user.userType == 'Admin') {
         router.push('/panel/reports/settlement');
         localStorage.setItem('userType', 'Admin');
