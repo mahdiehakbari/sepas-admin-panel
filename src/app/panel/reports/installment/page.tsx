@@ -22,7 +22,7 @@ const Installment = () => {
   const [acceptorName, setAcceptorName] = useState<ISelectOption[]>([]);
   const [acceptorData, setAcceptorData] = useState<IAcceptorData[]>([]);
   const [isOpenModal, setIsOpenModal] = useState(false);
-
+  const [remove, setRemove] = useState(false);
   const { fetchData, requestsData, pageLoading } = useFetchInstallment({
     pageSize: 10,
   });
@@ -30,6 +30,12 @@ const Installment = () => {
   useEffect(() => {
     fetchData(page, acceptorName);
   }, [page]);
+
+  useEffect(() => {
+    const hasFilter = acceptorName.length > 0;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setRemove(hasFilter);
+  }, [acceptorName]);
 
   useFetchAcceptor(setAcceptorData);
 
@@ -43,6 +49,12 @@ const Installment = () => {
     setAcceptorName([]);
     setPage(1);
     fetchData(1, []);
+    setRemove(false);
+  };
+
+  const handleClose = () => {
+    setIsOpenModal(false);
+    setRemove(false);
   };
 
   return (
@@ -54,6 +66,8 @@ const Installment = () => {
         <PageHeader
           titleKey='panel:borrowers_installments'
           onFilterClick={() => setIsOpenModal(true)}
+          handleRemoveFilter={handleRemoveFilter}
+          remove={remove}
         />
         {!requestsData || requestsData?.data?.document_list.length === 0 ? (
           <div className='text-center mt-10 text-gray-500'>
@@ -90,7 +104,7 @@ const Installment = () => {
       <ResponsiveModal
         isOpen={isOpenModal}
         title={t('panel:filter')}
-        onClose={() => setIsOpenModal(false)}
+        onClose={handleClose}
       >
         <InstallmentFilter
           isOpen={isOpenModal}

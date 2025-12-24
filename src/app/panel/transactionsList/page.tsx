@@ -29,6 +29,7 @@ const TransactionsList = () => {
   const [acceptorData, setAcceptorData] = useState<IAcceptorData[]>([]);
   const [merchantData, setMerchantData] = useState<IMerchantData[]>([]);
   const [fromDate, setFromDate] = useState<DateObject | null>(null);
+  const [remove, setRemove] = useState(false);
   const [toDate, setToDate] = useState<DateObject | null>(null);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const token = Cookies.get('token');
@@ -68,14 +69,24 @@ const TransactionsList = () => {
   useFetchMerchant(setMerchantData);
 
   const handleClose = () => {
-    setPage(1);
-    fetchData(1);
     setAcceptorName([]);
     setMerchantName([]);
     setIsOpenModal(false);
     setFromDate(null);
     setToDate(null);
+    setRemove(false);
   };
+
+  useEffect(() => {
+    const hasFilter =
+      merchantName.length > 0 ||
+      fromDate !== null ||
+      toDate !== null ||
+      acceptorName.length > 0;
+
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setRemove(hasFilter);
+  }, [fromDate, toDate, merchantName, acceptorName]);
 
   const handleRemoveFilter = () => {
     setPage(1);
@@ -83,6 +94,7 @@ const TransactionsList = () => {
     setMerchantName([]);
     setFromDate(null);
     setToDate(null);
+    setRemove(false);
   };
 
   const handleOpenModal = () => {
@@ -98,6 +110,8 @@ const TransactionsList = () => {
         <PageHeader
           titleKey='transaction:transaction_list'
           onFilterClick={handleOpenModal}
+          handleRemoveFilter={handleRemoveFilter}
+          remove={remove}
         />
         {!requestsData || requestsData.items.length === 0 ? (
           <div className='text-center mt-10 text-gray-500'>

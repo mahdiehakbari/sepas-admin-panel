@@ -22,6 +22,7 @@ export const SettlementList = () => {
   const [merchantName, setMerchantName] = useState<ISelectOption[]>([]);
   const [merchantData, setMerchantData] = useState<IMerchantData[]>([]);
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const [remove, setRemove] = useState(false);
 
   const { fetchData, requestsData, pageLoading } = useFetchSettlement({
     pageSize: 10,
@@ -30,6 +31,12 @@ export const SettlementList = () => {
   useEffect(() => {
     fetchData(page, merchantName);
   }, [page]);
+
+  useEffect(() => {
+    const hasFilter = merchantName.length > 0;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setRemove(hasFilter);
+  }, [merchantName]);
 
   useFetchMerchant(setMerchantData);
 
@@ -43,6 +50,12 @@ export const SettlementList = () => {
     setMerchantName([]);
     setPage(1);
     fetchData(1, []);
+    setRemove(false);
+  };
+
+  const handleClose = () => {
+    setIsOpenModal(false);
+    setRemove(false);
   };
 
   return (
@@ -54,6 +67,8 @@ export const SettlementList = () => {
         <PageHeader
           titleKey='panel:acceptor_settlement_list'
           onFilterClick={() => setIsOpenModal(true)}
+          remove={remove}
+          handleRemoveFilter={handleRemoveFilter}
         />
         {!requestsData || requestsData.data?.document_list.length === 0 ? (
           <div className='text-center mt-10 text-gray-500'>
@@ -89,7 +104,7 @@ export const SettlementList = () => {
       <ResponsiveModal
         isOpen={isOpenModal}
         title={t('panel:filter')}
-        onClose={() => setIsOpenModal(false)}
+        onClose={handleClose}
       >
         <SettlementFilter
           isOpen={isOpenModal}
