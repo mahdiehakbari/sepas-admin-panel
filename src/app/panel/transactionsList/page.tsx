@@ -88,13 +88,18 @@ const TransactionsList = () => {
     setRemove(hasFilter);
   }, [fromDate, toDate, merchantName, acceptorName]);
 
-  const handleRemoveFilter = () => {
+  const handleRemoveFilter = async () => {
     setPage(1);
     setAcceptorName([]);
     setMerchantName([]);
     setFromDate(null);
     setToDate(null);
     setRemove(false);
+    setPageLoading(true);
+
+    await filterData(null, null, [], [], 1, pageSize);
+
+    setPageLoading(false);
   };
 
   const handleOpenModal = () => {
