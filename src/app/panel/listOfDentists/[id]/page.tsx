@@ -72,7 +72,7 @@ const ListOfDentistId = () => {
                     }
                     alt='Merchant Banner'
                     style={{ objectFit: 'cover' }}
-                    className='rounded-full'
+                    className='rounded-full w-full h-full'
                   />
                 </div>
 
