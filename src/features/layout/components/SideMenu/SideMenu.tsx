@@ -33,12 +33,14 @@ export const SideMenu = () => {
         <h2 className='font-medium text-[#515151] text-[12px]'>
           {userType == 'DentistryAdmin'
             ? t('dental-society:dental_society')
-            : t('panel:admin_panel')}
+            : userType == 'Admin'
+            ? t('panel:admin_panel')
+            : ''}
         </h2>
       </div>
 
       <div className='bg-white h-[65vh] flex flex-col justify-between py-6'>
-        {userType !== 'DentistryAdmin' ? (
+        {userType == 'Admin' ? (
           <div className='px-4'>
             <button
               onClick={() => setOpenMenu(!openMenu)}
@@ -156,7 +158,7 @@ export const SideMenu = () => {
               </div>
             </Link>
           </div>
-        ) : (
+        ) : userType == 'DentistryAdmin' ? (
           <div>
             <ul className='text-[16px]'>
               {getDentistrySideBarItems().map((item, index) => (
@@ -190,6 +192,8 @@ export const SideMenu = () => {
               ))}
             </ul>
           </div>
+        ) : (
+          ''
         )}
 
         <div className='px-6'>

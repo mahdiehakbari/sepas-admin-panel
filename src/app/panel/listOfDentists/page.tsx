@@ -8,6 +8,7 @@ import { IDentist, IDentistListResponse } from './types';
 import Image from 'next/image';
 import { useTranslation } from 'react-i18next';
 import { ContentStateWrapper } from '@/features/layout/components';
+import { useRouter } from 'next/navigation';
 
 const ListOfDentist = () => {
   const [dentistList, setDentistList] = useState<IDentist[]>([]);
@@ -15,6 +16,7 @@ const ListOfDentist = () => {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const { t } = useTranslation();
+  const router = useRouter();
 
   const fetchDentists = (pageNumber: number) => {
     axios
@@ -37,25 +39,31 @@ const ListOfDentist = () => {
     fetchDentists(page);
   }, [page]);
 
+  const handleRoute = (id: string) => {
+    router.push(`/panel/listOfDentists/${id}`);
+  };
+
   return (
-    <ContentStateWrapper
-      loading={pageLoading}
-      loadingText={t('panel:page_loading')}
-    >
+    <ContentStateWrapper loading={pageLoading} loadingText='در حال بارگذاری'>
       <div className='max-w-6xl mx-6 md:mx-auto mt-8'>
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4'>
           {dentistList.map((d) => (
             <div
               key={d.id}
-              className='border border-border-color p-4 rounded-md shadow-sm'
+              className='border border-border-color p-4 rounded-md shadow-sm cursor-pointer'
+              onClick={() => handleRoute(d.id)}
             >
-              {d.bannerImageFilePath && (
-                <img
-                  src={`https://dentalitfiles.sepasholding.com/images/bannerimages/${d.bannerImageFilePath}`}
-                  alt='banner'
-                  className='w-full h-40 object-cover rounded-[16px]'
-                />
-              )}
+              <Image
+                src={
+                  d.bannerImageFilePath
+                    ? `https://dentalitfiles.sepasholding.com/images/bannerimages/${d.bannerImageFilePath}`
+                    : '/assets/icons/images.jpg'
+                }
+                alt='banner'
+                width={400}
+                height={160}
+                className='w-full h-40 object-cover rounded-2xl'
+              />
 
               <div className='border-b border-border-color mb-4 pb-4'>
                 <h3 className='text-lg font-semibold mb-3'>{d.fullName}</h3>

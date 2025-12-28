@@ -1,3 +1,8 @@
+export interface ISkill {
+  skillId: string;
+  description: string;
+}
+
 export interface IDentist {
   id: string;
   userId: string;
@@ -18,6 +23,8 @@ export interface IDentist {
   createdAt: string;
   availableBalance: number;
   bannerImageFilePath: string;
+  skills?: ISkill[] | undefined;
+  bio: string;
 }
 export interface IDentistListResponse {
   items: IDentist[];

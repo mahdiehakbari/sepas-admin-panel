@@ -8,7 +8,7 @@ const nextConfig = {
     ];
   },
   images: {
-    domains: ['trustseal.enamad.ir'],
+    domains: ['trustseal.enamad.ir', 'dentalitfiles.sepasholding.com'],
   },
 };
 
