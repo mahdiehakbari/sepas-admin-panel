@@ -43,48 +43,99 @@ const ListOfDentist = () => {
     router.push(`/panel/listOfDentists/${id}`);
   };
 
+  const headers = [
+    { id: 'number', label: 'ردیف' },
+    { id: 'image', label: 'تصویر' },
+    { id: 'name', label: 'نام و نام خانوادگی' },
+    { id: 'business', label: 'نام مطب' },
+    { id: 'phone', label: 'شماره مطب' },
+    { id: 'certificate', label: 'کد نظام پزشکی' },
+    { id: 'location', label: 'آدرس' },
+  ];
+
   return (
     <ContentStateWrapper loading={pageLoading} loadingText='در حال بارگذاری'>
-      <div className='max-w-6xl mx-6 md:mx-auto mt-8'>
-        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4'>
-          {dentistList.map((d) => (
+      <div className='max-w-7xl mx-6 md:mx-auto mt-8'>
+        <div className='hidden md:flex bg-gray-100 rounded-lg px-3 py-3 font-semibold text-gray-700 text-sm mb-2'>
+          {headers.map((item) => (
+            <div key={item.id} className='w-1/7 text-right px-2'>
+              {item.label}
+            </div>
+          ))}
+        </div>
+
+        <div className='flex flex-col gap-3'>
+          {dentistList.map((d, index) => (
             <div
               key={d.id}
-              className='border border-border-color p-4 rounded-md shadow-sm cursor-pointer'
+              className='flex flex-col md:flex-row items-center justify-between bg-white border border-gray-200 rounded-lg px-3 py-3 cursor-pointer'
               onClick={() => handleRoute(d.id)}
             >
-              <img
-                src={
-                  d.bannerImageFilePath
-                    ? `https://dentalitfiles.sepasholding.com/images/bannerimages/${d.bannerImageFilePath}`
-                    : '/assets/icons/images.jpg'
-                }
-                alt='banner'
-                width={400}
-                height={160}
-                className='w-full h-40 object-cover rounded-2xl'
-              />
-
-              <div className='border-b border-border-color mb-4 pb-4'>
-                <h3 className='text-lg font-semibold mb-3'>{d.fullName}</h3>
-                <p className='text-sm text-[#919191] mb-3'>{d.businessName}</p>
-                <p className='text-sm text-[#919191] mb-3'>
-                  {'شماره مطب'}: {d.workPlacePhoneNumber}
-                </p>
-                <p className='text-sm text-[#919191] '>
-                  {'کد نظام پزشکی'}: {d.medicalCertificateNumber}
-                </p>
+              <div className='w-full md:w-[10%] text-center md:text-right mb-2 md:mb-0 px-2'>
+                <span className='md:hidden text-gray-500 font-semibold ml-2'>
+                  ردیف:
+                </span>
+                {index + 1 + (page - 1) * 12}
               </div>
-              <div className='flex items-center gap-2'>
-                <Image
-                  src='/assets/icons/location.svg'
-                  alt='map'
-                  width={16}
-                  height={16}
+
+              <div className='w-full md:w-[12%] text-center mb-2 md:mb-0 px-2'>
+                <span className='md:hidden text-gray-500 font-semibold ml-2'>
+                  تصویر:
+                </span>
+                <img
+                  src={
+                    d.bannerImageFilePath
+                      ? `https://dentalitfiles.sepasholding.com/images/bannerimages/${d.bannerImageFilePath}`
+                      : '/assets/icons/images.jpg'
+                  }
+                  alt='banner'
+                  className='w-10 h-10 object-cover rounded-lg mx-auto'
                 />
-                <p className='text-sm text-[#757575] truncate w-full'>
-                  {d.cityName} - {d.address}
-                </p>
+              </div>
+
+              <div className='w-full md:w-[15%] text-center md:text-right mb-2 md:mb-0 px-2'>
+                <span className='md:hidden text-gray-500 font-semibold ml-2'>
+                  نام و نام خانوادگی:
+                </span>
+                {d.fullName}
+              </div>
+
+              <div className='w-full md:w-[15%] text-center md:text-right mb-2 md:mb-0 px-2'>
+                <span className='md:hidden text-gray-500 font-semibold ml-2'>
+                  نام مطب:
+                </span>
+                {d.businessName || '-'}
+              </div>
+
+              <div className='w-full md:w-[15%] text-center md:text-right mb-2 md:mb-0 px-2'>
+                <span className='md:hidden text-gray-500 font-semibold ml-2'>
+                  شماره مطب:
+                </span>
+                {d.workPlacePhoneNumber}
+              </div>
+
+              <div className='w-full md:w-[10%] text-center md:text-right mb-2 md:mb-0 px-2'>
+                <span className='md:hidden text-gray-500 font-semibold ml-2'>
+                  کد نظام پزشکی:
+                </span>
+                {d.medicalCertificateNumber}
+              </div>
+
+              <div className='w-full md:w-[15%] text-center md:text-right px-2'>
+                <span className='md:hidden text-gray-500 font-semibold ml-2'>
+                  آدرس:
+                </span>
+                <div className='flex items-center gap-2 justify-center md:justify-start'>
+                  <Image
+                    src='/assets/icons/location.svg'
+                    alt='map'
+                    width={16}
+                    height={16}
+                  />
+                  <span className='text-sm truncate'>
+                    {d.cityName} - {d.address}
+                  </span>
+                </div>
               </div>
             </div>
           ))}
