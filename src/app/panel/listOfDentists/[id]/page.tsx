@@ -38,7 +38,7 @@ const ListOfDentistId = () => {
   }, [id, token]);
 
   const handleBack = () => {
-    router.push('/listOfDentists');
+    router.push('/panel/listOfDentists');
   };
   return (
     <ContentStateWrapper
