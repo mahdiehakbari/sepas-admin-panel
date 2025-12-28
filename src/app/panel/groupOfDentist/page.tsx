@@ -163,7 +163,7 @@ const GroupOfDentist = () => {
           continue;
         }
 
-        row[7] = cityId;
+        row.push(cityId);
 
         seenNationalCodes.add(nationalCode);
         seenMobiles.add(mobile);
@@ -197,12 +197,12 @@ const GroupOfDentist = () => {
     phoneNumber: item[3],
     nationalId: item[2],
     address: item[9],
-    cityId: item[7],
+    cityId: item[item.length - 1],
     firstName: item[0],
     lastName: item[1],
     iban: item[11],
     workPlacePhoneNumber: item[10],
-    imageUrl: item[13], // ستون آخر
+    imageUrl: item[13],
     gender: item[5] === 'woman' ? 0 : 1,
   }));
 
@@ -232,6 +232,14 @@ const GroupOfDentist = () => {
 
   return (
     <div className='w-full p-6 bg-[#fbfbfb] rounded-2xl mb-6'>
+      <input
+        ref={fileInputRef}
+        type='file'
+        accept='.xls,.xlsx'
+        className='hidden'
+        onChange={handleFileUpload}
+      />
+
       {tableData.length === 0 && (
         <div className='flex items-center justify-between mb-4'>
           <h3 className='text-[16px] text-black font-normal'>
@@ -267,14 +275,6 @@ const GroupOfDentist = () => {
             <p className='text-black font-normal text-[16px] mb-3'>
               {t('dental-society:select_upload')}
             </p>
-
-            <input
-              ref={fileInputRef}
-              type='file'
-              accept='.xls,.xlsx'
-              className='hidden'
-              onChange={handleFileUpload}
-            />
 
             <Button onClick={openFileDialog}>
               {t('dental-society:upload_file')}
