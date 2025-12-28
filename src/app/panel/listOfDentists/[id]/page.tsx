@@ -61,18 +61,16 @@ const ListOfDentistId = () => {
 
         {dentistList.map((item) => (
           <div key={item.id} className='grid grid-cols-12 gap-6 items-start'>
-            <div className='md:col-span-7 col-span-12' >
+            <div className='md:col-span-7 col-span-12'>
               <div className='flex-col md:flex-row text-center md:text-right flex items-center gap-4 mb-20'>
                 <div className='w-48 h-48 rounded-full p-2 border border-border-color overflow-hidden relative'>
-                  <Image
+                  <img
                     src={
                       item.bannerImageFilePath
                         ? `https://dentalitfiles.sepasholding.com/images/bannerimages/${item.bannerImageFilePath}`
                         : '/assets/icons/images.jpg'
                     }
                     alt='Merchant Banner'
-                    fill
-                    unoptimized
                     style={{ objectFit: 'cover' }}
                     className='rounded-full'
                   />

@@ -53,7 +53,7 @@ const ListOfDentist = () => {
               className='border border-border-color p-4 rounded-md shadow-sm cursor-pointer'
               onClick={() => handleRoute(d.id)}
             >
-              <Image
+              <img
                 src={
                   d.bannerImageFilePath
                     ? `https://dentalitfiles.sepasholding.com/images/bannerimages/${d.bannerImageFilePath}`
