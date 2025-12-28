@@ -55,7 +55,7 @@ const ListOfDentist = () => {
 
   return (
     <ContentStateWrapper loading={pageLoading} loadingText='در حال بارگذاری'>
-      <div className='max-w-7xl mx-6 md:mx-auto mt-8'>
+      <div className='max-w-[340px] md:max-w-7xl mx-6 md:mx-auto mt-8'>
         <div className='hidden md:flex bg-gray-100 rounded-lg px-3 py-3 font-semibold text-gray-700 text-sm mb-2'>
           {headers.map((item) => (
             <div key={item.id} className='w-1/7 text-right px-2'>
@@ -71,14 +71,11 @@ const ListOfDentist = () => {
               className='flex flex-col md:flex-row items-center justify-between bg-white border border-gray-200 rounded-lg px-3 py-3 cursor-pointer'
               onClick={() => handleRoute(d.id)}
             >
-              <div className='w-full md:w-[10%] text-center md:text-right mb-2 md:mb-0 px-2'>
-                <span className='md:hidden text-gray-500 font-semibold ml-2'>
-                  ردیف:
-                </span>
+              <div className='hidden md:block w-full md:w-[10%] text-center md:text-right mb-2 md:mb-0 px-2'>
                 {index + 1 + (page - 1) * 12}
               </div>
 
-              <div className='w-full md:w-[12%] text-center mb-2 md:mb-0 px-2'>
+              <div className='flex items-center justify-between w-full md:w-[12%] text-center mb-2 md:mb-0 px-2'>
                 <span className='md:hidden text-gray-500 font-semibold ml-2'>
                   تصویر:
                 </span>
@@ -89,7 +86,7 @@ const ListOfDentist = () => {
                       : '/assets/icons/images.jpg'
                   }
                   alt='banner'
-                  className='w-10 h-10 object-cover rounded-lg mx-auto'
+                  className='w-10 h-10 object-cover rounded-lg md:mx-auto'
                 />
               </div>
 
