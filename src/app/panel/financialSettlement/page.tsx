@@ -10,26 +10,19 @@ import { FilteredTable } from '@/features/FIlteredTable/FilteredTable';
 import { ISelectOption } from '@/features/FIlteredTable/types';
 import ResponsiveModal from '@/sharedComponent/ui/ResponsiveModal/Modal';
 import { PageHeader } from '@/features/PageHeader';
-import {
-  useFetchMerchant,
-  useFetchSettlement,
-  useFetchAcceptor,
-} from '@/features/hooks';
+import { useFetchMerchant, useFetchSettlement } from '@/features/hooks';
 import { IMerchantData } from '../transactionsList/types';
 
 import {
   ResponsiveSettlementTable,
   SettlementListTable,
 } from '@/features/Financial';
-import { TAcceptor } from '@/features/hooks/useFetchAcceptor/types';
 
 const FinancialSettlement = () => {
   const { t } = useTranslation();
   const [page, setPage] = useState(1);
   const [merchantName, setMerchantName] = useState<ISelectOption[]>([]);
   const [merchantData, setMerchantData] = useState<IMerchantData[]>([]);
-  const [acceptorName, setAcceptorName] = useState<ISelectOption[]>([]);
-  const [acceptorData, setAcceptorData] = useState<TAcceptor[]>([]);
   const [fromDate, setFromDate] = useState<DateObject | null>(null);
   const [toDate, setToDate] = useState<DateObject | null>(null);
   const [fromPaymentDate, setFromPaymentDate] = useState<DateObject | null>(
@@ -42,7 +35,6 @@ const FinancialSettlement = () => {
   // Store applied filters for pagination
   const appliedFiltersRef = useRef({
     merchantName: [] as ISelectOption[],
-    acceptorName: [] as ISelectOption[],
     fromDate: null as DateObject | null,
     toDate: null as DateObject | null,
     fromPaymentDate: null as DateObject | null,
@@ -57,7 +49,6 @@ const FinancialSettlement = () => {
     fetchData(
       page,
       appliedFiltersRef.current.merchantName,
-      appliedFiltersRef.current.acceptorName,
       appliedFiltersRef.current.fromDate,
       appliedFiltersRef.current.toDate,
       appliedFiltersRef.current.fromPaymentDate,
@@ -70,24 +61,29 @@ const FinancialSettlement = () => {
     // Save current filters
     appliedFiltersRef.current = {
       merchantName,
-      acceptorName,
       fromDate,
       toDate,
       fromPaymentDate,
       toPaymentDate,
     };
 
-    // Only set page, let useEffect handle the fetch
     setPage(1);
+    fetchData(
+      1,
+      merchantName,
+      fromDate,
+      toDate,
+      fromPaymentDate,
+      toPaymentDate,
+    );
+
     setIsOpenModal(false);
   };
 
   useFetchMerchant(setMerchantData);
-  useFetchAcceptor(setAcceptorData);
 
   const handleClose = () => {
     setMerchantName([]);
-    setAcceptorName([]);
     setIsOpenModal(false);
     setFromDate(null);
     setToDate(null);
@@ -99,26 +95,17 @@ const FinancialSettlement = () => {
   useEffect(() => {
     const hasFilter =
       merchantName.length > 0 ||
-      acceptorName.length > 0 ||
       fromDate !== null ||
       toDate !== null ||
       fromPaymentDate !== null ||
       toPaymentDate !== null;
     setRemove(hasFilter);
-  }, [
-    fromDate,
-    toDate,
-    merchantName,
-    acceptorName,
-    fromPaymentDate,
-    toPaymentDate,
-  ]);
+  }, [fromDate, toDate, merchantName, fromPaymentDate, toPaymentDate]);
 
   const handleRemoveFilter = async () => {
     // Clear applied filters
     appliedFiltersRef.current = {
       merchantName: [],
-      acceptorName: [],
       fromDate: null,
       toDate: null,
       fromPaymentDate: null,
@@ -127,13 +114,12 @@ const FinancialSettlement = () => {
 
     setPage(1);
     setMerchantName([]);
-    setAcceptorName([]);
     setFromDate(null);
     setToDate(null);
     setFromPaymentDate(null);
     setToPaymentDate(null);
     setRemove(false);
-    fetchData(1, [], [], null, null, null, null);
+    fetchData(1, [], null, null, null, null);
   };
 
   const handleOpenModal = () => {
@@ -190,15 +176,15 @@ const FinancialSettlement = () => {
         onClose={handleClose}
       >
         <FilteredTable
-          acceptorName={acceptorName}
-          setAcceptorName={setAcceptorName}
+          acceptorName={[]}
+          setAcceptorName={() => {}}
           fromDate={fromDate}
           setFromDate={setFromDate}
           toDate={toDate}
           setToDate={setToDate}
           handleFilter={handleFilter}
           placeholderText={t('panel:search_customer')}
-          acceptorData={acceptorData}
+          acceptorData={[]}
           merchantData={merchantData || []}
           setMerchantName={setMerchantName}
           merchantName={merchantName}

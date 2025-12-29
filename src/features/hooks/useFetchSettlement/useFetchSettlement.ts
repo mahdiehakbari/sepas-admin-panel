@@ -6,6 +6,7 @@ import { ISelectOption } from '@/features/FIlteredTable/types';
 import { API_MERCHANT_DOCUMENTS } from '@/config/api_address.config';
 import { DateObject } from 'react-multi-date-picker';
 import persian from 'react-date-object/calendars/persian';
+import english from 'react-date-object/locales/gregorian_en';
 
 interface ISettlementItem {
   uuid: string;
@@ -67,16 +68,16 @@ export const useFetchSettlement = ({
   const formatDateToShamsi = (date: DateObject | null): string | undefined => {
     if (!date) return undefined;
     // If already in Persian calendar, just format it
-    const persianDate = date.calendar.name === 'persian' 
-      ? date 
-      : date.convert(persian);
+    const persianDate =
+      date.calendar.name === 'persian' ? date : date.convert(persian);
+    // Set locale to English to get English digits
+    persianDate.locale = english;
     return persianDate.format('YYYY-MM-DD');
   };
 
   const fetchData = async (
     pageNumber = 1,
     merchantName: ISelectOption[] = [],
-    acceptorName: ISelectOption[] = [],
     fromDate: DateObject | null = null,
     toDate: DateObject | null = null,
     fromPaymentDate: DateObject | null = null,
@@ -87,7 +88,15 @@ export const useFetchSettlement = ({
     setPageLoading(true);
 
     const merchantIds = merchantName.map((m) => m.value);
-    const acceptorIds = acceptorName.map((a) => a.value);
+
+    console.log('Settlement Filters:', {
+      pageNumber,
+      merchantIds,
+      fromDate: formatDateToShamsi(fromDate),
+      toDate: formatDateToShamsi(toDate),
+      fromPaymentDate: formatDateToShamsi(fromPaymentDate),
+      toPaymentDate: formatDateToShamsi(toPaymentDate),
+    });
 
     const config: AxiosRequestConfig = {
       headers: { Authorization: `Bearer ${token}` },
@@ -95,24 +104,26 @@ export const useFetchSettlement = ({
         pageNo: pageNumber,
         count: pageSize,
         ...(merchantIds.length > 0 ? { merchantIds } : {}),
-        ...(acceptorIds.length > 0 ? { acceptorIds } : {}),
         ...(fromDate ? { fromDate: formatDateToShamsi(fromDate) } : {}),
         ...(toDate ? { toDate: formatDateToShamsi(toDate) } : {}),
-        ...(fromPaymentDate ? { fromPaymentDate: formatDateToShamsi(fromPaymentDate) } : {}),
-        ...(toPaymentDate ? { toPaymentDate: formatDateToShamsi(toPaymentDate) } : {}),
+        ...(fromPaymentDate
+          ? { fromPaymentDate: formatDateToShamsi(fromPaymentDate) }
+          : {}),
+        ...(toPaymentDate
+          ? { toPaymentDate: formatDateToShamsi(toPaymentDate) }
+          : {}),
       },
       paramsSerializer: (params) =>
         qs.stringify(params, { arrayFormat: 'repeat' }),
     };
 
     try {
-      const res = await axios.get<IApiResponse>(
-        API_MERCHANT_DOCUMENTS,
-        config,
-      );
-      
+      const res = await axios.get<IApiResponse>(API_MERCHANT_DOCUMENTS, config);
+
       // Transform API response to match expected structure
-      const totalPages = Math.ceil(res.data.data.document_total_count / pageSize);
+      const totalPages = Math.ceil(
+        res.data.data.document_total_count / pageSize,
+      );
       const transformedData: ISettlementsData = {
         items: res.data.data.document_list || [],
         pageNumber: pageNumber,
@@ -121,7 +132,7 @@ export const useFetchSettlement = ({
         hasPreviousPage: pageNumber > 1,
         hasNextPage: pageNumber < totalPages,
       };
-      
+
       setRequestData(transformedData);
     } catch (err) {
       console.error(err);
