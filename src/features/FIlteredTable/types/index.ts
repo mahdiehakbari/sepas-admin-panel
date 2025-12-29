@@ -29,4 +29,10 @@ export interface IFilteredProps {
   transactionTypeOptions?: ISelectOption[];
   referenceNumber?: string;
   setReferenceNumber?: (value: string) => void;
+  fromPaymentDate?: DateObject | null;
+  setFromPaymentDate?: (value: DateObject | null) => void;
+  toPaymentDate?: DateObject | null;
+  setToPaymentDate?: (value: DateObject | null) => void;
+  showPaymentDateFilters?: boolean;
 }
+

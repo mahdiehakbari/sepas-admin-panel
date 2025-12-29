@@ -86,7 +86,7 @@ export const getFinancialItems = (onLogout: () => void): DropdownItem[] => [
   {
     label: i18n.t('panel:acceptor_settlement_list'),
     image: '/assets/icons/task-financial.svg',
-    href: '',
+    href: '/panel/financialSettlement',
   },
   {
     label: i18n.t('financial:borrower_installment'),

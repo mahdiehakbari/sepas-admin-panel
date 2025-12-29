@@ -32,5 +32,7 @@
   "get_report": "دریافت گزارش",
   "main_page": "صفحه اصلی",
   "Frequently": "سوالات متداول",
-  "contact_us": "ارتباط با ما"
+  "contact_us": "ارتباط با ما",
+  "from_payment_date": "از تاریخ پرداخت",
+  "to_payment_date": "تا تاریخ پرداخت"
 }

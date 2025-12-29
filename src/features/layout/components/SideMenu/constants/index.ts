@@ -48,7 +48,7 @@ export const getFinancialSideBarItems = () => [
   },
   {
     label: i18n.t('panel:acceptor_settlement_list'),
-    path: '',
+    path: '/panel/financialSettlement',
     icon: '/assets/icons/task-financial.svg',
   },
   {

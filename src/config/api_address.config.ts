@@ -19,3 +19,4 @@ export const API_MERCHANT_BANNER = `${BASE_URL}/UserProfileImage/merchant-banner
 export const API_BULK_CREATE = `${BASE_URL}/MerchantsCommand/admin/bulk-create`;
 export const API_CITY_NAME = `${BASE_URL}/CitiesQuery/by-name`;
 export const API_FINANCIAL_TRANSACTIONS = `${BASE_URL}/FinancialTransactionsQuery/paged`;
+export const API_FINANCIAL_ENIAC_QUERY = `${BASE_URL}/EniacQuery/merchant-documents`;
