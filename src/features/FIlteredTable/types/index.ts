@@ -24,4 +24,9 @@ export interface IFilteredProps {
   merchantName: ISelectOption[];
   setMerchantName: (value: ISelectOption[]) => void;
   handleRemoveFilter: () => void;
+  transactionTypes?: ISelectOption[];
+  setTransactionTypes?: (value: ISelectOption[]) => void;
+  transactionTypeOptions?: ISelectOption[];
+  referenceNumber?: string;
+  setReferenceNumber?: (value: string) => void;
 }

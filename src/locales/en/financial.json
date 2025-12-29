@@ -1,5 +1,13 @@
 {
     "financial_panel":"Financial panel",
     "borrower_installment":"Registering the borrower's installment payment",
-    "recipient_settlement":"Registering the recipient's settlement payment"
+    "recipient_settlement":"Registering the recipient's settlement payment",
+    "transaction_type":"Transaction type",
+    "customer_credit_fee_payment":"CustomerCreditFeePayment",
+    "customer_credit_allocation":"CustomerCreditAllocation",
+    "plan_credit_allocation_customer_credit":  "PlanCreditAllocationFromCustomerCredit",
+    "customer_credit_withdraw": "CustomerCreditWithdraw",
+    "merchant_fee_payment": "MerchantFeePayment",
+    "merchant_cashout": "MerchantCashout",
+    "credit_line_provider_deposit": "CreditLineProviderDeposit"
 }

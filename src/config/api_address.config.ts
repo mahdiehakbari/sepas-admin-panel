@@ -18,3 +18,4 @@ export const API_DENTIST_LIST = `${BASE_URL}/MerchantsQuery/paged-by-ids`;
 export const API_MERCHANT_BANNER = `${BASE_URL}/UserProfileImage/merchant-banner-upload`;
 export const API_BULK_CREATE = `${BASE_URL}/MerchantsCommand/admin/bulk-create`;
 export const API_CITY_NAME = `${BASE_URL}/CitiesQuery/by-name`;
+export const API_FINANCIAL_TRANSACTIONS = `${BASE_URL}/FinancialTransactionsQuery/paged`;

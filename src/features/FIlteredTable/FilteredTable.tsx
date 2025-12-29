@@ -25,6 +25,11 @@ export const FilteredTable = ({
   setMerchantName,
   merchantName,
   handleRemoveFilter,
+  transactionTypes,
+  setTransactionTypes,
+  transactionTypeOptions,
+  referenceNumber,
+  setReferenceNumber,
 }: IFilteredProps) => {
   const { t } = useTranslation();
   const uniqueCustomers: ISelectOption[] = acceptorData.map((item) => ({
@@ -94,6 +99,48 @@ export const FilteredTable = ({
           }}
         />
       </div>
+
+      {transactionTypeOptions && setTransactionTypes && transactionTypes && (
+        <div className='w-full mb-5'>
+          <Select
+            options={transactionTypeOptions}
+            isMulti
+            closeMenuOnSelect={false}
+            hideSelectedOptions={false}
+            components={{ Option: CheckboxOption }}
+            onChange={(val: MultiValue<{ label: string; value: string }>) =>
+              setTransactionTypes([...val])
+            }
+            value={transactionTypes}
+            placeholder={t('financial:transaction_type')}
+            styles={{
+              valueContainer: (base) => ({
+                ...base,
+                display: 'flex',
+                flexWrap: 'nowrap',
+                overflowX: 'auto',
+                maxHeight: '38px',
+              }),
+              multiValue: (base) => ({
+                ...base,
+                whiteSpace: 'nowrap',
+              }),
+            }}
+          />
+        </div>
+      )}
+
+      {referenceNumber !== undefined && setReferenceNumber && (
+        <div className='w-full mb-5'>
+          <input
+            type='text'
+            value={referenceNumber}
+            onChange={(e) => setReferenceNumber(e.target.value)}
+            placeholder={t('transaction:transaction_number')}
+            className='w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500'
+          />
+        </div>
+      )}
 
       <div className='w-full  mb-5'>
         <DatePicker
