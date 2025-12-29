@@ -5,7 +5,11 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import { ChevronDownIcon } from '@heroicons/react/24/solid';
-import { getDentistrySideBarItems, getSideBarItems } from './constants';
+import {
+  getDentistrySideBarItems,
+  getFinancialSideBarItems,
+  getSideBarItems,
+} from './constants';
 import { useAuthStore } from '@/store/Auth/authStore';
 import Link from 'next/link';
 
@@ -35,7 +39,7 @@ export const SideMenu = () => {
             ? t('dental-society:dental_society')
             : userType == 'Admin'
             ? t('panel:admin_panel')
-            : ''}
+            : t('financial:financial_panel')}
         </h2>
       </div>
 
@@ -193,7 +197,39 @@ export const SideMenu = () => {
             </ul>
           </div>
         ) : (
-          ''
+          <div>
+            <ul className='text-[16px]'>
+              {getFinancialSideBarItems().map((item, index) => (
+                <li
+                  key={index}
+                  onClick={() => router.push(item.path)}
+                  className={`
+                  px-4 py-2 cursor-pointer flex items-center mb-2 mx-2
+                  ${
+                    isActive(item.path)
+                      ? 'text-white bg-primary font-semibold rounded-2xl'
+                      : ''
+                  }
+                  hover:text-primary
+                `}
+                >
+                  <Image
+                    src={item.icon}
+                    alt={item.label}
+                    width={20}
+                    height={20}
+                  />
+                  <span
+                    className={`pr-1 ${
+                      isActive(item.path) ? 'text-white' : ''
+                    }`}
+                  >
+                    {item.label}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
         )}
 
         <div className='px-6'>

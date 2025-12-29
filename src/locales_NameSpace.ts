@@ -6,6 +6,7 @@ export const localesNS = [
   'status_transaction',
   'customer-management',
   'dental-society',
+  'financial',
 ] as const;
 export type LocaleNS = (typeof localesNS)[number];
 

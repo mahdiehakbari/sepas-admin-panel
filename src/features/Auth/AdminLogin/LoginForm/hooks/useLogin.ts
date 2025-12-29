@@ -32,9 +32,12 @@ export function useLogin() {
       if (resp.data.user.userType == 'Admin') {
         router.push('/panel/reports/settlement');
         localStorage.setItem('userType', 'Admin');
-      } else {
+      } else if (resp.data.user.userType == 'DentistryAdmin') {
         router.push('/panel/dentalSociety');
         localStorage.setItem('userType', 'DentistryAdmin');
+      } else {
+        router.push('/panel/financialTransactionList');
+        localStorage.setItem('userType', 'Financial');
       }
     } catch (err) {
       toast.error(t('login:invalid_data'));

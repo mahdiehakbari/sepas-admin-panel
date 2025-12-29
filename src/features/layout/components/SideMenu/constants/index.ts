@@ -34,3 +34,31 @@ export const getDentistrySideBarItems = () => [
     icon: '/assets/icons/tag-user.svg',
   },
 ];
+
+export const getFinancialSideBarItems = () => [
+  {
+    label: i18n.t('panel:transaction_list'),
+    path: '/panel/financialTransactionList',
+    icon: '/assets/icons/transaction-financial.svg',
+  },
+  {
+    label: i18n.t('panel:borrowers_installments'),
+    path: '',
+    icon: '/assets/icons/transaction-financial.svg',
+  },
+  {
+    label: i18n.t('panel:acceptor_settlement_list'),
+    path: '',
+    icon: '/assets/icons/task-financial.svg',
+  },
+  {
+    label: i18n.t('financial:borrower_installment'),
+    path: '',
+    icon: '/assets/icons/verify-financial.svg',
+  },
+  {
+    label: i18n.t('financial:recipient_settlement'),
+    path: '',
+    icon: '/assets/icons/recipient_settlement.svg',
+  },
+];
