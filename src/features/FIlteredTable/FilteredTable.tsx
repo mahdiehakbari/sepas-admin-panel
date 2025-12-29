@@ -157,14 +157,14 @@ export const FilteredTable = ({
           className='w-full'
           containerClassName='w-full'
           maxDate={today}
-          placeholder={t('panel:from_date')}
+          placeholder='از تاریخ تراکنش'
           onOpenPickNewDate={false}
           render={(value, openCalendar) => (
             <div
               className='border border-gray-300 rounded-md w-full px-3 py-2 flex items-center justify-between cursor-pointer'
               onClick={openCalendar}
             >
-              <span className='truncate'>{value || t('panel:from_date')}</span>
+              <span className='truncate'>{value || 'از تاریخ تراکنش'}</span>
 
               <div className='flex items-center gap-2'>
                 {value && (
@@ -202,14 +202,14 @@ export const FilteredTable = ({
           maxDate={today}
           className='w-full'
           containerClassName='w-full'
-          placeholder={t('panel:to_date')}
+          placeholder='تا تاریخ تراکنش'
           onOpenPickNewDate={false}
           render={(value, openCalendar) => (
             <div
               className='border border-gray-300 rounded-md w-full px-3 py-2 flex items-center justify-between cursor-pointer'
               onClick={openCalendar}
             >
-              <span className='truncate'>{value || t('panel:to_date')}</span>
+              <span className='truncate'>{value || 'تا تاریخ تراکنش'}</span>
 
               <div className='flex items-center gap-2'>
                 {value && (

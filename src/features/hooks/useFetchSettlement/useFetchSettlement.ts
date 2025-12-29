@@ -76,6 +76,7 @@ export const useFetchSettlement = ({
   const fetchData = async (
     pageNumber = 1,
     merchantName: ISelectOption[] = [],
+    acceptorName: ISelectOption[] = [],
     fromDate: DateObject | null = null,
     toDate: DateObject | null = null,
     fromPaymentDate: DateObject | null = null,
@@ -86,6 +87,7 @@ export const useFetchSettlement = ({
     setPageLoading(true);
 
     const merchantIds = merchantName.map((m) => m.value);
+    const acceptorIds = acceptorName.map((a) => a.value);
 
     const config: AxiosRequestConfig = {
       headers: { Authorization: `Bearer ${token}` },
@@ -93,6 +95,7 @@ export const useFetchSettlement = ({
         pageNo: pageNumber,
         count: pageSize,
         ...(merchantIds.length > 0 ? { merchantIds } : {}),
+        ...(acceptorIds.length > 0 ? { acceptorIds } : {}),
         ...(fromDate ? { fromDate: formatDateToShamsi(fromDate) } : {}),
         ...(toDate ? { toDate: formatDateToShamsi(toDate) } : {}),
         ...(fromPaymentDate ? { fromPaymentDate: formatDateToShamsi(fromPaymentDate) } : {}),
