@@ -2,7 +2,7 @@
   "row": "ردیف",
   "creditor": "اعتبار دهنده",
   "due_date": "تاریخ سررسید",
-  "amount": "مبلغ (تومان)",
+  "amount": "مبلغ (ریال)",
   "transaction_status": "وضعیت تراکنش",
   "operation": "عملیات",
   "customer_name": "نام مشتری"

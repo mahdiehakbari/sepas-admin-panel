@@ -133,7 +133,7 @@ const FinancialSettlement = () => {
     >
       <div className='mx-auto mt-6 px-6 md:px-0'>
         <PageHeader
-          titleKey='financial:recipient_settlement'
+          titleKey='panel:acceptor_settlement_list'
           onFilterClick={handleOpenModal}
           handleRemoveFilter={handleRemoveFilter}
           remove={remove}

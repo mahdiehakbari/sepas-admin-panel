@@ -81,7 +81,7 @@ export const getFinancialItems = (onLogout: () => void): DropdownItem[] => [
   {
     label: i18n.t('panel:borrowers_installments'),
     image: '/assets/icons/transaction-financial.svg',
-    href: '',
+    href: '#',
   },
   {
     label: i18n.t('panel:acceptor_settlement_list'),
@@ -91,12 +91,12 @@ export const getFinancialItems = (onLogout: () => void): DropdownItem[] => [
   {
     label: i18n.t('financial:borrower_installment'),
     image: '/assets/icons/verify-financial.svg',
-    href: '',
+    href: '#',
   },
   {
     label: i18n.t('financial:recipient_settlement'),
     image: '/assets/icons/recipient_settlement.svg',
-    href: '',
+    href: '#',
   },
   {
     label: i18n.t('panel:log_out'),

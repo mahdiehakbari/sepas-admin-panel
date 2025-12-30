@@ -5,7 +5,7 @@
   "customer_name": "نام مشتری",
   "mobile_number": "شماره موبایل",
   "transaction_date": "تاریخ تراکنش",
-  "amount": "مبلغ (تومان)",
+  "amount": "مبلغ (ریال)",
   "transaction_number": "شماره تراکنش",
   "transaction_status": "وضعیت تراکنش"
 }

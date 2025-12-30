@@ -14,8 +14,8 @@ export const PageHeader: React.FC<IPageHeaderProps> = ({
   const { t } = useTranslation();
   return (
     <div className='mx-auto mt-6'>
-      <div className='flex justify-between items-center'>
-        <h1 className='text-black font-bold text-lg mb-4'>{t(titleKey)}</h1>
+      <div className='flex justify-between items-center mb-4'>
+        <h1 className='text-black font-bold text-lg'>{t(titleKey)}</h1>
         <div className='flex items-center gap-4'>
           {remove == true && (
             <Button

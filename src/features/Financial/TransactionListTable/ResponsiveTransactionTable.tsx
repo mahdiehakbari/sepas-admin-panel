@@ -18,22 +18,6 @@ export const ResponsiveTransactionTable = ({
           <div key={index}>
             <div className='border-2 border-border-color rounded-lg mb-4'>
               <div className=' p-4 '>
-                <div className='flex justify-between gap-2 items-center mb-2 '>
-                  <h2 className='font-medium text-[#808080] text-[14px]'>
-                    {t('transaction:acceptor_name')}
-                  </h2>
-                  <h2 className='font-semibold text-gray-800'>
-                    {transaction.merchantName}
-                  </h2>
-                </div>
-                <div className='flex justify-between gap-2 items-center mb-2 '>
-                  <h2 className='font-medium text-[#808080] text-[14px]'>
-                    {t('transaction:customer_name')}
-                  </h2>
-                  <h2 className='font-semibold text-gray-800'>
-                    {transaction.customerName}
-                  </h2>
-                </div>
                 <div className='flex justify-between gap-2 items-center mb-4 '>
                   <h2 className='font-medium text-[#808080] text-[14px]'>
                     {t('transaction:transaction_number')}
@@ -42,6 +26,21 @@ export const ResponsiveTransactionTable = ({
                     {transaction.customerCreditRequestReferenceNumber
                       ? toPersianNumber(
                           transaction.customerCreditRequestReferenceNumber.toString(),
+                        )
+                      : '-'}
+                  </p>
+                </div>
+                <div className='flex justify-between gap-2 items-center mb-4 '>
+                  <h2 className='font-medium text-[#808080] text-[14px]'>
+                    {t('financial:transaction_type')}
+                  </h2>
+
+                  <p className='font-medium text-black text-[14px]'>
+                    {transaction.financialTransactionType !== undefined
+                      ? t(
+                          getTransactionTypeLabelKey(
+                            transaction.financialTransactionType,
+                          ),
                         )
                       : '-'}
                   </p>
@@ -63,6 +62,7 @@ export const ResponsiveTransactionTable = ({
                     })}
                   </div>
                 </div>
+
                 <div className='flex justify-between gap-2 items-center mb-4 '>
                   <h2 className='font-medium text-[#808080] text-[14px]'>
                     {t('transaction:amount')}
@@ -72,20 +72,21 @@ export const ResponsiveTransactionTable = ({
                     {transaction.amount.toLocaleString('fa-IR')}
                   </span>
                 </div>
-                <div className='flex justify-between gap-2 items-center mb-4 '>
+                <div className='flex justify-between gap-2 items-center mb-2 '>
                   <h2 className='font-medium text-[#808080] text-[14px]'>
-                    {t('financial:transaction_type')}
+                    {t('transaction:acceptor_name')}
                   </h2>
-
-                  <p className='font-medium text-black text-[14px]'>
-                    {transaction.financialTransactionType !== undefined
-                      ? t(
-                          getTransactionTypeLabelKey(
-                            transaction.financialTransactionType,
-                          ),
-                        )
-                      : '-'}
-                  </p>
+                  <h2 className='font-semibold text-gray-800'>
+                    {transaction.merchantName}
+                  </h2>
+                </div>
+                <div className='flex justify-between gap-2 items-center mb-2 '>
+                  <h2 className='font-medium text-[#808080] text-[14px]'>
+                    {t('transaction:customer_name')}
+                  </h2>
+                  <h2 className='font-semibold text-gray-800'>
+                    {transaction.customerName}
+                  </h2>
                 </div>
               </div>
             </div>
