@@ -88,16 +88,16 @@ export const getFinancialItems = (onLogout: () => void): DropdownItem[] => [
     image: '/assets/icons/task-financial.svg',
     href: '/panel/financialSettlement',
   },
-  {
-    label: i18n.t('financial:borrower_installment'),
-    image: '/assets/icons/verify-financial.svg',
-    href: '#',
-  },
-  {
-    label: i18n.t('financial:recipient_settlement'),
-    image: '/assets/icons/recipient_settlement.svg',
-    href: '#',
-  },
+  // {
+  //   label: i18n.t('financial:borrower_installment'),
+  //   image: '/assets/icons/verify-financial.svg',
+  //   href: '#',
+  // },
+  // {
+  //   label: i18n.t('financial:recipient_settlement'),
+  //   image: '/assets/icons/recipient_settlement.svg',
+  //   href: '#',
+  // },
   {
     label: i18n.t('panel:log_out'),
     image: '/assets/icons/logout.svg',

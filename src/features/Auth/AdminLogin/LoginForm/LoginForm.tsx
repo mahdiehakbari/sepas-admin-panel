@@ -24,7 +24,7 @@ export default function LoginForm() {
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className='flex justify-center'>
         <Image
-          src='/assets/icons/sepas.png'
+          src='/assets/icons/logo.png'
           alt='logo'
           width={64}
           height={64}
