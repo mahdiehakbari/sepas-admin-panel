@@ -219,10 +219,14 @@ const GroupOfDentist = () => {
           },
         },
       )
-      .then(() => {
+      .then((res) => {
         setButtonLoading(false);
-        router.push('/panel/dentalSociety');
-        toast.success('اطلاعات با موفقیت ثبت شد.');
+        if (res.data.results[0].success == true) {
+          router.push('/panel/dentalSociety');
+          toast.success('اطلاعات با موفقیت ثبت شد.');
+        } else {
+          toast.error(res.data.results[0].errorMessage);
+        }
       })
       .catch((error) => {
         setButtonLoading(false);
