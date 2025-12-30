@@ -93,11 +93,11 @@ export const useProfileSubmit = ({
           const axiosError = error as AxiosError<{ message?: string }>;
           toast.error(
             axiosError.response?.data?.message ||
-              t('profile:update_error'),
+              t('خطا در بروز رسانی اطلاعات'),
           );
         }
       } else {
-        toast.error(t('profile:update_error'));
+        toast.error('خطا در بروز رسانی اطلاعات');
       }
     } finally {
       setIsLoading(false);

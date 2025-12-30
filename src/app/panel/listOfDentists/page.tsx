@@ -66,74 +66,77 @@ const ListOfDentist = () => {
 
         <div className='flex flex-col gap-3'>
           {dentistList.map((d, index) => (
-            <div
-              key={d.id}
-              className='flex flex-col md:flex-row items-center justify-between bg-white border border-gray-200 rounded-lg px-3 py-3 cursor-pointer'
-              onClick={() => handleRoute(d.id)}
-            >
-              <div className='hidden md:block w-full md:w-[10%] text-center md:text-right mb-2 md:mb-0 px-2'>
-                {index + 1 + (page - 1) * 12}
-              </div>
+            <div key={d.id}>
+              {d.isVerified == true && (
+                <div
+                  className='flex flex-col md:flex-row items-center justify-between bg-white border border-gray-200 rounded-lg px-3 py-3 cursor-pointer'
+                  onClick={() => handleRoute(d.id)}
+                >
+                  <div className='hidden md:block w-full md:w-[10%] text-center md:text-right mb-2 md:mb-0 px-2'>
+                    {index + 1 + (page - 1) * 12}
+                  </div>
 
-              <div className='flex items-center justify-between w-full md:w-[12%] text-center mb-2 md:mb-0 px-2'>
-                <span className='md:hidden text-gray-500 font-semibold ml-2'>
-                  تصویر:
-                </span>
-                <img
-                  src={
-                    d.bannerImageFilePath
-                      ? `https://dentalitfiles.sepasholding.com/images/bannerimages/${d.bannerImageFilePath}`
-                      : '/assets/icons/images.jpg'
-                  }
-                  alt='banner'
-                  className='w-10 h-10 object-cover rounded-lg md:mx-auto'
-                />
-              </div>
+                  <div className='flex items-center justify-between w-full md:w-[12%] text-center mb-2 md:mb-0 px-2'>
+                    <span className='md:hidden text-gray-500 font-semibold ml-2'>
+                      تصویر:
+                    </span>
+                    <img
+                      src={
+                        d.bannerImageFilePath
+                          ? `https://dentalitfiles.sepasholding.com/images/bannerimages/${d.bannerImageFilePath}`
+                          : '/assets/icons/images.jpg'
+                      }
+                      alt='banner'
+                      className='w-10 h-10 object-cover rounded-lg md:mx-auto'
+                    />
+                  </div>
 
-              <div className='w-full md:w-[15%] text-center md:text-right mb-2 md:mb-0 px-2'>
-                <span className='md:hidden text-gray-500 font-semibold ml-2'>
-                  نام و نام خانوادگی:
-                </span>
-                {d.fullName}
-              </div>
+                  <div className='w-full md:w-[15%] text-center md:text-right mb-2 md:mb-0 px-2'>
+                    <span className='md:hidden text-gray-500 font-semibold ml-2'>
+                      نام و نام خانوادگی:
+                    </span>
+                    {d.fullName}
+                  </div>
 
-              <div className='w-full md:w-[15%] text-center md:text-right mb-2 md:mb-0 px-2'>
-                <span className='md:hidden text-gray-500 font-semibold ml-2'>
-                  نام مطب:
-                </span>
-                {d.businessName || '-'}
-              </div>
+                  <div className='w-full md:w-[15%] text-center md:text-right mb-2 md:mb-0 px-2'>
+                    <span className='md:hidden text-gray-500 font-semibold ml-2'>
+                      نام مطب:
+                    </span>
+                    {d.businessName || '-'}
+                  </div>
 
-              <div className='w-full md:w-[15%] text-center md:text-right mb-2 md:mb-0 px-2'>
-                <span className='md:hidden text-gray-500 font-semibold ml-2'>
-                  شماره مطب:
-                </span>
-                {d.workPlacePhoneNumber}
-              </div>
+                  <div className='w-full md:w-[15%] text-center md:text-right mb-2 md:mb-0 px-2'>
+                    <span className='md:hidden text-gray-500 font-semibold ml-2'>
+                      شماره مطب:
+                    </span>
+                    {d.workPlacePhoneNumber}
+                  </div>
 
-              <div className='w-full md:w-[10%] text-center md:text-right mb-2 md:mb-0 px-2'>
-                <span className='md:hidden text-gray-500 font-semibold ml-2'>
-                  کد نظام پزشکی:
-                </span>
-                {d.medicalCertificateNumber}
-              </div>
+                  <div className='w-full md:w-[10%] text-center md:text-right mb-2 md:mb-0 px-2'>
+                    <span className='md:hidden text-gray-500 font-semibold ml-2'>
+                      کد نظام پزشکی:
+                    </span>
+                    {d.medicalCertificateNumber}
+                  </div>
 
-              <div className='w-full md:w-[15%] text-center md:text-right px-2'>
-                <span className='md:hidden text-gray-500 font-semibold ml-2'>
-                  آدرس:
-                </span>
-                <div className='flex items-center gap-2 justify-center md:justify-start'>
-                  <Image
-                    src='/assets/icons/location.svg'
-                    alt='map'
-                    width={16}
-                    height={16}
-                  />
-                  <span className='text-sm truncate'>
-                    {d.cityName} - {d.address}
-                  </span>
+                  <div className='w-full md:w-[15%] text-center md:text-right px-2'>
+                    <span className='md:hidden text-gray-500 font-semibold ml-2'>
+                      آدرس:
+                    </span>
+                    <div className='flex items-center gap-2 justify-center md:justify-start'>
+                      <Image
+                        src='/assets/icons/location.svg'
+                        alt='map'
+                        width={16}
+                        height={16}
+                      />
+                      <span className='text-sm truncate'>
+                        {d.cityName} - {d.address}
+                      </span>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           ))}
         </div>
