@@ -34,5 +34,9 @@ export interface IFilteredProps {
   toPaymentDate?: DateObject | null;
   setToPaymentDate?: (value: DateObject | null) => void;
   showPaymentDateFilters?: boolean;
+  creditLineTypes: ISelectOption[];
+  planTypes: ISelectOption[];
+  setCreditLineTypes: (value: ISelectOption[]) => void;
+  setPlanTypes: (value: ISelectOption[]) => void;
 }
 

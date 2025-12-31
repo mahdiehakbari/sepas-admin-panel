@@ -35,6 +35,10 @@ export const FilteredTable = ({
   toPaymentDate,
   setToPaymentDate,
   showPaymentDateFilters = false,
+  setCreditLineTypes,
+  creditLineTypes,
+  planTypes,
+  setPlanTypes,
 }: IFilteredProps) => {
   const { t } = useTranslation();
   const uniqueCustomers: ISelectOption[] = acceptorData.map((item) => ({
@@ -47,6 +51,15 @@ export const FilteredTable = ({
   }));
   const today = new Date();
   today.setHours(23, 59, 59, 999);
+
+  const creditLineTypeOptions: ISelectOption[] = [
+    { label: 'باجت', value: '0' },
+  ];
+
+  const planTypeOptions: ISelectOption[] = [
+    { label: 'دنتالیت ', value: '0' },
+    { label: 'یدک', value: '1' },
+  ];
 
   return (
     <div className='p-6 md:w-[465px]'>
@@ -146,6 +159,54 @@ export const FilteredTable = ({
           />
         </div>
       )}
+
+      <div className='w-full mb-5'>
+        <Select
+          options={creditLineTypeOptions}
+          isMulti
+          closeMenuOnSelect={false}
+          hideSelectedOptions={false}
+          components={{ Option: CheckboxOption }}
+          onChange={(val: MultiValue<ISelectOption>) =>
+            setCreditLineTypes([...val])
+          }
+          value={creditLineTypes}
+          placeholder={'خط اعتباری'}
+          styles={{
+            valueContainer: (base) => ({
+              ...base,
+              display: 'flex',
+              flexWrap: 'nowrap',
+              overflowX: 'auto',
+              maxHeight: '38px',
+            }),
+            multiValue: (base) => ({ ...base, whiteSpace: 'nowrap' }),
+          }}
+        />
+      </div>
+
+      <div className='w-full mb-5'>
+        <Select
+          options={planTypeOptions}
+          isMulti
+          closeMenuOnSelect={false}
+          hideSelectedOptions={false}
+          components={{ Option: CheckboxOption }}
+          onChange={(val: MultiValue<ISelectOption>) => setPlanTypes([...val])}
+          value={planTypes}
+          placeholder={'طرح'}
+          styles={{
+            valueContainer: (base) => ({
+              ...base,
+              display: 'flex',
+              flexWrap: 'nowrap',
+              overflowX: 'auto',
+              maxHeight: '38px',
+            }),
+            multiValue: (base) => ({ ...base, whiteSpace: 'nowrap' }),
+          }}
+        />
+      </div>
 
       <div className='w-full  mb-5'>
         <DatePicker

@@ -34,8 +34,9 @@ const FinancialTransactionList = () => {
   const [toDate, setToDate] = useState<DateObject | null>(null);
   const [remove, setRemove] = useState(false);
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const [creditLineTypes, setCreditLineTypes] = useState<ISelectOption[]>([]);
+  const [planTypes, setPlanTypes] = useState<ISelectOption[]>([]);
 
-  // Store applied filters for pagination
   const appliedFiltersRef = useRef({
     acceptorName: [] as ISelectOption[],
     merchantName: [] as ISelectOption[],
@@ -43,6 +44,8 @@ const FinancialTransactionList = () => {
     toDate: null as DateObject | null,
     transactionTypes: [] as ISelectOption[],
     referenceNumber: '',
+    creditLineTypes: [] as ISelectOption[],
+    planTypes: [] as ISelectOption[],
   });
 
   const transactionTypeSelectOptions = transactionTypeOptions.map((opt) => ({
@@ -64,12 +67,13 @@ const FinancialTransactionList = () => {
       appliedFiltersRef.current.toDate,
       appliedFiltersRef.current.transactionTypes,
       appliedFiltersRef.current.referenceNumber,
+      appliedFiltersRef.current.creditLineTypes,
+      appliedFiltersRef.current.planTypes,
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 
   const handleFilter = () => {
-    // Save current filters
     appliedFiltersRef.current = {
       acceptorName,
       merchantName,
@@ -77,9 +81,10 @@ const FinancialTransactionList = () => {
       toDate,
       transactionTypes,
       referenceNumber,
+      creditLineTypes,
+      planTypes,
     };
 
-    setPage(1);
     fetchData(
       1,
       acceptorName,
@@ -88,8 +93,12 @@ const FinancialTransactionList = () => {
       toDate,
       transactionTypes,
       referenceNumber,
+      creditLineTypes,
+      planTypes,
     );
+
     setIsOpenModal(false);
+    setPage(1);
   };
 
   useFetchAcceptor(setAcceptorData);
@@ -104,6 +113,8 @@ const FinancialTransactionList = () => {
     setFromDate(null);
     setToDate(null);
     setRemove(false);
+    setCreditLineTypes([]);
+    setPlanTypes([]);
   };
 
   useEffect(() => {
@@ -113,7 +124,9 @@ const FinancialTransactionList = () => {
       toDate !== null ||
       acceptorName.length > 0 ||
       transactionTypes.length > 0 ||
-      referenceNumber !== '';
+      referenceNumber !== '' ||
+      creditLineTypes.length > 0 ||
+      planTypes.length > 0;
     setRemove(hasFilter);
   }, [
     fromDate,
@@ -122,19 +135,11 @@ const FinancialTransactionList = () => {
     acceptorName,
     transactionTypes,
     referenceNumber,
+    creditLineTypes,
+    planTypes,
   ]);
 
-  const handleRemoveFilter = async () => {
-    appliedFiltersRef.current = {
-      acceptorName: [],
-      merchantName: [],
-      fromDate: null,
-      toDate: null,
-      transactionTypes: [],
-      referenceNumber: '',
-    };
-
-    setPage(1);
+  const handleRemoveFilterModal = async () => {
     setAcceptorName([]);
     setMerchantName([]);
     setTransactionTypes([]);
@@ -142,7 +147,23 @@ const FinancialTransactionList = () => {
     setFromDate(null);
     setToDate(null);
     setRemove(false);
-    fetchData(1, [], [], null, null, [], '');
+    setCreditLineTypes([]);
+    setPlanTypes([]);
+  };
+
+  const handleRemoveFilter = async () => {
+    setAcceptorName([]);
+    setMerchantName([]);
+    setTransactionTypes([]);
+    setReferenceNumber('');
+    setFromDate(null);
+    setToDate(null);
+    setRemove(false);
+    setCreditLineTypes([]);
+    setPlanTypes([]);
+    setPage(1);
+    setRemove(false);
+    fetchData(1, [], [], null, null, [], '', [], []);
   };
 
   const handleOpenModal = () => {
@@ -214,7 +235,11 @@ const FinancialTransactionList = () => {
           setReferenceNumber={setReferenceNumber}
           setMerchantName={setMerchantName}
           merchantName={merchantName}
-          handleRemoveFilter={handleRemoveFilter}
+          handleRemoveFilter={handleRemoveFilterModal}
+          setCreditLineTypes={setCreditLineTypes}
+          creditLineTypes={creditLineTypes}
+          planTypes={planTypes}
+          setPlanTypes={setPlanTypes}
         />
       </ResponsiveModal>
     </ContentStateWrapper>

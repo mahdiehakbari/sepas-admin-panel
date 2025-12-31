@@ -44,6 +44,8 @@ export const useFetchFinancialTransactions = ({
     toDate: DateObject | null = null,
     transactionTypes: ISelectOption[] = [],
     referenceNumber: string = '',
+    creditLineTypes: ISelectOption[] = [],
+    planTypes: ISelectOption[] = [],
   ) => {
     if (!token) return;
 
@@ -52,6 +54,8 @@ export const useFetchFinancialTransactions = ({
     const customerIds = acceptorName.map((c) => c.value);
     const merchantIds = merchantName.map((m) => m.value);
     const transactionTypeIds = transactionTypes.map((t) => parseInt(t.value));
+    const creditLineTypeIds = creditLineTypes.map((c) => parseInt(c.value));
+    const planTypeIds = planTypes.map((p) => parseInt(p.value));
 
     const createdFrom = fromDate
       ? startOfDay(fromDate.convert(gregorian).toDate()).toISOString()
@@ -62,7 +66,9 @@ export const useFetchFinancialTransactions = ({
       : undefined;
 
     // Convert Persian digits to English
-    const englishReferenceNumber = referenceNumber ? convertPersianToEnglish(referenceNumber) : '';
+    const englishReferenceNumber = referenceNumber
+      ? convertPersianToEnglish(referenceNumber)
+      : '';
 
     const config: AxiosRequestConfig = {
       headers: { Authorization: `Bearer ${token}` },
@@ -73,8 +79,16 @@ export const useFetchFinancialTransactions = ({
         ...(createdTo ? { toDate: createdTo } : {}),
         ...(customerIds.length > 0 ? { customerIds } : {}),
         ...(merchantIds.length > 0 ? { merchantIds } : {}),
-        ...(transactionTypeIds.length > 0 ? { transactionTypes: transactionTypeIds } : {}),
-        ...(englishReferenceNumber ? { customerCreditRequestReferenceNumber: englishReferenceNumber } : {}),
+        ...(transactionTypeIds.length > 0
+          ? { transactionTypes: transactionTypeIds }
+          : {}),
+        ...(englishReferenceNumber
+          ? { customerCreditRequestReferenceNumber: englishReferenceNumber }
+          : {}),
+        ...(creditLineTypeIds.length > 0
+          ? { creditLineTypes: creditLineTypeIds }
+          : {}),
+        ...(planTypeIds.length > 0 ? { planTypes: planTypeIds } : {}),
       },
       paramsSerializer: (params) =>
         qs.stringify(params, { arrayFormat: 'repeat' }),
