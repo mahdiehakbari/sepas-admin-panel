@@ -1,2 +1,21 @@
-export const API_LOGIN = '/api/UnifiedAuth/login';
-export const API_MERCHANT_DOCUMENTS = '/api/EniacQuery/merchant-documents';
+export const BASE_URL = 'https://dentalitapi.sepasholding.com/api';
+export const API_LOGIN = `${BASE_URL}/UnifiedAuth/login`;
+export const API_MERCHANT_DOCUMENTS = `${BASE_URL}/EniacQuery/merchant-documents`;
+export const API_INSTALLMENTS_DOCUMENTS = `${BASE_URL}/EniacQuery/installments-documents`;
+export const API_PROVINCES_QUERY = `${BASE_URL}/ProvincesQuery`;
+export const API_CITIES_QUERY = `${BASE_URL}/CitiesQuery/by-province`;
+export const API_AUTHENTICATE_ME = `${BASE_URL}/UnifiedAuth/me`;
+export const API_PURCHASE_REQUEST = `${BASE_URL}/PurchaseRequestsQuery`;
+export const API_CUSTOMER_QUERY = `${BASE_URL}/CustomerCreditQuery`;
+export const API_MERCHANTS_QUERY = `${BASE_URL}/MerchantsQuery`;
+export const API_CUSTOMER_QUERY_SIMPLE = `${BASE_URL}/CustomersQuery/simple`;
+export const API_MERCHANT_QUERY_SIMPLE = `${BASE_URL}/MerchantsQuery/simple`;
+export const API_CREATE_MERCHANT = `${BASE_URL}/MerchantsCommand/admin/create`;
+export const API_CONTRACT_GET = `${BASE_URL}/MerchantContractsQuery/admin`;
+export const API_CONTRACT_POST = `${BASE_URL}/MerchantContractsCommand/admin`;
+export const API_DENTIST_LIST = `${BASE_URL}/MerchantsQuery/paged-by-ids`;
+export const API_MERCHANT_BANNER = `${BASE_URL}/UserProfileImage/merchant-banner-upload`;
+export const API_BULK_CREATE = `${BASE_URL}/MerchantsCommand/admin/bulk-create`;
+export const API_CITY_NAME = `${BASE_URL}/CitiesQuery/by-name`;
+export const API_FINANCIAL_TRANSACTIONS = `${BASE_URL}/FinancialTransactionsQuery/paged`;
+

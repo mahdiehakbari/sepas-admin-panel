@@ -1,0 +1,10 @@
+import i18n from '@/i18n';
+
+export const getThItems = () => [
+  { id: 1, label: i18n.t('transaction:row') },
+  { id: 2, label: i18n.t('installment:customer_name') },
+  // { id: 3, label: i18n.t('installment:creditor') },
+  { id: 4, label: i18n.t('installment:due_date') },
+  { id: 5, label: i18n.t('installment:amount') },
+  { id: 6, label: i18n.t('installment:transaction_status') },
+];

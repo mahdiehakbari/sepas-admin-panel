@@ -1,0 +1,16 @@
+{
+    "financial_panel":"پنل مالی",
+   "borrower_installment":"ثبت پرداخت قسط وام گیرنده",
+    "recipient_settlement":"ثبت پرداخت تسویه پذیرنده",
+    "transaction_type":"نوع تراکنش",
+    "customer_credit_fee_payment":"پرداخت آبونمان توسط مشتری",
+    "customer_credit_allocation":"تخصیص اعتبار به کیف پول وام مشتری",
+    "plan_credit_allocation_customer_credit":  "تخصیص اعتبار به کیف پول طرح مشتری",
+    "customer_credit_withdraw": "برداشت از کیف پول مشتری",
+    "merchant_fee_payment": "پرداخت کارمزد توسط پذیرنده",
+    "merchant_cashout": "تسویه با پذیرنده",
+    "credit_line_provider_deposit": "دریافت از فراهم کننده خط اعتباری",
+    "financial_transaction_list": "لیست تراکنش های مالی",
+    "unknown_type": "نامشخص",
+    "reference_number": "شماره تراکنش"
+}

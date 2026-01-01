@@ -10,7 +10,7 @@ export interface ISettlementItem {
   amount: number;
   cash_out_method: number;
   account_no: number;
-  status: string | null;
+  status: number;
   acceptor?: string;
   acceptor_tag?: number;
   city?: string;
@@ -19,6 +19,17 @@ export interface ISettlementItem {
   payment_date?: string;
   iban?: string;
   person_address?: number;
+  customerId: string;
+  purchaseRequest?: {
+    customer?: {
+      id: string;
+      fullName: string;
+      phoneNumber: string;
+      nationalId: string;
+      iban: string;
+      address: string | null;
+    };
+  };
 }
 
 export interface ISettlementsData {
@@ -29,4 +40,7 @@ export interface ISettlementsData {
   totalCount: number;
   pageNumber: number;
   pageSize: number;
+  totalPages: number;
+  hasNextPage: boolean;
+  hasPreviousPage: boolean;
 }

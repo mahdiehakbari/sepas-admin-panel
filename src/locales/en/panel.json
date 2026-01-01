@@ -16,5 +16,21 @@
   "settlement_amount": "settlement amount",
   "settlement_status": "settlement Status",
   "acceptor_settlement_list": "Acceptor Settlement List",
-  "settlement_name": "settlement name"
+  "settlement_name": "settlement name",
+  "phone_number": "customer Phone Number",
+  "search_customer": "search customer name",
+  "page_loading": "page Loading ......",
+  "empty": "No data found.",
+  "borrowers_installments": "Borrowers' installment list",
+  "customer_management": "Customer Management",
+  "Management_receivers": "Management of receivers",
+  "filter": "Filter",
+  "merchant_name": "Merchant Name",
+  "from_date": "From Date",
+  "to_date": "To Date",
+  "remove_filter": "Remove the filter",
+  "get_report": "Get the report",
+  "Frequently": "FAQ",
+  "main_page": "Main page",
+  "contact_us": "Contact Us"
 }

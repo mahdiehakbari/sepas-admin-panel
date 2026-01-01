@@ -9,6 +9,11 @@ import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
 import { useAuthStore } from '@/store/Auth/authStore';
 import { DropdownMenu } from '../DropdownMenu/DropdownMenu';
+import {
+  getAdminItems,
+  getDentistryAdminItems,
+  getFinancialItems,
+} from './constants';
 
 export const Header = () => {
   const { t } = useTranslation();
@@ -18,10 +23,11 @@ export const Header = () => {
   const menuRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
   const { logout } = useAuthStore();
-
+  const userType = localStorage.getItem('userType');
   const handleLogout = () => {
     logout();
     Cookies.remove('isLoggedIn');
+    localStorage.removeItem('userType');
     router.push('/');
   };
 
@@ -29,12 +35,16 @@ export const Header = () => {
     setOpenPopUp(true);
   };
 
+  const DentistryAdminItem = getDentistryAdminItems(handleLogout);
+  const AdminItem = getAdminItems(handleLogout);
+  const FinancialItem = getFinancialItems(handleLogout);
+
   return (
     <header className='w-full sticky top-0 z-50 shadow-[0px_-3px_10px_-4px_#32323214,0px_4px_6px_-2px_#32323208] bg-white mb-14'>
       <div className='mx-auto max-w-7xl px-4 py-2.5 flex items-center justify-between'>
         <div className='flex items-center gap-[50px]'>
           <Image
-            src='/assets/icons/logo.svg'
+            src='/assets/icons/logo.png'
             alt='logo'
             width={78}
             height={42}
@@ -56,7 +66,7 @@ export const Header = () => {
           </nav> */}
         </div>
 
-        <div className='flex items-center gap-3'>
+        <div className='flex items-center gap-3  md:mr-0'>
           <div className='relative' ref={menuRef}>
             <div onClick={handleClick} className='cursor-pointer'>
               <Image
@@ -71,42 +81,25 @@ export const Header = () => {
               <DropdownMenu
                 isOpen={openPopUp}
                 onClose={() => setOpenPopUp(false)}
-                items={[
-                  {
-                    label: t('panel:borrower_installments'),
-                    href: '/',
-                    image: '/assets/icons/installments.svg',
-                  },
-                  {
-                    label: t('panel:acceptor_settlement'),
-                    href: '/panel/reports/settlement',
-                    image: '/assets/icons/installments.svg',
-                  },
-                  {
-                    label: t('panel:transaction_list'),
-                    href: '/',
-                    image: '/assets/icons/installments.svg',
-                  },
-
-                  {
-                    label: t('panel:log_out'),
-                    image: '/assets/icons/logout.svg',
-                    danger: true,
-                    onClick: handleLogout,
-                  },
-                ]}
+                items={
+                  userType == 'DentistryAdmin'
+                    ? DentistryAdminItem
+                    : userType == 'Admin'
+                    ? AdminItem
+                    : FinancialItem
+                }
               />
             )}
           </div>
 
-          <button
+          {/* <button
             className='cursor-pointer bg-secondary h-[42px] px-3 py-1 rounded-[8px] flex items-center gap-2'
             onClick={toggleLanguage}
           >
             <Image
               src={
                 currentLanguage === 'fa'
-                  ? '/assets/icons/ir-logo.svg'
+                  ? '/assets/icons/ir-logo.png'
                   : '/assets/icons/us-logo.png'
               }
               alt={currentLanguage === 'fa' ? 'Iran flag' : 'US flag'}
@@ -116,7 +109,7 @@ export const Header = () => {
             <span className='text-sm font-medium'>
               {currentLanguage === 'fa' ? 'فا' : 'EN'}
             </span>
-          </button>
+          </button> */}
           <button
             className='md:hidden flex flex-col justify-center items-center w-8 h-8 relative'
             onClick={() => setIsOpen(!isOpen)}

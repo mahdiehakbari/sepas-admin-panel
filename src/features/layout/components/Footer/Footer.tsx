@@ -12,7 +12,7 @@ export const Footer = () => {
         <div className='py-6 block md:flex max-w-4xl mx-auto gap-x-12 px-6 xl:px-0'>
           <div className='w-3/3 md:w-2/3 mb-6 md:mb-0'>
             <Image
-              src='/assets/icons/logo.svg'
+              src='/assets/icons/logo.png'
               alt='logo'
               width={78}
               height={42}

@@ -4,12 +4,18 @@ import I18nProvider from '@/providers/I18nProvider';
 import { SiteRights } from '@/features/layout/components';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { AuthChecker } from '@/features/Auth';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://example.com'),
   title: {
     default: 'پنل مدیریت دنتالیت',
     template: '%s | admin panel',
+  },
+  icons: {
+    icon: '/assets/icons/logo.png',
+    shortcut: '/assets/icons/logo.png',
+    apple: '/assets/icons/logo.png',
   },
   description: 'Admin panel with modular structure and global sidebar.',
   applicationName: 'پنل مدیریت دنتالیت',
@@ -52,6 +58,7 @@ export default function RootLayout({
     <html lang='fa' dir='rtl' className='font-fa'>
       <body>
         <I18nProvider>
+          <AuthChecker />
           <div className='min-h-screen flex flex-col'>
             <main className='flex-1'>{children}</main>
             <SiteRights />

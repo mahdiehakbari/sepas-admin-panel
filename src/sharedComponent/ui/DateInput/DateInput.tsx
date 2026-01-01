@@ -1,0 +1,97 @@
+import React, { useState, useEffect } from 'react';
+import { Controller, FieldValues } from 'react-hook-form';
+import DatePicker, { DateObject } from 'react-multi-date-picker';
+import persian from 'react-date-object/calendars/persian';
+import persian_fa from 'react-date-object/locales/persian_fa';
+import { IDateInputProps } from './types';
+
+export const DateInput = <T extends FieldValues>({
+  control,
+  name,
+  label,
+  errors,
+  rules,
+  textError,
+  defaultValue,
+}: IDateInputProps<T> & { defaultValue?: string }) => {
+  const hasError = !!errors[name];
+
+  const [pickerValue, setPickerValue] = useState<DateObject | undefined>();
+
+  useEffect(() => {
+    // فقط اگر defaultValue رشته معتبر بود، DateObject بساز
+    if (defaultValue && !isNaN(Date.parse(defaultValue))) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setPickerValue(new DateObject(defaultValue));
+    }
+  }, [defaultValue]);
+  const today = new Date();
+  today.setHours(23, 59, 59, 999);
+  return (
+    <div className='flex flex-col'>
+      <Controller
+        name={name}
+        control={control}
+        rules={rules}
+        defaultValue={
+          defaultValue && !isNaN(Date.parse(defaultValue))
+            ? defaultValue
+            : undefined
+        }
+        render={({ field }) => (
+          <DatePicker
+            value={pickerValue}
+            maxDate={today}
+            calendar={persian}
+            locale={persian_fa}
+            onOpenPickNewDate={false}
+            calendarPosition='bottom-right'
+            onChange={(date) => {
+              if (date instanceof DateObject) {
+                setPickerValue(date);
+                field.onChange(date.format('YYYY-MM-DD'));
+              } else {
+                setPickerValue(undefined);
+                field.onChange(undefined);
+              }
+            }}
+            render={(value, openCalendar) => (
+              <div
+                className={`w-full bg-white border rounded-lg px-3 py-2 flex items-center justify-between cursor-pointer
+        focus:outline-none
+        ${hasError ? 'border-red-500' : 'border-gray-300'}`}
+                onClick={openCalendar}
+              >
+                <span className='truncate text-right'>
+                  {value || `${label} *`}
+                </span>
+
+                <div className='flex items-center gap-2'>
+                  {value && (
+                    <button
+                      type='button'
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setPickerValue(undefined);
+                        field.onChange(undefined);
+                      }}
+                      className='text-gray-400 hover:text-red-500 text-lg leading-none'
+                    >
+                      ×
+                    </button>
+                  )}
+                </div>
+              </div>
+            )}
+          />
+        )}
+      />
+
+      {hasError && (
+        <span className='text-red-500 text-sm mt-1'>
+          {errors[name]?.message?.toString() || textError}
+        </span>
+      )}
+    </div>
+  );
+};

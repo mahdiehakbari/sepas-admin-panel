@@ -1,0 +1,11 @@
+{
+  "transaction_list": "لیست تراکنش ها",
+  "row": "ردیف",
+  "acceptor_name": "نام پذیرنده",
+  "customer_name": "نام مشتری",
+  "mobile_number": "شماره موبایل",
+  "transaction_date": "تاریخ تراکنش",
+  "amount": "مبلغ (ریال)",
+  "transaction_number": "شماره تراکنش",
+  "transaction_status": "وضعیت تراکنش"
+}
