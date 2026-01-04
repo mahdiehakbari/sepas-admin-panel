@@ -64,7 +64,7 @@ const CustomerManagement = () => {
     >
       <div className='max-w-6xl mx-auto mt-6'>
         <h1 className='text-black font-bold text-lg mb-4 mx-6 md:mx-0'>
-          {t('transaction:transaction_list')}
+          لیست {t('panel:customer_management')}
         </h1>
         {!requestsData || requestsData.items.length === 0 ? (
           <div className='text-center mt-10 text-gray-500'>
