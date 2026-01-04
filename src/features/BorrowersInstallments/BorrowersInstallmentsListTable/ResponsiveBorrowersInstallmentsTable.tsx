@@ -28,7 +28,7 @@ export const ResponsiveBorrowersInstallmentsTable = ({
                 </div>
                 <div className='flex justify-between gap-2 items-center mb-4 '>
                   <h2 className='font-medium text-[#808080] text-[14px]'>
-                    {t('panel:customer_name')}
+                    نام و نام خانوادگی مشتری
                   </h2>
                   <p className='font-medium text-black text-[14px]'>
                     {document.first_name} {document.last_name}
@@ -42,12 +42,15 @@ export const ResponsiveBorrowersInstallmentsTable = ({
                     {toPersianNumber(document.nation_code.toString())}
                   </p>
                 </div>
+
                 <div className='flex justify-between gap-2 items-center mb-4 '>
                   <h2 className='font-medium text-[#808080] text-[14px]'>
-                    {t('panel:account_no')}
+                    {t('transaction:transaction_date')}
                   </h2>
                   <p className='font-medium text-black text-[14px]'>
-                    {toPersianNumber(document.account_no.toString())}
+                    {document.create_date
+                      ? toPersianNumber(document.create_date)
+                      : '-'}
                   </p>
                 </div>
                 <div className='flex justify-between gap-2 items-center mb-4 '>
@@ -59,25 +62,6 @@ export const ResponsiveBorrowersInstallmentsTable = ({
                       ? toPersianNumber(document.due_date)
                       : '-'}
                   </p>
-                </div>
-
-                <div className='flex justify-between gap-2 items-center mb-4 '>
-                  <h2 className='font-medium text-[#808080] text-[14px]'>
-                    {t('panel:amount')}
-                  </h2>
-
-                  <span className='font-medium text-black text-[14px]'>
-                    {document.amount.toLocaleString('fa-IR')} ریال
-                  </span>
-                </div>
-                <div className='flex justify-between gap-2 items-center mb-4 '>
-                  <h2 className='font-medium text-[#808080] text-[14px]'>
-                    {t('panel:order')}
-                  </h2>
-
-                  <span className='font-medium text-black text-[14px]'>
-                    {toPersianNumber(document.order.toString())}
-                  </span>
                 </div>
               </div>
             </div>

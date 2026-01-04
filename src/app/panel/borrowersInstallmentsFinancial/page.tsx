@@ -12,13 +12,13 @@ import {
   ResponsiveBorrowersInstallmentsTable,
 } from '@/features/BorrowersInstallments';
 import { Paginate } from '@/sharedComponent/ui';
-import { FilteredTable } from '@/features/FIlteredTable/FilteredTable';
 import { ContentStateWrapper } from '@/features/layout/components';
 import { ISelectOption } from '@/features/FIlteredTable/types';
 import ResponsiveModal from '@/sharedComponent/ui/ResponsiveModal/Modal';
 import { PageHeader } from '@/features/PageHeader';
 import { useFetchAcceptor } from '@/features/hooks';
 import { useFilterBorrowersInstallments } from './hooks/useFilterBorrowersInstallments';
+import { BorrowersInstallmentsFilter } from './components/BorrowersInstallmentsFilter';
 
 const BorrowersInstallmentsFinancial = () => {
   const { t } = useTranslation();
@@ -137,19 +137,11 @@ const BorrowersInstallmentsFinancial = () => {
         title={t('panel:filter')}
         onClose={handleClose}
       >
-        <FilteredTable
-          acceptorName={customerName}
-          setAcceptorName={setCustomerName}
-          fromDate={null}
-          setFromDate={() => {}}
-          toDate={null}
-          setToDate={() => {}}
+        <BorrowersInstallmentsFilter
+          customerName={customerName}
+          setCustomerName={setCustomerName}
+          acceptorData={acceptorData}
           handleFilter={handleFilter}
-          placeholderText={t('panel:search_customer')}
-          acceptorData={acceptorData || []}
-          merchantData={[]}
-          merchantName={[]}
-          setMerchantName={() => {}}
           handleRemoveFilter={handleRemoveFilter}
         />
       </ResponsiveModal>
