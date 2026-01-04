@@ -168,7 +168,7 @@ export const FilteredTable = ({
           hideSelectedOptions={false}
           components={{ Option: CheckboxOption }}
           onChange={(val: MultiValue<ISelectOption>) =>
-            setCreditLineTypes([...val])
+            setCreditLineTypes?.([...val])
           }
           value={creditLineTypes}
           placeholder={'خط اعتباری'}
@@ -192,7 +192,9 @@ export const FilteredTable = ({
           closeMenuOnSelect={false}
           hideSelectedOptions={false}
           components={{ Option: CheckboxOption }}
-          onChange={(val: MultiValue<ISelectOption>) => setPlanTypes([...val])}
+          onChange={(val: MultiValue<ISelectOption>) =>
+            setPlanTypes?.([...val])
+          }
           value={planTypes}
           placeholder={'طرح'}
           styles={{
