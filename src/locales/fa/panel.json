@@ -34,5 +34,8 @@
   "Frequently": "سوالات متداول",
   "contact_us": "ارتباط با ما",
   "from_payment_date": "از تاریخ پرداخت",
-  "to_payment_date": "تا تاریخ پرداخت"
+  "to_payment_date": "تا تاریخ پرداخت",
+  "national_code": "کد ملی",
+  "account_no": "شماره حساب",
+  "order": "ردیف قسط"
 }

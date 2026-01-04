@@ -5,6 +5,7 @@ import { SiteRights } from '@/features/layout/components';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthChecker } from '@/features/Auth';
+import '@/config/axios.config';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://example.com'),

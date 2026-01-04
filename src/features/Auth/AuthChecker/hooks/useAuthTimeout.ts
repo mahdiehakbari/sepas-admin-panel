@@ -2,7 +2,7 @@
 
 import Cookies from 'js-cookie';
 import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 
 function logout(router: ReturnType<typeof useRouter>) {
   Cookies.remove('token');
@@ -14,8 +14,14 @@ function logout(router: ReturnType<typeof useRouter>) {
 
 export function useAuthTimeout() {
   const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
+    // اگر در صفحه اصلی (login) هستیم، چک نکن
+    if (pathname === '/') {
+      return;
+    }
+
     const token = Cookies.get('token');
     const expiresAt = Cookies.get('tokenExpiresAt');
 
@@ -43,5 +49,5 @@ export function useAuthTimeout() {
     }, timeout);
 
     return () => clearTimeout(timer);
-  }, [router]);
+  }, [router, pathname]);
 }

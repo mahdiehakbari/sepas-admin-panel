@@ -43,7 +43,7 @@ export const getFinancialSideBarItems = () => [
   },
   {
     label: i18n.t('panel:borrowers_installments'),
-    path: '',
+    path: '/panel/borrowersInstallmentsFinancial',
     icon: '/assets/icons/transaction-financial.svg',
   },
   {

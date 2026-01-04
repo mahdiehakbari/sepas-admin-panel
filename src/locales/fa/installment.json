@@ -5,5 +5,6 @@
   "amount": "مبلغ (ریال)",
   "transaction_status": "وضعیت تراکنش",
   "operation": "عملیات",
-  "customer_name": "نام مشتری"
+  "customer_name": "نام مشتری",
+  "borrowers_installments_documents": "اسناد اقساط وام گیرندگان"
 }

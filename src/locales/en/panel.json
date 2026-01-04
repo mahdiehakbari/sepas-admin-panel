@@ -32,5 +32,10 @@
   "get_report": "Get the report",
   "Frequently": "FAQ",
   "main_page": "Main page",
-  "contact_us": "Contact Us"
+  "contact_us": "Contact Us",
+  "from_payment_date": "From payment date",
+  "to_payment_date": "To payment date",
+  "national_code": "National Code",
+  "account_no": "Account Number",
+  "order": "Installment Order"
 }
